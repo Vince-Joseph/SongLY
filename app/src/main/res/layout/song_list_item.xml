@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/musicIcon"
+                android:src="@drawable/ic_baseline_music_note_24"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:id="@+id/songTitle"
+            android:paddingLeft="20dp"
+            android:textColor="@android:color/black"
+            android:text="The sample title"
+            android:layout_alignEnd="@+id/musicIcon"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/DimGrey"
+        android:gravity="center_horizontal"/>
+
+</LinearLayout>

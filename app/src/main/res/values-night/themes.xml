@@ -1,0 +1,59 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+
+    <style name="Theme.SongLY" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color.  to change the color of bottom navigation bar-->
+        <item name="colorPrimary">@color/dodgerblue</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/dodgerblue</item>
+        <!-- Customize your theme here. -->
+
+        <item name="actionModeBackground">@color/dodgerblue</item>
+        <item name="windowActionModeOverlay">true</item>
+<!--        <item name="android:actionModeStyle">@style/Theme.SongLY.ActionMode</item>-->
+    </style>
+
+    <style name="Theme.Design.NoActionBarViewLyrics">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/dodgerblue</item>
+    </style>
+
+    <style name="Theme.SongLY.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/dodgerblue</item>
+    </style>
+
+<!--    <style name="Theme.SongLY.ActionMode">-->
+<!--        <item name="background" >@color/dodgerblue</item>-->
+<!--    </style>-->
+
+<!--    <style name="ActionModeTheme" parent="Theme.SongLY">-->
+<!--        <item name="actionModeStyle">@style/Theme.SongLY.ActionMode</item>-->
+<!--        <item name="windowActionModeOverlay">true</item>-->
+<!--        <item name="actionMenuTextColor">@color/white</item>-->
+<!--    </style>-->
+
+
+
+<!--    <style name="Theme.SongLY.NoActionBarSplashScreen">-->
+<!--        <item name="android:background">@android:color/transparent</item>-->
+<!--        <item name="android:windowDisablePreview">true</item>-->
+<!--        <item name="android:windowIsTranslucent">true</item>-->
+<!--        <item name="android:windowBackground">@null</item>-->
+<!--        <item name="android:windowFullscreen">true</item>-->
+<!--        <item name="android:windowContentOverlay">@null</item>-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--    </style>-->
+</resources>

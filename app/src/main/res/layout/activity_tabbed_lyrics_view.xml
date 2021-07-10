@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TabbedLyricsView"
+    android:orientation="vertical">
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tabLayoutViewLyrics"
+        android:background="@color/dodgerblue"
+        app:tabTextColor="@color/black"
+        app:tabSelectedTextColor="@color/white"
+        app:tabIndicatorColor="@color/white"
+       >
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_lyrics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lyrics" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Details" />
+
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPagerLyrics"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

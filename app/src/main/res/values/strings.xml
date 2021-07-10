@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Song LY</string>
+    <string name="title_activity_home_screen">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_list_of_songs">MainActivity</string>
+    <string name="title_activity_lyrics">Lyrics</string>
+    <string name="tab_text_1">LYRICS</string>
+    <string name="tab_text_2">DETAILS</string>
+    <string name="songName">Song Name</string>
+    <string name="title01">Song title 001</string>
+    <string name="songAlbum">Song Album</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

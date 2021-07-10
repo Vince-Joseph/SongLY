@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="folderEntrance" type="id"/>
+    <item name="folderPslam" type="id"/>
+    <item name="folderGospel" type="id"/>
+    <item name="folderOffering" type="id"/>
+    <item name="folderOsana" type="id"/>
+    <item name="folderElavation" type="id"/>
+    <item name="folderCommunion" type="id"/>
+    <item name="folderOthers" type="id"/>
+    <item name="folderEmpty" type="id"/>
+</resources>
