@@ -1,36 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ListOfSongs"
     android:orientation="vertical">
-<!-- <LinearLayout-->
-<!--     android:layout_width="match_parent"-->
-<!--     android:layout_height="60dp"-->
-<!--     android:orientation="horizontal">-->
-<!--&lt;!&ndash;        <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/search_edit_text"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:paddingLeft="10dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:textSize="21sp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:paddingTop="15dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="20dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="50dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_weight="1"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:textColor="@color/black"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:text="Hello"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:textStyle="bold"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:background="@color/dodgerblue"/>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <SearchView&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/searchSongs"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="75dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="50dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:background="@color/dodgerblue"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layoutDirection="rtl"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_weight="1" />&ndash;&gt;-->
-<!--    </LinearLayout>-->
     <androidx.recyclerview.widget.RecyclerView
             android:paddingTop="20dp"
             android:layout_width="match_parent"
@@ -38,23 +12,8 @@
             android:layout_weight="1"
             android:id="@+id/songListRecycler"
             />
-<!--    </LinearLayout>-->
-
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/floatingActionButton"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:clickable="true"-->
-<!--        android:layout_gravity="end|bottom"-->
-<!--        app:srcCompat="@drawable/ic_search"-->
-<!--        android:layout_marginBottom="20dp"-->
-<!--        android:layout_marginRight="20dp"-->
-<!--        android:background="@color/dodgerblue"/>-->
-
-
     <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         layout="@layout/bottom_navigation_bar"/>
-
 </LinearLayout>

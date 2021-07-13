@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/relative_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/empty_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/empty_list" />
+
+        <TextView
+            android:id="@+id/default_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No lists, create new list"
+            android:textSize="20sp"
+            android:paddingLeft="18sp"
+            android:layout_weight="1"
+            android:layout_alignBottom="@+id/empty_icon"
+            android:gravity="center_horizontal"
+            android:textColor="@color/grey"/>
+</RelativeLayout>

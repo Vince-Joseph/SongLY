@@ -11,9 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SongLY">
-        <activity android:name=".HomePage"
+        <activity android:name=".ViewIndividualList"
+            android:parentActivityName=".ListActivity"
+            android:theme="@style/Theme.SongLY.NoActionBar"/>
+        <activity
+            android:name=".HomePage"
             android:label="Category"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ListActivity"
             android:screenOrientation="portrait"
@@ -29,7 +33,6 @@
         <activity
             android:name=".ListOfSongs"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".SplashScreen"
             android:screenOrientation="portrait"

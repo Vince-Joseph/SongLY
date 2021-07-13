@@ -23,6 +23,15 @@ public class ModalFullSearch {
         this.typeface = typeface;
     }
 
+    public ModalFullSearch(String fileName, String englishTitle, String malayalamTitle,
+                           String folderName) {
+//        this.imageResource = imageResource;
+        this.fileName = fileName;
+        this.folderName = folderName;
+        this.malayalamTitle = malayalamTitle;
+        this.englishTitle = englishTitle;
+    }
+
     public Typeface getTypeface() {
         return typeface;
     }

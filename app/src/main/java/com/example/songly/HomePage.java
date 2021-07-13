@@ -89,6 +89,7 @@ public class HomePage extends AppCompatActivity implements BottomNavigationView.
             case R.id.searchIconHome:
             {
                 i = new Intent(HomePage.this, FullSearch.class);
+                i.putExtra("mode","off");
                 startActivity(i);
                 return true;
             }

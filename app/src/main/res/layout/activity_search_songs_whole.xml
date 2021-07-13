@@ -1,20 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="15dp"
     android:gravity="center_horizontal">
-    <SearchView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/searchWholeSongs"/>
+        android:orientation="horizontal">
+
+            <SearchView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/searchWholeSongs"/>
+
+            <ImageView
+                android:id="@+id/tickMarkSelection"
+                android:layout_width="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tickmark"
+                app:tint="@color/LimeGreen"/>
+
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/wholeListRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="4dp"
+        android:layout_weight="1"
         android:scrollbars="vertical"
         />
+
+<!--    <com.getbase.floatingactionbutton.FloatingActionsMenu-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:fab_expandDirection="up"-->
+<!--        android:layout_gravity="right"-->
+<!--        app:fab_labelsPosition="right"-->
+<!--        app:fab_labelStyle="@style/LabStyle">-->
+
+
+<!--&lt;!&ndash;    <com.getbase.floatingactionbutton.FloatingActionButton&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:fab_colorNormal="@color/Lime"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:fab_size="mini"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:fab_icon="@drawable/ic_baseline_music_note_24"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:fab_title="5 Songs"/>&ndash;&gt;-->
+<!--    </com.getbase.floatingactionbutton.FloatingActionsMenu>-->
+
+
 </LinearLayout>

@@ -2,7 +2,7 @@ package com.example.songly;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
@@ -22,38 +22,33 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
+public class AdapterIndividualList extends RecyclerView.Adapter<AdapterIndividualList.ViewHolder> {
 
-    List<String> listNames;
-    List<String> selected;
+    List<ModalFullSearch> songNames;
+    List<ModalFullSearch> selected;
 
-    List<AdapterList.ViewHolder> viewHoldersList;
-    List<AdapterList.ViewHolder> fullViewHolder;
-    AdapterList.OnClickAction receiver;
-
-    SharedPreferences sharedPreferences;
+    List<AdapterIndividualList.ViewHolder> viewHoldersList;
+    List<AdapterIndividualList.ViewHolder> fullViewHolder;
+    AdapterIndividualList.OnClickAction receiver;
 
     Context context;
     LayoutInflater inflater;
-    Intent intent;
     ImageView  deleteIcon;
-    public  AdapterList(Context context, List<String> listNames)
+    public  AdapterIndividualList(Context context, List<ModalFullSearch> listNames)
     {
         this.context = context;
-        this.listNames = listNames;
+        this.songNames = listNames;
         this.inflater = LayoutInflater.from(context);
         this.selected = new ArrayList<>();
         this.viewHoldersList = new ArrayList<>();
         this.fullViewHolder = new ArrayList<>();
-        this.sharedPreferences = context.getSharedPreferences("SongLY", Context.MODE_PRIVATE);
     }
 
-    public void updateNames(String oldName, String newFileName) {
-//        Toast.makeText(context, selected.get(0), Toast.LENGTH_SHORT).show();
-        listNames.set(listNames.indexOf(oldName), newFileName);
 
-        notifyDataSetChanged();
-    }
+//    public void addToSelected(String songName)
+//    {
+//        this.selected.add(songName);
+//    }
 
 
     public interface OnClickAction {
@@ -65,17 +60,17 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
     @NonNull
     @NotNull
     @Override
-    public AdapterList.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public AdapterIndividualList.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.individual_grid_view_recycler, parent, false);
+        View view = inflater.inflate(R.layout.individual_list_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull AdapterList.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull AdapterIndividualList.ViewHolder holder, int position) {
 
-        final String item = listNames.get(position);
-        holder.listText.setText(listNames.get(position));
+        final ModalFullSearch item = songNames.get(position);
+        holder.listText.setText(item.getMalayalamTitle()); // set the title of textview
         fullViewHolder.add(holder);
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -112,38 +107,35 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
                 }
                 else
                 {
-                    //selected.clear();
-                    intent = new Intent(holder.itemView.getContext(), ViewIndividualList.class);
-                    sharedPreferences.edit().putString("file_name", holder.listText.getText().toString()+".txt").apply();
-                    sharedPreferences.edit().putString("selected", "off").apply();
-//                    Toast.makeText(holder.itemView.getContext(), sharedPreferences.getString("file_name", null), Toast.LENGTH_SHORT).show();
-//                    intent.putExtra("fileName", holder.listText.getText().toString());
+                    Intent intent = new Intent(holder.itemView.getContext(), TabbedLyricsView.class);
+                    intent.putExtra("fileName", item.getFileName());
+                    intent.putExtra("folderName",item.getFolderName());
                     holder.itemView.getContext().startActivity(intent);
                 }
             }
         });
 
     }
-    private void highlightView(AdapterList.ViewHolder holder) {
-        holder.checkIcon.setVisibility(View.VISIBLE);
+    private void highlightView(AdapterIndividualList.ViewHolder holder) {
+        holder.selectionIndicator.setVisibility(View.VISIBLE);
 //        holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.selected));
     }
 
-    private void unhighlightView(AdapterList.ViewHolder holder) {
-        holder.checkIcon.setVisibility(View.GONE);
+    private void unhighlightView(AdapterIndividualList.ViewHolder holder) {
+        holder.selectionIndicator.setVisibility(View.GONE);
 //        holder.itemView.setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent));
     }
 
 
     @Override
     public int getItemCount() {
-        return listNames.size();
+        return songNames.size();
     }
 
     public void clearAll(boolean isNotify) {
         viewHoldersList.clear();
 //        viewHoldersList.addAll(fullViewHolder);
-        for (AdapterList.ViewHolder rw: fullViewHolder ) {
+        for (AdapterIndividualList.ViewHolder rw: fullViewHolder ) {
             unhighlightView(rw);
         }
 
@@ -154,11 +146,11 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
     public void deleteFileNames() {
 //        int size = viewHoldersList.size();
 
-        for (AdapterList.ViewHolder rw: viewHoldersList ) {
+        for (AdapterIndividualList.ViewHolder rw: viewHoldersList ) {
             fullViewHolder.remove(rw);
         }
-        for (String item: selected ) {
-            listNames.remove(item);
+        for (ModalFullSearch item: selected ) {
+            songNames.remove(item);
         }
         notifyDataSetChanged();
     }
@@ -166,31 +158,31 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
     public void selectAll() {
 
         selected.clear();
-        selected.addAll(listNames);
+        selected.addAll(songNames);
 
         viewHoldersList.addAll(fullViewHolder);
 
-        for (AdapterList.ViewHolder rw: viewHoldersList ) {
+        for (AdapterIndividualList.ViewHolder rw: viewHoldersList ) {
             highlightView(rw);
         }
 
         notifyDataSetChanged();
     }
 
-    public List<String> getSelected() {
+    public List<ModalFullSearch> getSelected() {
         return selected;
     }
 
     public void removeAllSelections()
     {
-        for (AdapterList.ViewHolder rw: viewHoldersList ) {
+        for (AdapterIndividualList.ViewHolder rw: viewHoldersList ) {
             unhighlightView(rw);
         }
 
         selected.clear();
         viewHoldersList.clear();
     }
-    public void setActionModeReceiver(AdapterList.OnClickAction receiver) {
+    public void setActionModeReceiver(AdapterIndividualList.OnClickAction receiver) {
         this.receiver = receiver;
     }
 
@@ -198,39 +190,16 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView listText;
-        ImageView checkIcon;
+        TextView malayalamTextView;
+        ImageView selectionIndicator;
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            listText =  itemView.findViewById(R.id.list_name);
-            checkIcon = itemView.findViewById(R.id.iconCheck);
 
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//
-//                @Override
-//                public void onClick(View v) {
-//                    if(isMultiSelectOn)
-//                    {
-//
-//                    }
-//                    Toast.makeText(v.getContext(), Integer.toString(getAbsoluteAdapterPosition()), Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//
-//
-//            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(View v) {
-//                    isMultiSelectOn = true;
-//                    if(isMultiSelectOn)
-//                    {
-////                      Toast.makeText(v.getContext(), listText.getText().toString(), Toast.LENGTH_SHORT).show();
-//                        itemView.setBackgroundColor(1);
-//                    }
-//                    return true;
-//                }
-//            });
-
-
+            Typeface typeface = Typeface.createFromAsset(context.getAssets(),"font/MLKR0NTT.TTF");
+            listText =  itemView.findViewById(R.id.malayalamTitle);
+            listText.setTypeface(typeface);
+            selectionIndicator = itemView.findViewById(R.id.selectionIndicator);
+//            removeView = itemView.findViewById(R.id.removeIcon);
 
         }
     }

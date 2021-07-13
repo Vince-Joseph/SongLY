@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,7 +69,7 @@ public class ListOfSongs extends AppCompatActivity  implements
                 R.id.navigation_list, R.id.navigation_song, R.id.navigation_prayer)
                 .build();
 
-//        // changing default selection of bottom bar
+        // changing default selection of bottom bar
         navView.setOnNavigationItemSelectedListener(this);
         navView.getMenu().findItem(R.id.navigation_song).setChecked(true);
 
@@ -78,30 +79,6 @@ public class ListOfSongs extends AppCompatActivity  implements
         fileName = fileName.toLowerCase();
 
         setTitle(activityTitle);
-
-//        TextView editText = findViewById(R.id.search_edit_text);
-//        editText.setText(activityTitle);
-
-//        searchView.setQueryHint("Search "+activityTitle);
-//
-////        searchView.setIconified(false);
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
-//        {
-//
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//
-//                adapter.getFilter().filter(newText);
-//                return true;
-//            }
-//        });
-
         initData(fileName);
         initRecyclerView();
     }
@@ -217,6 +194,7 @@ public class ListOfSongs extends AppCompatActivity  implements
         inflater.inflate(R.menu.search_menu, menu); // inflating menu/search_menu.xml
 
         MenuItem searchItem = menu.findItem(R.id.searchIcon); // finding search icon
+
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setIconifiedByDefault(false);
         searchView.requestFocus();

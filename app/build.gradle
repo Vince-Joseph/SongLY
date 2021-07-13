@@ -44,6 +44,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.getbase:floatingactionbutton:1.10.1'
 //    implementation 'com.android.support.recyclerview-v7:28.0.0' // newly added recycler
 //    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     testImplementation 'junit:junit:4.+'
@@ -51,4 +52,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
      //  dependency for youtube player
 //    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+
+    // for getting json
+    implementation 'com.google.code.gson:gson:2.8.5'
 }

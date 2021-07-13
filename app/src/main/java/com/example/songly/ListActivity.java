@@ -15,6 +15,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -57,14 +58,20 @@ public class ListActivity extends AppCompatActivity
     private RecyclerView listSetRecycler;
     List<String> listNames;
     AdapterList adapter;
+    File currentDir = Environment.getExternalStorageDirectory();
     String newFileName;
     ActionMode actionMode;
     Activity activity = ListActivity.this;
     BottomNavigationView navView;
     Toolbar toolbar;
-    File currentDir = Environment.getExternalStorageDirectory();
+    ImageView editIconToolbar;
     ImageView addIcon;
     RelativeLayout relativeLayoutEmpty;
+    TextView textViewEmpty;
+    ImageView imageViewEmpty;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +95,12 @@ public class ListActivity extends AppCompatActivity
 
         // this layout will be shown if there are no lists
         relativeLayoutEmpty = findViewById(R.id.relative_empty);
+        textViewEmpty = findViewById(R.id.default_text);
+        imageViewEmpty = findViewById(R.id.empty_icon);
+        textViewEmpty.setText("No lists available, create new one");
+        imageViewEmpty.setImageResource(R.drawable.empty_list);
+        editIconToolbar = findViewById(R.id.editIconToolbar);
+        editIconToolbar.setVisibility(View.INVISIBLE);
 
         listSetRecycler = findViewById(R.id.list_recycler);
 
@@ -354,6 +367,7 @@ public class ListActivity extends AppCompatActivity
 
         if(requiredPath != null)
         {
+            boolean flag = false;
             if(requiredPath.listFiles() == null) // folder has no files
             {
                 Toast.makeText(this, "No lists available", Toast.LENGTH_SHORT).show();
@@ -368,9 +382,13 @@ public class ListActivity extends AppCompatActivity
                     if(fdelete.exists())
                     {
                         fdelete.delete();
-                        Toast.makeText(activity, "Lists(s) deleted", Toast.LENGTH_SHORT).show();
+                        flag = true;
                     }
                }
+
+               if(flag)
+                  Toast.makeText(activity, "Lists(s) deleted", Toast.LENGTH_SHORT).show();
+
              }
             adapter.deleteFileNames();
         }
@@ -401,6 +419,12 @@ public class ListActivity extends AppCompatActivity
                 someFile.createNewFile();
                 listNames.add(newFileName);
                 toggleDefaultText();
+//                Intent intent = new Intent(getApplicationContext(), ViewIndividualList.class);
+//                startActivity(intent);
+//                intent.putExtra("fileName", newFileName);
+                sharedPreferences = getSharedPreferences("SongLY", MODE_PRIVATE);
+                sharedPreferences.edit().putString("file_name", newFileName+".txt").apply();
+
             }
 
 //            Toast.makeText(this, someFile.getAbsolutePath(), Toast.LENGTH_SHORT).show();
