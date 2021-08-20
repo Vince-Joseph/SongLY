@@ -126,12 +126,10 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
     }
     private void highlightView(AdapterList.ViewHolder holder) {
         holder.checkIcon.setVisibility(View.VISIBLE);
-//        holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.selected));
     }
 
     private void unhighlightView(AdapterList.ViewHolder holder) {
         holder.checkIcon.setVisibility(View.GONE);
-//        holder.itemView.setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent));
     }
 
 
@@ -170,7 +168,7 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
 
         viewHoldersList.addAll(fullViewHolder);
 
-        for (AdapterList.ViewHolder rw: viewHoldersList ) {
+        for (AdapterList.ViewHolder rw: fullViewHolder ) {
             highlightView(rw);
         }
 

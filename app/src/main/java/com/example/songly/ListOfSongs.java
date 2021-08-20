@@ -48,10 +48,7 @@ public class ListOfSongs extends AppCompatActivity  implements
     List<ModelClassSongList> songsList;
     Adapter adapter;
     SearchView searchView;
-
     Typeface typeface;
-
-    String folderName;
 
 
     @Override
@@ -59,6 +56,7 @@ public class ListOfSongs extends AppCompatActivity  implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_songs);
 
+//        searchView = findViewById(R.id.searchIcon);
 
         typeface = Typeface.createFromAsset(getAssets(),"font/MLKR0NTT.TTF");
 
@@ -93,12 +91,18 @@ public class ListOfSongs extends AppCompatActivity  implements
         {
             case R.id.navigation_song: {
                 intent = new Intent(getApplicationContext(), HomePage.class);
+                searchView.setQuery("", false);
+                searchView.clearFocus();
+//                searchView.setIconified(true);
                 startActivity(intent);
                 break;
             }
 
             case R.id.navigation_list:{
                 intent = new Intent(getApplicationContext(), ListActivity.class);
+                searchView.setQuery("", false);
+                searchView.clearFocus();
+//                searchView.setIconified(true);
                 startActivity(intent);
                 break;
             }
@@ -109,7 +113,14 @@ public class ListOfSongs extends AppCompatActivity  implements
         return true;
     }
 
-
+    @Override
+    public void onBackPressed() {
+//        temp_intent = new Intent(getApplicationContext(), HomePage.class);
+//        temp_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(temp_intent);
+//        ListOfSongs.this.finish();
+        super.onBackPressed();
+    }
 
     private void initRecyclerView() {
         recyclerView=findViewById(R.id.songListRecycler);
@@ -184,6 +195,10 @@ public class ListOfSongs extends AppCompatActivity  implements
         intent.putExtra("folderName", songsList.get(position).getFolderName());
 
 
+        searchView.setQuery("", false);
+        searchView.clearFocus();
+//        searchView.setIconified(true);
+
 //        // now invoke the intent
         startActivity(intent);
     }
@@ -195,7 +210,7 @@ public class ListOfSongs extends AppCompatActivity  implements
 
         MenuItem searchItem = menu.findItem(R.id.searchIcon); // finding search icon
 
-        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView = (SearchView) searchItem.getActionView();
         searchView.setIconifiedByDefault(false);
         searchView.requestFocus();
 //        searchView.setFocusable(true);

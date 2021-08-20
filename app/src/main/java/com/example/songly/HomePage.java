@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 public class HomePage extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     RecyclerView recyclerView; // recycler for holding the folders
-
+    int counter = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,7 @@ public class HomePage extends AppCompatActivity implements BottomNavigationView.
         folderNames.add("Elavation");
         folderNames.add("Communion");
         folderNames.add("Others");
+
 
         // adapter object
         AdapterHomePage adapterHomePage = new AdapterHomePage(this, folderNames);
@@ -54,6 +56,17 @@ public class HomePage extends AppCompatActivity implements BottomNavigationView.
     }
 
     @Override
+    public void onBackPressed() {
+
+        if(counter >= 2)
+            super.onBackPressed();
+        else if(counter == 0)
+            Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+
+        counter++;
+    }
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
         int menuId = item.getItemId();
         Intent intent;
@@ -61,13 +74,14 @@ public class HomePage extends AppCompatActivity implements BottomNavigationView.
         switch(menuId)
         {
             // no comparison for homepage because we are at home page
-
             case R.id.navigation_list:{
                 intent = new Intent(HomePage.this, ListActivity.class);
                 startActivity(intent);
                 break;
             }
             case R.id.navigation_prayer:
+                intent = new Intent(HomePage.this, PrayerActivity.class);
+                startActivity(intent);
                 break;
         }
         return true;

@@ -68,7 +68,7 @@ public class ListActivity extends AppCompatActivity
     ImageView addIcon;
     RelativeLayout relativeLayoutEmpty;
     TextView textViewEmpty;
-    ImageView imageViewEmpty;
+    ImageView imageViewEmpty, sortIcon;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor ;
@@ -99,7 +99,11 @@ public class ListActivity extends AppCompatActivity
         imageViewEmpty = findViewById(R.id.empty_icon);
         textViewEmpty.setText("No lists available, create new one");
         imageViewEmpty.setImageResource(R.drawable.empty_list);
+
         editIconToolbar = findViewById(R.id.editIconToolbar);
+        sortIcon = findViewById(R.id.sortIcon);
+
+        sortIcon.setVisibility(View.GONE);
         editIconToolbar.setVisibility(View.INVISIBLE);
 
         listSetRecycler = findViewById(R.id.list_recycler);
@@ -165,6 +169,9 @@ public class ListActivity extends AppCompatActivity
 //                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), HomePage.class);
                 startActivity(intent);
+                finish(); // we are finishing the activity to pop it out from the stack such that
+                // at a later stage, when we open the page, we get updated items, not some old views
+
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -217,6 +224,8 @@ public class ListActivity extends AppCompatActivity
             {
                 i = new Intent(getApplicationContext(),HomePage.class);
                 startActivity(i);
+                finish();
+
                 break;
             }
             case R.id.navigation_prayer:

@@ -11,11 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SongLY">
-        <activity android:name=".ViewIndividualList"
-            android:parentActivityName=".ListActivity"
-            android:theme="@style/Theme.SongLY.NoActionBar"/>
+
+        <activity android:name=".PrayerActivity"
+            android:parentActivityName=".HomePage"
+        />
+        <activity
+            android:name=".ViewIndividualList"
+            android:theme="@style/Theme.SongLY.NoActionBar" />
+
+        <!-- Home activity has launchMode=singleTask.
+         this is to make the activity appear only once in activity stack -->
         <activity
             android:name=".HomePage"
+            android:launchMode="singleTask"
             android:label="Category"
             android:screenOrientation="portrait" />
         <activity
@@ -32,6 +40,7 @@
             android:theme="@style/Theme.SongLY.NoActionBar" />
         <activity
             android:name=".ListOfSongs"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".SplashScreen"

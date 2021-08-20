@@ -3,6 +3,7 @@ package com.example.songly;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
@@ -44,16 +45,9 @@ public class AdapterIndividualList extends RecyclerView.Adapter<AdapterIndividua
         this.fullViewHolder = new ArrayList<>();
     }
 
-
-//    public void addToSelected(String songName)
-//    {
-//        this.selected.add(songName);
-//    }
-
-
     public interface OnClickAction {
-        public boolean onClickAction();
-        public boolean onLongClickAction();
+        boolean onClickAction();
+        boolean onLongClickAction();
     }
 
 
@@ -159,14 +153,15 @@ public class AdapterIndividualList extends RecyclerView.Adapter<AdapterIndividua
 
         selected.clear();
         selected.addAll(songNames);
-
+        viewHoldersList.clear();
         viewHoldersList.addAll(fullViewHolder);
 
         for (AdapterIndividualList.ViewHolder rw: viewHoldersList ) {
             highlightView(rw);
+//            Log.d("engName", Integer.toString(viewHoldersList.size()));
         }
 
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
     }
 
     public List<ModalFullSearch> getSelected() {

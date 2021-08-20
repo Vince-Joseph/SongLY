@@ -92,6 +92,7 @@ public class FullSearch extends AppCompatActivity
                 editor.putString("selected", "on");
                 editor.apply();
                 startActivity(intent);
+                finish();
             }
         });
         fullListOfSongs = new ArrayList<>();
@@ -151,11 +152,12 @@ public class FullSearch extends AppCompatActivity
 
         if(storedList == null)
         {
-            Toast.makeText(this, "No data saved in sharedpreferences", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "No data saved in sharedpreferences", Toast.LENGTH_SHORT).show();
             storedList = new ArrayList<>();
         }
         else
         {
+
             for(ModalFullSearch md: storedList)
             {
                 for(int i = 0; i< fullListOfSongs.size(); i++)
@@ -189,5 +191,6 @@ public class FullSearch extends AppCompatActivity
 
         // now invoke the activity
         startActivity(intent);
+        finish();
     }
 }

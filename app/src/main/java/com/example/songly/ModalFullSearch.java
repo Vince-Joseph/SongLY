@@ -4,7 +4,7 @@ import android.graphics.Typeface;
 
 import java.lang.reflect.Type;
 
-public class ModalFullSearch {
+public class ModalFullSearch implements Comparable<ModalFullSearch> {
 
     private String malayalamTitle;
     private String englishTitle;
@@ -50,5 +50,12 @@ public class ModalFullSearch {
 
     public String getMalayalamTitle() {
         return malayalamTitle;
+    }
+
+
+    // to sort two objects based on english titles
+    @Override
+    public int compareTo(ModalFullSearch o) {
+        return (this.getEnglishTitle().compareToIgnoreCase(o.getEnglishTitle()));
     }
 }

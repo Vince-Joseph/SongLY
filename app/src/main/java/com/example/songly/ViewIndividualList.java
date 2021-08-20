@@ -42,6 +42,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class ViewIndividualList extends AppCompatActivity
@@ -62,6 +64,7 @@ public class ViewIndividualList extends AppCompatActivity
     Intent intent;
     int countOfLines = 0; // to store the number of lines read from the file
 
+    int songsSortedInOrder = -1;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor ;
     Gson gson;
@@ -83,7 +86,11 @@ public class ViewIndividualList extends AppCompatActivity
         toolbar = findViewById(R.id.toolbar_lists);
         setSupportActionBar(toolbar); // replace appbar with custome toolbar
         toolbar.setTitle("File");
+//        toolbar.inflateMenu(R.menu.bottom_nav_menu);
+
         ImageView editIcon = findViewById(R.id.editIconToolbar);
+        ImageView sortIcon = findViewById(R.id.sortIcon);
+
         editIcon.setVisibility(View.INVISIBLE);
 
         navView = findViewById(R.id.nav_view);
@@ -106,14 +113,15 @@ public class ViewIndividualList extends AppCompatActivity
         songNames = new ArrayList<>(); // to temp store the list names
         helperClass = new HelperClass();
 
-        checkPermission(); // check for storage permissions
         fullListOfSongs = new ArrayList<>();
+
+        checkPermission(); // check for storage permissions, each time activity get displayed
         fullListOfSongs.addAll( helperClass.fillSongTitles(this) ); // fill the list with all song's titles
         setUpRecycler();
+        adapter.setActionModeReceiver((AdapterIndividualList.OnClickAction) activity);
 
         toggleDefaultText(); // toggle the view if there are no lists present
 
-        adapter.setActionModeReceiver((AdapterIndividualList.OnClickAction) activity);
 
         addIcon = findViewById(R.id.addIcon); // icon to add new song to the list
         // when clicked on new list icon, show the activity to search and add songs to the list
@@ -124,6 +132,73 @@ public class ViewIndividualList extends AppCompatActivity
                 intent = new Intent(getApplicationContext(), FullSearch.class);
                 intent.putExtra("mode", "on");
                 startActivity(intent);
+                finish();
+            }
+        });
+
+
+        // to be implemented
+        sortIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(songNames.size() != 0)
+                {
+                    if(songsSortedInOrder == 1)
+                    {
+                        Collections.sort(songNames, Collections.reverseOrder());
+                        songsSortedInOrder = 0;
+                    }
+                    else if(songsSortedInOrder == 0)
+                    {
+                        Collections.sort(songNames);
+                        songsSortedInOrder = 1;
+                    }
+                    else
+                    {
+                        songsSortedInOrder = 1;
+                        Collections.sort(songNames);
+                    }
+
+                    adapter.notifyDataSetChanged();
+
+                    // android/data/com.example.songly/files/lists
+                    File requiredPath = getExternalFilesDir("lists");
+                    if(requiredPath != null)
+                    {
+                        File toWrite;
+                        toWrite = new File(requiredPath, currentFileName);
+                        try
+                        {
+                            countOfLines = 0;
+                            FileWriter writeToFile = new FileWriter(toWrite);
+
+                            for (ModalFullSearch md: songNames)
+                            {
+
+                                writeToFile.write(
+                                        md.getFileName()+",\t\t\t"
+                                                +md.getEnglishTitle()+",\t\t\t"
+                                                +md.getMalayalamTitle()+",\t\t\t"
+                                                +md.getFolderName()+"\n"
+                                );
+
+                                countOfLines++;
+                            }
+                            writeToFile.close();
+                        }
+                        catch (IOException e)
+                        {
+                            Toast.makeText(getApplicationContext(), "IO exception", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "No such directory", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
             }
         });
 
@@ -227,17 +302,21 @@ public class ViewIndividualList extends AppCompatActivity
 //                        Toast.makeText(this, "haredprefs", Toast.LENGTH_SHORT).show();
                         for (ModalFullSearch md: storedList)
                         {
-                            songNames.add(md);
-                            FileWriter writeToFile = new FileWriter(toBeRead, true);
-                            writeToFile.write(
-                                    md.getFileName()+",\t\t\t"
-                                    +md.getEnglishTitle()+",\t\t\t"
-                                    +md.getMalayalamTitle()+",\t\t\t"
-                                    +md.getFolderName()+"\n"
-                            );
+//                            // this has to be checked 'cause we are calling setupRecycler from onStartActivity, not onCreate
+//                            if(!(songNames.contains(md)))
+//                            {
+                                songNames.add(md);
+                                FileWriter writeToFile = new FileWriter(toBeRead, true);
+                                writeToFile.write(
+                                        md.getFileName()+",\t\t\t"
+                                        +md.getEnglishTitle()+",\t\t\t"
+                                        +md.getMalayalamTitle()+",\t\t\t"
+                                        +md.getFolderName()+"\n"
+                                );
 
-                            writeToFile.close();
-                            countOfLines++;
+                                writeToFile.close();
+                                countOfLines++;
+//                            }
                         }
                     }
                     else
@@ -247,15 +326,19 @@ public class ViewIndividualList extends AppCompatActivity
 //                    Toast.makeText(this, "Note that storedlist is empty", Toast.LENGTH_LONG).show();
 
 
+                editor = sharedPreferences.edit();
                 if(countOfLines>0)
                 {
 //                  sharedPreferences = getSharedPreferences("SongLY", MODE_PRIVATE);
-                    editor = sharedPreferences.edit();
                     gson = new Gson();
                     json = gson.toJson(songNames);
                     editor.putString("existing_songs", json);
-                    editor.apply();
                 }
+                else
+                {
+                    editor.putString("existing_songs", "");
+                }
+                editor.apply();
             }
             catch (FileNotFoundException e) {
                 Toast.makeText(getApplicationContext(), "No such file", Toast.LENGTH_SHORT).show();
@@ -293,15 +376,20 @@ public class ViewIndividualList extends AppCompatActivity
             {
                 i = new Intent(getApplicationContext(),ListActivity.class);
                 startActivity(i);
+                finish();
                 break;
             }
             case R.id.navigation_song:
             {
                 i = new Intent(getApplicationContext(),HomePage.class);
                 startActivity(i);
+                finish();
                 break;
             }
             case R.id.navigation_prayer:
+                    i = new Intent(getApplicationContext(),PrayerActivity.class);
+                    startActivity(i);
+                    finish();
 //                Toast.makeText(this, "Prayer button", Toast.LENGTH_SHORT).show();
                 break;
         }
@@ -501,4 +589,6 @@ public class ViewIndividualList extends AppCompatActivity
         }
         return false;
     }
+
+
 }
