@@ -26,15 +26,22 @@ public class DetailsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
+    // filename
+    // foldername
+    // album
+    // singers
+    // year
+    // chord
     String details[];
 
     public DetailsFragment() {
         // Required empty public constructor
     }
 
-    public DetailsFragment(String details) {
+    public DetailsFragment(String details[]) {
 //        Log.d("The string is:", details);
-        this.details =  details.split("[,]", 0);
+        this.details =  details;
     }
 
 
@@ -77,14 +84,10 @@ public class DetailsFragment extends Fragment {
         TextView releaseYear = view.findViewById(R.id.release_year);
         TextView chord = view.findViewById(R.id.root_chord);
 
-        // set the values only if array has all the necessary values
-        if(details.length == 4)
-        {
-            albumName.setText(details[0].trim());
-            singerNames.setText(details[1].trim());
-            releaseYear.setText(details[2].trim());
-            chord.setText(details[3].trim());
-        }
+        albumName.setText(details[2].trim());
+        singerNames.setText(details[3].trim());
+        releaseYear.setText(details[4].trim());
+        chord.setText(details[5].trim());
 
         return view;
     }

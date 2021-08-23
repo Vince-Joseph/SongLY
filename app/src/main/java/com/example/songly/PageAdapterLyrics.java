@@ -1,8 +1,5 @@
 package com.example.songly;
 
-import android.content.Context;
-import android.graphics.Typeface;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -10,25 +7,22 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 public class PageAdapterLyrics extends FragmentPagerAdapter {
     int tabCount;
-    String lyrics, details;
-    Typeface typeface;
+
+    // filename
+    // folder name
+    // album
+    // singers
+    // year
+    // chord
+    String  contents[];
 
     public PageAdapterLyrics(@NonNull @NotNull FragmentManager fm, int behavior,
-                             String lyrics,
-                             String details,
-                             Typeface typeface) {
+                             String contents[]) {
         super(fm, behavior);
         this.tabCount = behavior;
-        this.lyrics = lyrics;
-        this.details = details;
-        this.typeface = typeface;
+        this.contents = contents;
     }
 
     @NonNull
@@ -36,12 +30,10 @@ public class PageAdapterLyrics extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-
         switch (position)
-        {
-            case 0: return new LyricsFragment(lyrics, typeface);
-            case 1: return new DetailsFragment(details);
-
+        {                                    // filename   folder name
+            case 0: return new LyricsFragment(contents[0], contents[1]);
+            case 1: return new DetailsFragment(contents);
         }
         return null;
     }

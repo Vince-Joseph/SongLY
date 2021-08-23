@@ -1,15 +1,15 @@
 package com.example.songly;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.util.FitPolicy;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,15 +27,16 @@ public class LyricsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    String lyrics;
-    Typeface typeface;
+    String fileName, folderName;
+    PDFView pdfView;
+
     public LyricsFragment() {
         // Required empty public constructor
     }
 
-    public LyricsFragment(String lyrics, Typeface typeface) {
-        this.lyrics = lyrics;
-        this.typeface = typeface;
+    public LyricsFragment(String fileName, String folderName) {
+        this.fileName = fileName;
+        this.folderName = folderName;
     }
     /**
      * Use this factory method to create a new instance of
@@ -70,14 +71,17 @@ public class LyricsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lyrics, container, false);
 
-        TextView tex = view.findViewById(R.id.lyrics_tab_text);
+        // load the required pdf lyrics from file
+        pdfView = view.findViewById(R.id.lyricsFragment);
+        pdfView.fromAsset(folderName+"/"+fileName+".pdf")
+                .enableDoubletap(true)
+                .pageFitPolicy(FitPolicy.WIDTH)
+                .nightMode(false)
+                .disableLongpress()
+                .load();
 
-        if(typeface != null)
-            tex.setTypeface(typeface);
-
-//        Log.d("Lyrics to be viewed is this", lyrics);
-
-        tex.setText(lyrics);
+        pdfView.setMaxZoom(1.3f);
+        pdfView.setMidZoom(1);
 
         return view;
     }

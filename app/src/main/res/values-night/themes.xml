@@ -19,6 +19,7 @@
         <item name="actionModeBackground">@color/dodgerblue</item>
         <item name="windowActionModeOverlay">true</item>
 <!--        <item name="android:actionModeStyle">@style/Theme.SongLY.ActionMode</item>-->
+        <item name="android:windowActivityTransitions">true</item>
     </style>
 
     <style name="Theme.Design.NoActionBarViewLyrics">

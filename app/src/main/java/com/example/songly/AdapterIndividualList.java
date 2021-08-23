@@ -3,6 +3,7 @@ package com.example.songly;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -34,7 +35,6 @@ public class AdapterIndividualList extends RecyclerView.Adapter<AdapterIndividua
 
     Context context;
     LayoutInflater inflater;
-    ImageView  deleteIcon;
     public  AdapterIndividualList(Context context, List<ModalFullSearch> listNames)
     {
         this.context = context;
@@ -102,8 +102,18 @@ public class AdapterIndividualList extends RecyclerView.Adapter<AdapterIndividua
                 else
                 {
                     Intent intent = new Intent(holder.itemView.getContext(), TabbedLyricsView.class);
-                    intent.putExtra("fileName", item.getFileName());
-                    intent.putExtra("folderName",item.getFolderName());
+                    Bundle bundle = new Bundle();
+                    // we are passing an array of strings to TabbedLyricsView
+                    bundle.putStringArray("contents", new String[]{
+                            item.getFileName(),
+                            item.getFolderName(),
+                            item.getAlbum(),
+                            item.getSingers(),
+                            item.getYear(),
+                            item.getChord()
+                    });
+                    intent.putExtras(bundle);
+
                     holder.itemView.getContext().startActivity(intent);
                 }
             }

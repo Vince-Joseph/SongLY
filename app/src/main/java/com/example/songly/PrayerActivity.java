@@ -2,33 +2,29 @@ package com.example.songly;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.webkit.WebView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.File;
-//
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnTapListener;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import org.jetbrains.annotations.NotNull;
 
 
-public class PrayerActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class PrayerActivity extends AppCompatActivity{
 
     PDFView pdfView;
     BottomNavigationView navView;
     boolean visible = true;
-//    WebView webView;
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +41,32 @@ public class PrayerActivity extends AppCompatActivity implements BottomNavigatio
 
          navView = findViewById(R.id.nav_view);
         // changing default selection of bottom bar
-        navView.setOnNavigationItemSelectedListener(this);
         navView.getMenu().findItem(R.id.navigation_prayer).setChecked(true);
+        // Control the bottom navigation buttons
+        navView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+                int menuId = item.getItemId();
+
+                switch(menuId)
+                {
+                    case R.id.navigation_list:{
+                        intent = new Intent(PrayerActivity.this, ListActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+                        break;
+                    }
+                    case R.id.navigation_song:
+                        intent = new Intent(PrayerActivity.this, HomePage.class);
+                        startActivity(intent);
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
+    // toggle the action bar and bottom nav bar visibility upon single tap
     private OnTapListener hideThings() {
         
         return new OnTapListener() {
@@ -71,24 +89,10 @@ public class PrayerActivity extends AppCompatActivity implements BottomNavigatio
         };
     }
 
+    // whenever PrayerActivity is made visible, set the navigatinprayer item checked
     @Override
-    public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
-        int menuId = item.getItemId();
-        Intent intent;
-
-        switch(menuId)
-        {
-            case R.id.navigation_list:{
-                intent = new Intent(PrayerActivity.this, ListActivity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.navigation_song:
-                intent = new Intent(PrayerActivity.this, HomePage.class);
-                startActivity(intent);
-                break;
-        }
-        return true;
+    protected void onStart() {
+        navView.getMenu().findItem(R.id.navigation_prayer).setChecked(true);
+        super.onStart();
     }
-
 }

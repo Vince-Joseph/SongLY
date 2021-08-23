@@ -4,16 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -27,7 +22,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -37,25 +31,20 @@ import android.widget.Toast;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListActivity extends AppCompatActivity
-        implements BottomNavigationView.OnNavigationItemSelectedListener,
-        AdapterList.OnClickAction{
+        implements AdapterList.OnClickAction{
 
-    private RecyclerView listSetRecycler;
+    private RecyclerView listSetRecycler; // recycler view for displaying list names
     List<String> listNames;
     AdapterList adapter;
     File currentDir = Environment.getExternalStorageDirectory();
@@ -64,14 +53,13 @@ public class ListActivity extends AppCompatActivity
     Activity activity = ListActivity.this;
     BottomNavigationView navView;
     Toolbar toolbar;
-    ImageView editIconToolbar;
-    ImageView addIcon;
+    ImageView editIconToolbar, imageViewEmpty, sortIcon, addIcon;
     RelativeLayout relativeLayoutEmpty;
     TextView textViewEmpty;
-    ImageView imageViewEmpty, sortIcon;
+    File requiredPath;
 
+    Intent intent;
     SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,40 +67,73 @@ public class ListActivity extends AppCompatActivity
         setContentView(R.layout.activity_list);
 
         toolbar = findViewById(R.id.toolbar_lists);
-        setSupportActionBar(toolbar); // replace appbar with custome toolbar
+        setSupportActionBar(toolbar); // replace appbar with custom toolbar
+
+// ------------------ Navigation controls --------------------------------------
 
         navView = findViewById(R.id.nav_view);
-//
-//        // Passing each menu ID as a set of Ids because each
-//        // menu should be considered as top level destinations.
-//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_list, R.id.navigation_song, R.id.navigation_prayer)
-//                .build();
 
         // changing default selection of bottom bar
-        navView.setOnNavigationItemSelectedListener(this);
         navView.getMenu().findItem(R.id.navigation_list).setChecked(true);
 
-        // this layout will be shown if there are no lists
+        // Control the bottom navigation buttons
+        navView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+                int menuId = item.getItemId();
+
+
+                switch(menuId)
+                {
+                    case R.id.navigation_song:
+                    {
+                        intent = new Intent(getApplicationContext(), HomePage.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                        finish();
+
+                        break;
+                    }
+                    case R.id.navigation_prayer:{
+                        intent = new Intent(ListActivity.this, PrayerActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+// ------------------ Navigation controls ends here --------------------------------------
+
+
+        // android/data/com.example.songly/files/lists
+        requiredPath = getExternalFilesDir("lists"); // path where list names are stored
+
+
+        // this layout will be shown if there are no lists present
+//-------------------------------------------------------------------------
         relativeLayoutEmpty = findViewById(R.id.relative_empty);
         textViewEmpty = findViewById(R.id.default_text);
         imageViewEmpty = findViewById(R.id.empty_icon);
-        textViewEmpty.setText("No lists available, create new one");
+        textViewEmpty.setText("No lists available");
         imageViewEmpty.setImageResource(R.drawable.empty_list);
+//---------------------------------------------------------------------------
+        editIconToolbar = findViewById(R.id.editIconToolbar); // edit list name icon
+        sortIcon = findViewById(R.id.sortIcon); // sort songs icon(for list of songs activity)
 
-        editIconToolbar = findViewById(R.id.editIconToolbar);
-        sortIcon = findViewById(R.id.sortIcon);
-
+        // hide both of them initially.
         sortIcon.setVisibility(View.GONE);
         editIconToolbar.setVisibility(View.INVISIBLE);
+        ImageView searchIcon = findViewById(R.id.searchIcon);
+        searchIcon.setVisibility(View.GONE);
 
         listSetRecycler = findViewById(R.id.list_recycler);
-
         listNames = new ArrayList<>(); // to temp store the list names
         newFileName = null;
 
         checkPermission(); // check for storage permissions
-        setUpRecycler();
+        setUpRecycler(); // setup the lists
 
         toggleDefaultText(); // toggle the view if there are no lists present
 
@@ -145,8 +166,9 @@ public class ListActivity extends AppCompatActivity
     // check storage permission
     private void checkPermission() {
 
-        if(Build.VERSION.SDK_INT >= 23) // for Loypop or higher
+        if(Build.VERSION.SDK_INT >= 23) // for Lollipop or higher
         {
+            // if permission is not granted then ask for it
             if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
                     PackageManager.PERMISSION_GRANTED)
             {
@@ -166,8 +188,8 @@ public class ListActivity extends AppCompatActivity
                 setUpRecycler(); // setup recycler view
             else
             {
-//                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), HomePage.class);
+                // return back to home screen
+                intent = new Intent(getApplicationContext(), HomePage.class);
                 startActivity(intent);
                 finish(); // we are finishing the activity to pop it out from the stack such that
                 // at a later stage, when we open the page, we get updated items, not some old views
@@ -177,163 +199,95 @@ public class ListActivity extends AppCompatActivity
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    // setup the list recycler view with existing lists
     private void setUpRecycler() {
-
-        // android/data/com.example.songly/files/lists
-        File requiredPath = getExternalFilesDir("lists");
 
         if(requiredPath != null)
         {
-                for (File f: requiredPath.listFiles()) // get all files from the 'lists' dierctory
-                    if(f.isFile())
-                    {
-                        String fname = f.getName();
+            for (File f: requiredPath.listFiles()) // get all files from the 'lists' directory
+                if(f.isFile()) // if current item is a file then
+                {
+                    String fname = f.getName(); // get its name
 
-                        // remove the .txt string from filename
-                        int index = fname.lastIndexOf('.');
-                        fname = fname.substring(0, index);
+                 // ----------  remove the .txt string from filename ----------
+                    int index = fname.lastIndexOf('.');
+                    fname = fname.substring(0, index);
+                 //-------------------------------------------------------------
+                    listNames.add(fname); // add each filename to arraylist
+                }
 
-                        listNames.add(fname); // add each filename to arraylist
-                    }
-
-
+              // set the layout manager of list recycler view
                 GridLayoutManager gridLayoutManager =
                         new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL,
                                 false);
                 listSetRecycler.setLayoutManager(gridLayoutManager);
 
+                // set the adapter
                 adapter = new AdapterList(this , listNames);
                 listSetRecycler.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+
+
                 toggleDefaultText();
         }
         else
         {
             Toast.makeText(this, "No such directory", Toast.LENGTH_SHORT).show();
         }
-
     }
 
-    public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
-        int menuId = item.getItemId();
-        Intent i = null;
-
-        switch(menuId)
-        {
-            case R.id.navigation_song:
-            {
-                i = new Intent(getApplicationContext(),HomePage.class);
-                startActivity(i);
-                finish();
-
-                break;
-            }
-            case R.id.navigation_prayer:
-//                Toast.makeText(this, "Prayer button", Toast.LENGTH_SHORT).show();
-                break;
-        }
-        return true;
+    /**
+     * Every time ListActivity gets displayed, check the navigation button of bottom bar
+     */
+    @Override
+    protected void onStart() {
+        navView.getMenu().findItem(R.id.navigation_list).setChecked(true);
+        super.onStart();
     }
 
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-////        deleteIcon.setVisibility(View.VISIBLE);
-//        addIcon.setVisibility(View.GONE);
-////        MenuInflater inflater = getMenuInflater();
-////        inflater.inflate(R.menu.list_menu, menu); // inflating menu/list_menu.xml
-//
-////        MenuItem addNewList = menu.findItem(R.id.plus_icon); // finding add icon
-//
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-////        Intent i;
-//        switch (item.getItemId())
-//        {
-//            case R.id.plus_icon:
-//            {
-//                showAlert();
-////                Toast.makeText(this, newFileName == null?"null":newFileName, Toast.LENGTH_SHORT).show();
-//                return true;
-//            }
-//            default: return super.onOptionsItemSelected(item);
-//        }
-////        return  super.onOptionsItemSelected(item);
-//
-//    }
-
+    // show alert for creation of new list
     public void showAlert()
     {
         AlertDialog.Builder ab = new AlertDialog.Builder(ListActivity.this);
         View view = getLayoutInflater().inflate(R.layout.custome_alert_dialog, null);
         EditText newListName = (EditText) view.findViewById(R.id.new_list_name);
         Button createBtn = (Button) view.findViewById(R.id.create_button);
-//        Button cancelBtn = (Button) view.findViewById(R.id.cancel_button);
 
         ab.setView(view);
         AlertDialog alert = ab.create();
 
-        //
         alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alert.show();// show the dialog box
 
+        // upon clicking create button
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // if provided new list name is not empty then
                 if(!(newListName.getText().toString().isEmpty()))
                 {
                     newFileName = newListName.getText().toString();
-                    if(currentDir.listFiles() == null) {
+                    if(currentDir.listFiles() == null)
                         alert.dismiss();
-                        createFile(newFileName);
-                        return;
-                    }
                     else
                     {
+                        // check for duplicate file names
                         for (File f: currentDir.listFiles()) // get all files from the 'lists' dierctory
                             if(f.isFile() && newFileName.equals(f.getName()))
                             {
                                 Toast.makeText(ListActivity.this, "List already present !", Toast.LENGTH_LONG).show();
                                 alert.dismiss();
-                                return;
+                                return; // return back
                             }
-
                         alert.dismiss();
-                        createFile(newFileName);
-//                        finish();
-//                        overridePendingTransition(0, 0);
-//                        startActivity(getIntent());
-//                        overridePendingTransition(0, 0);
-//                        setUpRecycler();
                     }
-
+                    createFile(newFileName); // create new file with given new name
                 }
             }
         });
-//        ab.setTitle("Enter new list name");
-//
-//        EditText editText = new EditText(ListActivity.this);
-//        ab.setView(editText);
-//
-//        ab.setPositiveButton("Create", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                Toast.makeText(ListActivity.this, editText.getText(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        ab.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                Toast.makeText(ListActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
     }
 
+    // show confirmation dialog upon deleting a list
     public void showConfirmDialog(ActionMode mode)
     {
         AlertDialog.Builder ab = new AlertDialog.Builder(ListActivity.this);
@@ -349,9 +303,9 @@ public class ListActivity extends AppCompatActivity
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeFile();
+                removeFile(); // call the method to remove the list
                 alert.dismiss();
-                mode.finish();
+                mode.finish(); // finish action mode
                 actionMode = null;
             }
         });
@@ -360,19 +314,16 @@ public class ListActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 alert.dismiss();
-                mode.finish();
+                mode.finish(); // finish action mode
                 actionMode = null;
             }
         });
-
     }
 
+    // method to remove specified list
     private void removeFile() {
         ArrayList<String> toBeDeleted = new ArrayList<>();
-        toBeDeleted.addAll(adapter.getSelected());
-
-        // android/data/com.example.songly/files/lists
-        File requiredPath = getExternalFilesDir("lists");
+        toBeDeleted.addAll(adapter.getSelected()); // get all selected lists for deletion
 
         if(requiredPath != null)
         {
@@ -383,14 +334,13 @@ public class ListActivity extends AppCompatActivity
             }
             else
             {
-                File[] existingFiles =requiredPath.listFiles();
+                // for each list name to be deleted, delete corresponding file
                for(String fileName: toBeDeleted)
                {
                     File fdelete = new File(requiredPath.getPath()+"/"+fileName+".txt");
-//                   Toast.makeText(this, fdelete.getPath(), Toast.LENGTH_SHORT).show();
-                    if(fdelete.exists())
+                    if(fdelete.exists()) // if file exists then
                     {
-                        fdelete.delete();
+                        fdelete.delete(); // delete the file
                         flag = true;
                     }
                }
@@ -399,7 +349,7 @@ public class ListActivity extends AppCompatActivity
                   Toast.makeText(activity, "Lists(s) deleted", Toast.LENGTH_SHORT).show();
 
              }
-            adapter.deleteFileNames();
+            adapter.deleteFileNames(); // remove the deleted list names from full list
         }
         else
             Toast.makeText(this, "No such directory", Toast.LENGTH_SHORT).show();
@@ -407,39 +357,28 @@ public class ListActivity extends AppCompatActivity
 
     private void createFile(String newFileName) {
         newFileName.trim();
-//        Path path = Paths.get(currentDir.getAbsolutePath()+"\\"+newFileName+".txt");
-//        String p = currentDir.getAbsolutePath()+"//"+newFileName+".txt";
         File newFile = new File(currentDir, newFileName+".txt");
 
         try
         {
-//            Path p = Files.createFile(path);
-//            if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
-//                Toast.makeText(this, "Mounted sd card", Toast.LENGTH_SHORT).show();
-
+            // check for duplication of list
             File someFile = new File(getExternalFilesDir("lists"), newFileName+".txt");
             if(someFile.exists())
             {
                 Toast.makeText(this, "List is already present", Toast.LENGTH_LONG).show();
 
             }
-            else
+            else // if no duplication then
             {
                 someFile.createNewFile();
-                listNames.add(newFileName);
-                toggleDefaultText();
-//                Intent intent = new Intent(getApplicationContext(), ViewIndividualList.class);
-//                startActivity(intent);
-//                intent.putExtra("fileName", newFileName);
+                listNames.add(newFileName); // add new list name to existing listnames arraylist
+                toggleDefaultText(); // toggle empty screen if necessary
+
+                // save new list name to shared preferences
                 sharedPreferences = getSharedPreferences("SongLY", MODE_PRIVATE);
                 sharedPreferences.edit().putString("file_name", newFileName+".txt").apply();
 
             }
-
-//            Toast.makeText(this, someFile.getAbsolutePath(), Toast.LENGTH_SHORT).show();
-
-//                Toast.makeText(this, "No such file", Toast.LENGTH_SHORT).show();
-
         }
         catch (FileNotFoundException e)
         {
@@ -451,17 +390,19 @@ public class ListActivity extends AppCompatActivity
             e.printStackTrace();
             Toast.makeText(this, newFile.getAbsolutePath(), Toast.LENGTH_LONG).show();
         }
-//        Toast.makeText(this, newFileName+".txt", Toast.LENGTH_SHORT).show();
     }
 
 
+//--------------------------The action mode ---------------------------------------
 
     private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+
+            // upon action mode creation, display the action mode menu on action bar
             MenuInflater inflater = mode.getMenuInflater();
             inflater.inflate(R.menu.selection_menu, menu);
-            navView.setVisibility(View.GONE);
+            navView.setVisibility(View.GONE); // now the bottom nav bar is invisible
             return true;
         }
 
@@ -474,7 +415,8 @@ public class ListActivity extends AppCompatActivity
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
 
             switch (item.getItemId()) {
-                case R.id.delete_icon: {
+                case R.id.delete_icon:  // upon clicking delete icon of action mode menu
+                {
                     showConfirmDialog(mode);
                     return true;
                 }
@@ -487,7 +429,7 @@ public class ListActivity extends AppCompatActivity
                 case R.id.deselect_all:
                 {
                     adapter.clearAll(true);
-                    actionMode.finish();
+                    actionMode.finish(); // finish the action mode after de-selecting all songs
                     actionMode = null;
                     return true;
                 }
@@ -496,31 +438,65 @@ public class ListActivity extends AppCompatActivity
                     if(adapter.getSelected().size() > 1)
                     {
                         Toast.makeText(activity, "Please select only one list item", Toast.LENGTH_LONG).show();
-
                     }
                     else
                     {
                         renameFileTo(adapter.getSelected().get(0));
                     }
-                    mode.finish();
+                    mode.finish(); // finish the action mode after editing a list name
                     actionMode = null;
                     return  true;
                 }
-
                 default:
                     return false;
             }
-
         }
 
         @Override
         public void onDestroyActionMode(ActionMode mode) {
             actionMode = null;
             adapter.removeAllSelections();
-            navView.setVisibility(View.VISIBLE);
-            toggleDefaultText();
+            navView.setVisibility(View.VISIBLE); // bring back the bottom nav bar
+            toggleDefaultText(); // toggle empty view
         }
     };
+
+    // upon long pressing a list, start the action mode
+    public boolean onLongClickAction()
+    {
+        int selected = adapter.getSelected().size();
+        if (actionMode == null && selected == 0)
+        {
+            actionMode = startActionMode(actionModeCallback);
+            actionMode.setTitle("Selected: " + (selected+1));
+            return true;
+        }
+        return false;
+    }
+
+    public boolean onClickAction() {
+        int selected = adapter.getSelected().size();
+
+        if( actionMode != null)
+        {
+            if (selected == 0) // when selected items count=0, finish action mode
+                actionMode.finish();
+            else
+            {
+                actionMode.setTitle("Selected: " + selected); // else update count of selected list items
+
+                if(selected > 1)
+                {
+                    // disable edit button
+                }
+            }
+
+            return true;
+        }
+        return false;
+    }
+
+//-------------------------- ACTION MODE completes here ------------------------------
 
     private void renameFileTo(String currentName) {
 
@@ -528,7 +504,6 @@ public class ListActivity extends AppCompatActivity
         View view = getLayoutInflater().inflate(R.layout.rename_box, null);
         EditText newListName = (EditText) view.findViewById(R.id.new_list_name);
         Button renameBtn = (Button) view.findViewById(R.id.rename_button);
-//        Button cancelBtn = (Button) view.findViewById(R.id.cancel_button);
 
         ab.setView(view);
         AlertDialog alert = ab.create();
@@ -543,62 +518,26 @@ public class ListActivity extends AppCompatActivity
                 {
                     String newFileName = newListName.getText().toString();
 
-                    // android/data/com.example.songly/files/lists
-                    File requiredPath = getExternalFilesDir("lists");
-
                     if(requiredPath != null)
                     {
-//                        Toast.makeText(ListActivity.this, adapter.getSelected().get(0), Toast.LENGTH_SHORT).show();
                         File from = new File(requiredPath, currentName+".txt"); // old name
                         File to = new File(requiredPath, newFileName+".txt");
                         from.renameTo(to);
 
-                        adapter.updateNames(currentName, newFileName);
+                        adapter.updateNames(currentName, newFileName); // update list name in arraylist
                     }
                     else
                         Toast.makeText(ListActivity.this, "No such directory", Toast.LENGTH_SHORT).show();
 
                     alert.dismiss();
                 }
-
             }
         });
     }
 
-
-    public boolean onLongClickAction()
-    {
-        int selected = adapter.getSelected().size();
-        if (actionMode == null && selected == 0)
-        {
-            actionMode = startActionMode(actionModeCallback);
-            actionMode.setTitle("Selected: " + (selected+1));
-            return true;
-        }
-
-        return false;
-
-    }
-
-    public boolean onClickAction() {
-        int selected = adapter.getSelected().size();
-
-        if( actionMode != null)
-        {
-            if (selected == 0)
-                actionMode.finish();
-            else
-            {
-                actionMode.setTitle("Selected: " + selected);
-
-                if(selected > 1)
-                {
-                    // disable edit button
-                }
-            }
-
-            return true;
-        }
-        return false;
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 }

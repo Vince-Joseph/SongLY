@@ -4,17 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
@@ -28,7 +23,7 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
     List<String> selected;
 
     List<AdapterList.ViewHolder> viewHoldersList;
-    List<AdapterList.ViewHolder> fullViewHolder;
+    List<AdapterList.ViewHolder> fullViewHolder; // list to hold all list views
     AdapterList.OnClickAction receiver;
 
     SharedPreferences sharedPreferences;
@@ -36,7 +31,6 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
     Context context;
     LayoutInflater inflater;
     Intent intent;
-    ImageView  deleteIcon;
     public  AdapterList(Context context, List<String> listNames)
     {
         this.context = context;
@@ -48,19 +42,18 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
         this.sharedPreferences = context.getSharedPreferences("SongLY", Context.MODE_PRIVATE);
     }
 
+    // method to update a list's name after editing its name
+    // used in ListActivity.java
     public void updateNames(String oldName, String newFileName) {
-//        Toast.makeText(context, selected.get(0), Toast.LENGTH_SHORT).show();
         listNames.set(listNames.indexOf(oldName), newFileName);
-
         notifyDataSetChanged();
     }
 
 
     public interface OnClickAction {
-        public boolean onClickAction();
-        public boolean onLongClickAction();
+         boolean onClickAction();
+         boolean onLongClickAction();
     }
-
 
     @NonNull
     @NotNull
@@ -71,17 +64,23 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
         return new ViewHolder(view);
     }
 
+    // bind the actions to be performed on each list view
     @Override
     public void onBindViewHolder(@NonNull @NotNull AdapterList.ViewHolder holder, int position) {
 
         final String item = listNames.get(position);
-        holder.listText.setText(listNames.get(position));
-        fullViewHolder.add(holder);
+        holder.listText.setText(item); // set the list name
+        fullViewHolder.add(holder); // add current list view to full list of view holders
 
+        // upon long pressing a list view
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                int countOfSelected = selected.size();
+                int countOfSelected = selected.size(); // take the size of selected lists
+
+                // if the size = 0, then start action mode
+                // add current item into selected arraylist
+                // highlight it
                 if(countOfSelected == 0)
                 {
                     receiver.onLongClickAction();
@@ -96,38 +95,45 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int countOfSelected = selected.size();
+                int countOfSelected = selected.size(); // take the size of selected lists
+
+                // if some lists are already present then
                 if(countOfSelected > 0)
                 {
-                    if (selected.contains(item)) {
+                    // check whether currently selected list is present in the list
+                    // if so remove it from the list, else add it as new element
+                    if (selected.contains(item))
+                    {
                         selected.remove(item);
                         viewHoldersList.remove(holder);
                         unhighlightView(holder);
-                    } else {
+                    }
+                    else
+                    {
                         selected.add(item);
                         viewHoldersList.add(holder);
                         highlightView(holder);
                     }
                     receiver.onClickAction();
                 }
-                else
+                else // else goto the activity to display the contents of the clicked list
                 {
-                    //selected.clear();
                     intent = new Intent(holder.itemView.getContext(), ViewIndividualList.class);
                     sharedPreferences.edit().putString("file_name", holder.listText.getText().toString()+".txt").apply();
                     sharedPreferences.edit().putString("selected", "off").apply();
-//                    Toast.makeText(holder.itemView.getContext(), sharedPreferences.getString("file_name", null), Toast.LENGTH_SHORT).show();
-//                    intent.putExtra("fileName", holder.listText.getText().toString());
                     holder.itemView.getContext().startActivity(intent);
                 }
             }
         });
 
     }
+
+    // method to highlight the given view
     private void highlightView(AdapterList.ViewHolder holder) {
         holder.checkIcon.setVisibility(View.VISIBLE);
     }
 
+    // method to UN highlight the given view
     private void unhighlightView(AdapterList.ViewHolder holder) {
         holder.checkIcon.setVisibility(View.GONE);
     }
@@ -140,7 +146,6 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
 
     public void clearAll(boolean isNotify) {
         viewHoldersList.clear();
-//        viewHoldersList.addAll(fullViewHolder);
         for (AdapterList.ViewHolder rw: fullViewHolder ) {
             unhighlightView(rw);
         }
@@ -150,7 +155,6 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
     }
 
     public void deleteFileNames() {
-//        int size = viewHoldersList.size();
 
         for (AdapterList.ViewHolder rw: viewHoldersList ) {
             fullViewHolder.remove(rw);
@@ -201,37 +205,6 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
             super(itemView);
             listText =  itemView.findViewById(R.id.list_name);
             checkIcon = itemView.findViewById(R.id.iconCheck);
-
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//
-//                @Override
-//                public void onClick(View v) {
-//                    if(isMultiSelectOn)
-//                    {
-//
-//                    }
-//                    Toast.makeText(v.getContext(), Integer.toString(getAbsoluteAdapterPosition()), Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//
-//
-//            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(View v) {
-//                    isMultiSelectOn = true;
-//                    if(isMultiSelectOn)
-//                    {
-////                      Toast.makeText(v.getContext(), listText.getText().toString(), Toast.LENGTH_SHORT).show();
-//                        itemView.setBackgroundColor(1);
-//                    }
-//                    return true;
-//                }
-//            });
-
-
-
         }
     }
-
-
 }

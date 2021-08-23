@@ -100,55 +100,25 @@ public class FullSearch extends AppCompatActivity
         setUpRecyclerView();
     }
 
-    private void fillSongTitles() {
-        // setting up the malayalam font face from assets/font folder
-        Typeface typeface = Typeface.createFromAsset(getAssets(),"font/MLKR0NTT.TTF");
-
-        fullListOfSongs = new ArrayList<>(); // create an arraylist
-        String data = "";
-        InputStream is = null;
-
-        // open the entrance text from 'res/raw' folder
-        is = this.getResources().openRawResource(R.raw.entrance);
-
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
-
-        if(is != null)
-        {
-            // try to read each line from the file
-            try
-            {   // read each row from file
-                while((data = bufferedReader.readLine()) != null)
-                {
-                    // split it into words by using comma as a delimiter
-                    String[] splited = data.split("[,]", 0);
-
-                    // now create new object of Modal class and add it to the list
-                    fullListOfSongs.add(
-                            new ModalFullSearch(
-                            splited[0].trim(), // filename
-                            splited[1].trim(), // eng title
-                            splited[2].trim(), // malayalam title
-                            splited[3].trim(), // folder name
-                            typeface));
-                }
-                is.close();
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-    }
-
     private void setUpRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.wholeListRecycler);
-        ArrayList<ModalFullSearch> storedList = new ArrayList<>();
-        sharedPreferences = getSharedPreferences("SongLY", MODE_PRIVATE);
-        gson = new Gson();
-        String json = sharedPreferences.getString("existing_songs", null);
-        Type type = new TypeToken<ArrayList<ModalFullSearch>>(){}.getType();
-        storedList = gson.fromJson(json, type);
+        ArrayList<ModalFullSearch> storedList;
+        String json;
+
+        if(mode.equals("off"))
+        {
+            json = null;
+            storedList = null;
+        }
+        else
+        {
+            sharedPreferences = getSharedPreferences("SongLY", MODE_PRIVATE);
+            gson = new Gson();
+            json = sharedPreferences.getString("existing_songs", null);
+            Type type = new TypeToken<ArrayList<ModalFullSearch>>(){}.getType();
+            storedList = gson.fromJson(json, type);
+        }
+
 
         if(storedList == null)
         {
@@ -171,8 +141,7 @@ public class FullSearch extends AppCompatActivity
         // recycler view's layout manager - linear layout
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         adapter = new AdapterFullSearch(fullListOfSongs, this,
-                mode,
-                storedList, this);
+                mode, storedList, this);
 
 
         recyclerView.setAdapter(adapter); // set recycler view's adapter
@@ -188,6 +157,20 @@ public class FullSearch extends AppCompatActivity
         // pass the position of the song to Lyrics activity
         intent.putExtra("fileName", fullListOfSongs.get(position).getFileName());
         intent.putExtra("folderName", fullListOfSongs.get(position).getFolderName());
+
+        Bundle bundle = new Bundle();
+
+        // we are passing an array of strings to TabbedLyricsView
+        bundle.putStringArray("contents", new String[]{
+                fullListOfSongs.get(position).getFileName(),
+                fullListOfSongs.get(position).getFolderName(),
+                fullListOfSongs.get(position).getAlbum(),
+                fullListOfSongs.get(position).getSingers(),
+                fullListOfSongs.get(position).getYear(),
+                fullListOfSongs.get(position).getChord()
+        });
+        intent.putExtras(bundle);
+
 
         // now invoke the activity
         startActivity(intent);

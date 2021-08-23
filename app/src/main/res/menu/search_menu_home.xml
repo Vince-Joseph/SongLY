@@ -6,6 +6,7 @@
         android:id="@+id/searchIconHome"
         android:title="Search"
         android:icon="@drawable/ic_search"
+        android:transitionName="searchTransition"
         app:showAsAction="ifRoom|collapseActionView" />
 <!--        app:actionViewClass="android.widget.SearchView"-->
 </menu>

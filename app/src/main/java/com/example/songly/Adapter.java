@@ -1,10 +1,11 @@
 package com.example.songly;
 
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
@@ -46,11 +47,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements
     @Override
     public void onBindViewHolder(@NonNull Adapter.ViewHolder holder, int position) {
 
-//        int resource = userList.get(position).getImageview();
-
         String title=exampleList.get(position).getTextViewSongTitle();
-//        String line=userList.get(position).getDivider();
-
         holder.setData(title);
     }
 
@@ -65,9 +62,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements
     }
 
     //view holder class
-
-
-
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         SongClickInterface songClickInterface;
@@ -102,7 +96,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements
 
     interface SongClickInterface
     {
-        public void songClicked(int position);
+        void songClicked(int position);
     }
 
     private Filter exampleFilter = new Filter() {

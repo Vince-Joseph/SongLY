@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
+            android:maxLength="20"
             android:id="@+id/songTitle"
             android:paddingLeft="20dp"
             android:textColor="@android:color/black"

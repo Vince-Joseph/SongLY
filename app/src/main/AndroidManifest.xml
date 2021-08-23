@@ -13,8 +13,8 @@
         android:theme="@style/Theme.SongLY">
 
         <activity android:name=".PrayerActivity"
-            android:parentActivityName=".HomePage"
-        />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".HomePage"/>
         <activity
             android:name=".ViewIndividualList"
             android:theme="@style/Theme.SongLY.NoActionBar" />
@@ -25,6 +25,7 @@
             android:name=".HomePage"
             android:launchMode="singleTask"
             android:label="Category"
+            android:theme="@style/Theme.SongLY.NoActionBar"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ListActivity"

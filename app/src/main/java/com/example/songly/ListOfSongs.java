@@ -49,7 +49,7 @@ public class ListOfSongs extends AppCompatActivity  implements
     Adapter adapter;
     SearchView searchView;
     Typeface typeface;
-
+    BottomNavigationView navView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class ListOfSongs extends AppCompatActivity  implements
 
         typeface = Typeface.createFromAsset(getAssets(),"font/MLKR0NTT.TTF");
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -69,7 +69,7 @@ public class ListOfSongs extends AppCompatActivity  implements
 
         // changing default selection of bottom bar
         navView.setOnNavigationItemSelectedListener(this);
-        navView.getMenu().findItem(R.id.navigation_song).setChecked(true);
+
 
         Intent intent = getIntent();
         String fileName = intent.getStringExtra("folder");
@@ -79,6 +79,8 @@ public class ListOfSongs extends AppCompatActivity  implements
         setTitle(activityTitle);
         initData(fileName);
         initRecyclerView();
+
+
     }
 
 
@@ -104,13 +106,26 @@ public class ListOfSongs extends AppCompatActivity  implements
                 searchView.clearFocus();
 //                searchView.setIconified(true);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
                 break;
             }
-//            case R.id.navigation_prayer:
-////                Toast.makeText(this, "Prayer button", Toast.LENGTH_SHORT).show();
-//                break;
+            case R.id.navigation_prayer:
+            {
+                intent = new Intent(getApplicationContext(), PrayerActivity.class);
+                searchView.setQuery("", false);
+                searchView.clearFocus();
+//                searchView.setIconified(true);
+                startActivity(intent);
+                break;
+            }
         }
         return true;
+    }
+
+    @Override
+    protected void onStart() {
+        navView.getMenu().findItem(R.id.navigation_song).setChecked(true);
+        super.onStart();
     }
 
     @Override
@@ -171,8 +186,13 @@ public class ListOfSongs extends AppCompatActivity  implements
                                 splited[0], // filename
                                 splited[2].trim(), // mal title
                                 splited[1].trim(), // eng title
-                                splited[3].trim()) // song's folder
-                        );
+                                splited[3].trim(), // song's folder
+                                splited[4].trim(), // song's album
+                                splited[5].trim(), // song's singers
+                                splited[6].trim(), // song's year
+                                splited[7].trim() // song's chord
+                                ));
+
                     }
                     is.close();
                 }
@@ -189,11 +209,18 @@ public class ListOfSongs extends AppCompatActivity  implements
         // intent is used to switch activities
 //        Intent intent = new Intent(getApplicationContext(), ViewLyrics.class);
         Intent intent = new Intent(getApplicationContext(), TabbedLyricsView.class);
+        Bundle bundle = new Bundle();
 
-        // pass the position of the song to Lyrics activity
-        intent.putExtra("fileName", songsList.get(position).getFileName());
-        intent.putExtra("folderName", songsList.get(position).getFolderName());
-
+        // we are passing an array of strings to TabbedLyricsView
+        bundle.putStringArray("contents", new String[]{
+                songsList.get(position).getFileName(),
+                songsList.get(position).getFolderName(),
+                songsList.get(position).getAlbum(),
+                songsList.get(position).getSingers(),
+                songsList.get(position).getYear(),
+                songsList.get(position).getChord()
+        });
+        intent.putExtras(bundle);
 
         searchView.setQuery("", false);
         searchView.clearFocus();
@@ -229,35 +256,7 @@ public class ListOfSongs extends AppCompatActivity  implements
             }
         });
 
-//        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if(hasFocus)
-//                {
-//                    InputMethodManager inputMethodManager =
-//                            (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//                    if(inputMethodManager != null)
-//                        inputMethodManager.showSoftInput(v, 0);
-//                }
-//            }
-//        });
         return true;
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-////        Intent i;
-////        switch (item.getItemId())
-////        {
-////            case R.id.searchIcon:
-////            {
-////
-////                return true;
-////            }
-////            default: return super.onOptionsItemSelected(item);
-////        }
-//        return  super.onOptionsItemSelected(item);
-//
-//    }
 
 }

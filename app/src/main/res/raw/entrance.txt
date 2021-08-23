@@ -1,21 +1,22 @@
-altharayorungi,                altharayorungi akathaarorukki,           AÄ¯mcsbmê§n AIXmscmê¡n,                  entrance
-altharayil_anuthapamode,       altharayil anuthapamode,                 AÄ¯mcbnÂ AëXm]tamsS AWntNÀ¶nSmw,         entrance
-altharayil_eriyum,             altharayil eriyum,                       AÄ¯mcbnÂ Fcnbpw XncnIÄs¡´p sXfn¨w,       entrance
-anayam_ee_thiru_altharayil,    anayam ee thiru altharayil,              AWbmw Cu Xnê AÄ¯mcbnÂ ,                  entrance
-baliyay_thirumunpil_nalkam,    baliyay thirumunpil nalkam,              _enbmbv Xnêap³]nÂ \ÂImw,                 entrance
-balivediyil_thiruyaagamay,     balivediyil thiruyaagamay,               _enthZnbnÂ XnêbmKambv AWntNêhn³ P\ta,    entrance
-baliyarppikkan_varuvin,        baliyarppikkan varuvin,                  _enbÀ¸n¡m³ hêhn³ AÄ¯mc ap¶nÂ {]nbP\ta,   entrance
-daivajaname_unaroo,            daivajaname unaroo daivathmaavaal,       ssZhP\ta DWcq ssZhmßmhmÂ \ndbq,          entrance
-eriyaan_vembi_nilkkum,         eriyaan vembi nilkkum,                   Fcnbm³ sh¼n \nÂçw Hê sagpæXncn,          entrance
-hridayam_oru,                  hridayam oru balivediyakki,              lrZbw Hê _enthZnbm¡n Xnêap³]neWbpì R§Ä,  entrance
-kalvari_malayile,              kalvari malayile balipeedam,             ImÂhcn aebnse ]en]o0w ssIIÄ \o«o hnfn¸q, entrance
-kalvari_malayude_smaranayumay, kalvari malayude smaranayumay,           ImÂhcn aebpsS kvacWbpambv,               entrance
-itha_pallimanikal,             itha pallimanikal muzhangi,              CXm ]ÅnaWnIÄ apg§n CXm tZhmebw Hê§n,     entrance
-manikal_muzhangeedumee,        manikal muzhangeedumee smayamitha,       aWnIÄ apg§oSpao kabanXm,                 entrance
-mani_muzhangunnu,              mani muzhangunnu thiri,                  aWnapg§pì Xncn sXfnbpì,                  entrance
-oro_poovilum,                  oro poovilum daiva sneham,               Hmtcm ]qhnepw ssZhkvt\lw hncnbpì,        entrance
-oru_nimisham,                  oru nimisham manamuyartham,              Hê \nanjw a\apbÀ¯mw AÄ¯mcthZnbneWbmw,    entrance
-swargavaathil_thurannitha,     swargavaathil thurannitha baliyanaykkan, kzÀ¤hmXnÂ Xpd¶nXm _enbWí³ Hê§phn³,       entrance
-unaro_manase,                  unaro manase pakaroo,                    DWcq a\tk ]Icq Km\arXw,                  entrance
-unaro_unaro_manasukale,        unaro unaro manasukale,                  DWcq DWcq a\kpItf bmKanXm,               entrance
-veendum_oru,                   veendum oru baliyarppana,                ho­pw Hê _enbÀ¸W thZnsbmê§n,           entrance
+altharayorungi,                altharayorungi akathaarorukki,           AÄ¯mcsbmê§n AIXmscmê¡n,                  entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+altharayil_anuthapamode,       altharayil anuthapamode,                 AÄ¯mcbnÂ AëXm]tamsS AWntNÀ¶nSmw,         entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+altharayil_eriyum,             altharayil eriyum,                       AÄ¯mcbnÂ Fcnbpw XncnIÄs¡´p sXfn¨w,       entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+anayam_ee_thiru_altharayil,    anayam ee thiru altharayil,              AWbmw Cu Xnê AÄ¯mcbnÂ ,                  entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+anayu_priaya_janame,	       anayu priya janame baliyekan,		AWbq {]nbP\ta _entbIm³,			 entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+baliyay_thirumunpil_nalkam,    baliyay thirumunpil nalkam,              _enbmbv Xnêap³]nÂ \ÂImw,                 entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+balivediyil_thiruyaagamay,     balivediyil thiruyaagamay,               _enthZnbnÂ XnêbmKambv AWntNêhn³ P\ta,    entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+baliyarppikkan_varuvin,        baliyarppikkan varuvin,                  _enbÀ¸n¡m³ hêhn³ AÄ¯mc ap¶nÂ {]nbP\ta,   entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+daivajaname_unaroo,            daivajaname unaroo daivathmaavaal,       ssZhP\ta DWcq ssZhmßmhmÂ \ndbq,          entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+eriyaan_vembi_nilkkum,         eriyaan vembi nilkkum,                   Fcnbm³ sh¼n \nÂçw Hê sagpæXncn,          entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+hridayam_oru_balivediyakki,    hridayam oru balivediyakki,              lrZbw Hê _enthZnbm¡n Xnêap³]neWbpì R§Ä,  entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+kalvari_malayile_balipeedam,   kalvari malayile balipeedam,             ImÂhcn aebnse ]en]o0w ssIIÄ \o«o hnfn¸q, entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+kalvari_malayude_smaranayumay, kalvari malayude smaranayumay,           ImÂhcn aebpsS kvacWbpambv,               entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+itha_pallimanikal,             itha pallimanikal muzhangi,              CXm ]ÅnaWnIÄ apg§n CXm tZhmebw Hê§n,     entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+manikal_muzhangeedumee,        manikal muzhangeedumee smayamitha,       aWnIÄ apg§oSpao kabanXm,                 entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+mani_muzhangunnu,              mani muzhangunnu thiri,                  aWnapg§pì Xncn sXfnbpì,                  entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+oro_poovilum,                  oro poovilum daiva sneham,               Hmtcm ]qhnepw ssZhkvt\lw hncnbpì,        entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+oru_nimisham,                  oru nimisham manamuyartham,              Hê \nanjw a\apbÀ¯mw AÄ¯mcthZnbneWbmw,    entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+swargavaathil_thurannitha,     swargavaathil thurannitha baliyanaykkan, kzÀ¤hmXnÂ Xpd¶nXm _enbWí³ Hê§phn³,       entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+unaro_manase,                  unaro manase pakaroo,                    DWcq a\tk ]Icq Km\arXw,                  entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+unaro_unaro_manasukale,        unaro unaro manasukale,                  DWcq DWcq a\kpItf bmKanXm,               entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+veendum_oru,                   veendum oru baliyarppana,                ho­pw Hê _enbÀ¸W thZnsbmê§n,           entrance,  Unknown Album, Unknown Unknown, 2021, G Major

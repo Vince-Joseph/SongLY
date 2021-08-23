@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,8 +38,8 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
     // constructor - initialises the full song's arrayList with passed data
     AdapterFullSearch(List<ModalFullSearch> modifiedList, SongTitleClicked songTitleClickedInterface,
                       String mode,
-                      ArrayList<ModalFullSearch> existingList, Context context)
-    {
+                      ArrayList<ModalFullSearch> existingList, Context context){
+
         fullListOfSongs = new ArrayList<>(modifiedList);
         FullSearch.checkedList = new ArrayList<>();
 
@@ -74,52 +75,25 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
         holder.folderNameTextView.setText(currentItem.getFolderName());
         holder.fileNameTextView.setText(currentItem.getFileName());
 
+
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(mode.equals("on"))
-                {
-                    if(isChecked == true)
-                    {
-                        boolean flag = false;
-                        // search whether current song has been selected already or not, using checkedList
-                        for (int i = 0; i< FullSearch.checkedList.size(); i++)
-                        {
-                           flag = false;
 
-                                if(holder.englishTitleTextView.getText().toString().equals(FullSearch.checkedList.get(i).getEnglishTitle()))
-                                {
-                                    flag = true;
-                                    break;
-                                }
-                        }
-                        // if not, then add current song to the checkedlist
-                        if(flag == false)
-                        {
-                            Typeface typeface = Typeface.createFromAsset(context.getAssets(), "font/MLKR0NTT.TTF");
+                selectSong( currentItem,  holder,  isChecked);
+            }
+        });
 
-                                FullSearch.checkedList.add(new ModalFullSearch(
-                                        holder.fileNameTextView.getText().toString(),
-                                        holder.englishTitleTextView.getText().toString(),
-                                        holder.malayalamTextView.getText().toString(),
-                                        holder.folderNameTextView.getText().toString(),
-                                        typeface
-                            ));
-                        }
-                    }
-                    else
-                    {
-                        // search and remove the unchecked element from the checkedList
-                        for (int i = 0; i< FullSearch.checkedList.size(); i++)
-                        {
-                            if(holder.englishTitleTextView.getText().toString().equals(FullSearch.checkedList.get(i).getEnglishTitle()))
-                            {
-                                FullSearch.checkedList.remove(i);
-                                break;
-                            }
-                        }
-                    }
-                }
+        holder.linearLayoutHolder.setOnClickListener(new View.OnClickListener() {
+            
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show();
+                selectSong( currentItem,  holder,  holder.checkBox.isChecked());
+                if(holder.checkBox.isChecked())
+                    holder.checkBox.setChecked(false);
+                else
+                    holder.checkBox.setChecked(true);
             }
         });
 
@@ -208,6 +182,7 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
         TextView englishTitleTextView;
         TextView folderNameTextView;
         TextView fileNameTextView;
+        LinearLayout linearLayoutHolder;
         CheckBox checkBox;
         SongTitleClicked songTitleClicked;
 
@@ -220,6 +195,7 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
             folderNameTextView = itemView.findViewById(R.id.foldernameofsong);
             fileNameTextView = itemView.findViewById(R.id.fileNameOfSong);
             checkBox = itemView.findViewById(R.id.selectSong);
+            linearLayoutHolder = itemView.findViewById(R.id.searchHolder);
 
             if(mode.equals("off"))
                 checkBox.setVisibility(View.GONE);
@@ -245,6 +221,58 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
 //
 //
 //                ));
+            }
+        }
+    }
+
+    void selectSong(ModalFullSearch currentItem, ViewHolder holder, boolean isChecked)
+    {
+
+        if(mode.equals("on"))
+        {
+            if(isChecked == true)
+            {
+                boolean flag = false;
+                // search whether current song has been selected already or not, using checkedList
+                for (int i = 0; i< FullSearch.checkedList.size(); i++)
+                {
+                    flag = false;
+
+                    if(holder.englishTitleTextView.getText().toString().equals(FullSearch.checkedList.get(i).getEnglishTitle()))
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+                // if not, then add current song to the checkedlist
+                if(flag == false)
+                {
+                    Typeface typeface = Typeface.createFromAsset(context.getAssets(), "font/MLKR0NTT.TTF");
+
+                    FullSearch.checkedList.add(new ModalFullSearch(
+                            currentItem.getFileName(),
+                            currentItem.getEnglishTitle(),
+                            currentItem.getMalayalamTitle(),
+                            currentItem.getFolderName(),
+                            currentItem.getAlbum(),
+                            currentItem.getSingers(),
+                            currentItem.getYear(),
+                            currentItem.getChord(),
+                            typeface
+                    ));
+                }
+            }
+            else
+            {
+                // search and remove the unchecked element from the checkedList
+                for (int i = 0; i< FullSearch.checkedList.size(); i++)
+                {
+                    if(holder.englishTitleTextView.getText().toString().equals(FullSearch.checkedList.get(i).getEnglishTitle()))
+                    {
+                        FullSearch.checkedList.remove(i);
+                        break;
+                    }
+                }
             }
         }
     }

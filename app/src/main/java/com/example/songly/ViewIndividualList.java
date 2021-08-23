@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -16,6 +17,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +31,7 @@ import android.widget.Toast;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -47,8 +50,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ViewIndividualList extends AppCompatActivity
-        implements BottomNavigationView.OnNavigationItemSelectedListener,
-        AdapterIndividualList.OnClickAction{
+        implements AdapterIndividualList.OnClickAction{
 
     private RecyclerView individualSetRecycler;
     List<ModalFullSearch> songNames;
@@ -69,10 +71,10 @@ public class ViewIndividualList extends AppCompatActivity
     SharedPreferences.Editor editor ;
     Gson gson;
     String json;
-
     String currentFileName;
     private List<ModalFullSearch> fullListOfSongs; // to store full list of songs (from all categories)
     HelperClass helperClass;
+    File requiredPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,23 +92,62 @@ public class ViewIndividualList extends AppCompatActivity
 
         ImageView editIcon = findViewById(R.id.editIconToolbar);
         ImageView sortIcon = findViewById(R.id.sortIcon);
+        ImageView searchIcon = findViewById(R.id.searchIcon);
+        searchIcon.setVisibility(View.GONE);
 
         editIcon.setVisibility(View.INVISIBLE);
 
         navView = findViewById(R.id.nav_view);
 
-        // changing default selection of bottom bar
-        navView.setOnNavigationItemSelectedListener(this);
-        navView.getMenu().findItem(R.id.navigation_list).setChecked(false);
+        // changing default selection of bottom bar;
+        navView.getMenu().findItem(R.id.navigation_list).setChecked(true);
         navView.getMenu().findItem(R.id.navigation_song).setChecked(false);
         navView.getMenu().findItem(R.id.navigation_prayer).setChecked(false);
 
+        // Control the bottom navigation buttons
+        navView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+                int menuId = item.getItemId();
+
+                switch(menuId)
+                {
+                    case R.id.navigation_list:
+                    {
+                        intent = new Intent(getApplicationContext(),ListActivity.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+                    }
+                    case R.id.navigation_song:
+                    {
+                        intent = new Intent(getApplicationContext(),HomePage.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+                    }
+                    case R.id.navigation_prayer:
+                        intent = new Intent(getApplicationContext(),PrayerActivity.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+                }
+                return true;
+            }
+        });
+
+//------------------------------------------------------------------------------------------
         // this layout will be shown if there are no lists
         relativeLayoutEmpty = findViewById(R.id.relative_empty);
         textViewEmpty = findViewById(R.id.default_text);
         imageViewEmpty = findViewById(R.id.empty_icon);
         textViewEmpty.setText("Add some songs");
         imageViewEmpty.setImageResource(R.drawable.add_comment); // change the image icon
+//--------------------------------------------------------------------------------------------
+
+        // android/data/com.example.songly/files/lists
+        requiredPath = getExternalFilesDir("lists");
+
 
         individualSetRecycler = findViewById(R.id.list_recycler);
 
@@ -128,16 +169,23 @@ public class ViewIndividualList extends AppCompatActivity
         addIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Pair pair;
+                pair = new Pair<View, String>(v, "searchTransition");
+
+                ActivityOptions activityOptions =
+                        ActivityOptions.makeSceneTransitionAnimation(ViewIndividualList.this, pair);
+
                 // call the search activity
                 intent = new Intent(getApplicationContext(), FullSearch.class);
                 intent.putExtra("mode", "on");
-                startActivity(intent);
+                startActivity(intent, activityOptions.toBundle());
+//                overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
                 finish();
             }
         });
 
-
-        // to be implemented
+        // upon clicking sort song names icon, toggle ascending order sort and descending order sort
         sortIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,6 +221,7 @@ public class ViewIndividualList extends AppCompatActivity
                             countOfLines = 0;
                             FileWriter writeToFile = new FileWriter(toWrite);
 
+                            // write sorted song names to file
                             for (ModalFullSearch md: songNames)
                             {
 
@@ -180,7 +229,11 @@ public class ViewIndividualList extends AppCompatActivity
                                         md.getFileName()+",\t\t\t"
                                                 +md.getEnglishTitle()+",\t\t\t"
                                                 +md.getMalayalamTitle()+",\t\t\t"
-                                                +md.getFolderName()+"\n"
+                                                +md.getFolderName()+",\t\t\t"
+                                                +md.getAlbum()+",\t\t\t"
+                                                +md.getSingers()+",\t\t\t"
+                                                +md.getYear()+",\t\t\t"
+                                                +md.getChord()+"\n"
                                 );
 
                                 countOfLines++;
@@ -198,10 +251,8 @@ public class ViewIndividualList extends AppCompatActivity
                         Toast.makeText(getApplicationContext(), "No such directory", Toast.LENGTH_SHORT).show();
                     }
                 }
-
             }
         });
-
     }
 
     private void toggleDefaultText() {
@@ -251,8 +302,6 @@ public class ViewIndividualList extends AppCompatActivity
 
     private void setUpRecycler() {
 
-        // android/data/com.example.songly/files/lists
-        File requiredPath = getExternalFilesDir("lists");
 
         if(requiredPath != null)
         {
@@ -282,7 +331,11 @@ public class ViewIndividualList extends AppCompatActivity
                                     splited[0].trim(), // filename
                                     splited[1].trim(), // eng title
                                     splited[2].trim(), // malayalam title
-                                    splited[3].trim() // folder name
+                                    splited[3].trim(), // folder name
+                                    splited[4].trim(), // album
+                                    splited[5].trim(), // singer
+                                    splited[6].trim(), // year
+                                    splited[7].trim() // chord
                                      ));
 
                 }
@@ -311,12 +364,15 @@ public class ViewIndividualList extends AppCompatActivity
                                         md.getFileName()+",\t\t\t"
                                         +md.getEnglishTitle()+",\t\t\t"
                                         +md.getMalayalamTitle()+",\t\t\t"
-                                        +md.getFolderName()+"\n"
+                                        +md.getFolderName()+",\t\t\t"
+                                        +md.getAlbum()+",\t\t\t"
+                                        +md.getSingers()+",\t\t\t"
+                                        +md.getYear()+",\t\t\t"
+                                        +md.getChord()+"\n"
                                 );
 
                                 writeToFile.close();
                                 countOfLines++;
-//                            }
                         }
                     }
                     else
@@ -353,7 +409,6 @@ public class ViewIndividualList extends AppCompatActivity
                     new LinearLayoutManager(this);
             individualSetRecycler.setLayoutManager(linearLayoutManager);
 
-//            Log.d("value of counter", Integer.toString(countOfLines));
             adapter = new AdapterIndividualList(this , songNames);
             individualSetRecycler.setAdapter(adapter);
             adapter.notifyDataSetChanged();
@@ -366,34 +421,11 @@ public class ViewIndividualList extends AppCompatActivity
 
     }
 
-    public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
-        int menuId = item.getItemId();
-        Intent i = null;
 
-        switch(menuId)
-        {
-            case R.id.navigation_list:
-            {
-                i = new Intent(getApplicationContext(),ListActivity.class);
-                startActivity(i);
-                finish();
-                break;
-            }
-            case R.id.navigation_song:
-            {
-                i = new Intent(getApplicationContext(),HomePage.class);
-                startActivity(i);
-                finish();
-                break;
-            }
-            case R.id.navigation_prayer:
-                    i = new Intent(getApplicationContext(),PrayerActivity.class);
-                    startActivity(i);
-                    finish();
-//                Toast.makeText(this, "Prayer button", Toast.LENGTH_SHORT).show();
-                break;
-        }
-        return true;
+    @Override
+    protected void onStart() {
+        navView.getMenu().findItem(R.id.navigation_list).setChecked(true);
+        super.onStart();
     }
 
     private void removeSongFromList() {
@@ -401,8 +433,6 @@ public class ViewIndividualList extends AppCompatActivity
         ArrayList<ModalFullSearch> toBeDeleted = new ArrayList<>();
         toBeDeleted.addAll(adapter.getSelected());
 
-        // android/data/com.example.songly/files/lists
-        File requiredPath = getExternalFilesDir("lists");
 
         if(requiredPath != null)
         {
@@ -438,7 +468,11 @@ public class ViewIndividualList extends AppCompatActivity
                                         songNames.get(i).getFileName()+",\t\t\t"
                                                 +songNames.get(i).getEnglishTitle()+",\t\t\t"
                                                 +songNames.get(i).getMalayalamTitle()+",\t\t\t"
-                                                +songNames.get(i).getFolderName()+"\n"
+                                                +songNames.get(i).getFolderName()+",\t\t\t"
+                                                +songNames.get(i).getAlbum()+",\t\t\t"
+                                                +songNames.get(i).getSingers()+",\t\t\t"
+                                                +songNames.get(i).getYear()+",\t\t\t"
+                                                +songNames.get(i).getChord()+"\n"
                                 );
                             }
                             else
@@ -584,11 +618,8 @@ public class ViewIndividualList extends AppCompatActivity
                     // disable edit button
                 }
             }
-
             return true;
         }
         return false;
     }
-
-
 }

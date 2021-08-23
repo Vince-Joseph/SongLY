@@ -6,27 +6,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".PrayerActivity">
-
-<!--    <ScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-<!--        <com.ortiz.touchview.TouchImageView-->
-<!--            android:id="@+id/prayerImageView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:src="@drawable/sample"/>-->
-<!--    </ScrollView>-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingTop="20dp"
         android:orientation="vertical">
 
     <com.github.barteksc.pdfviewer.PDFView
        android:id="@+id/prayerPdf"
        android:layout_width="match_parent"
+        android:forceDarkAllowed="false"
         android:layout_height="match_parent"/>
 
     </LinearLayout>
