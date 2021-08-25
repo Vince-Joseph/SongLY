@@ -176,7 +176,7 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
             highlightView(rw);
         }
 
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
     }
 
     public List<String> getSelected() {

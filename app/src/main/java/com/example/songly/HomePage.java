@@ -70,6 +70,7 @@ public class HomePage extends AppCompatActivity {
                 intent = new Intent(HomePage.this, FullSearch.class);
                 intent.putExtra("mode","off"); // the select mode is off now
                 startActivity(intent, activityOptions.toBundle());
+//                startActivity(intent);
             }
         });
 

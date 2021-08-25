@@ -107,7 +107,6 @@ public class FullSearch extends AppCompatActivity
 
         if(mode.equals("off"))
         {
-            json = null;
             storedList = null;
         }
         else
@@ -151,12 +150,10 @@ public class FullSearch extends AppCompatActivity
 
     @Override // upon clicking song title - this is a method from interface 'SongTitleClicked'
     public void songTitleClicked(int position) {
+
+
         // intent to go to the tabbed lyrics activity - to view the lyrics
         Intent intent = new Intent(getApplicationContext(), TabbedLyricsView.class);
-
-        // pass the position of the song to Lyrics activity
-        intent.putExtra("fileName", fullListOfSongs.get(position).getFileName());
-        intent.putExtra("folderName", fullListOfSongs.get(position).getFolderName());
 
         Bundle bundle = new Bundle();
 

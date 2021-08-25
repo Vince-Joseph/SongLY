@@ -31,7 +31,6 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
     List<ModalFullSearch> existingList;
 
     SongTitleClicked songTitleClickedInterface;
-    AdapterIndividualList adapterIndividualList;
     public String mode = "";
     Context context;
 
@@ -85,15 +84,20 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
         });
 
         holder.linearLayoutHolder.setOnClickListener(new View.OnClickListener() {
-            
+
             @Override
             public void onClick(View v) {
-//                Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show();
-                selectSong( currentItem,  holder,  holder.checkBox.isChecked());
-                if(holder.checkBox.isChecked())
-                    holder.checkBox.setChecked(false);
+
+                if(mode.equals("on"))
+                {
+                    selectSong( currentItem,  holder,  holder.checkBox.isChecked());
+                    if(holder.checkBox.isChecked())
+                        holder.checkBox.setChecked(false);
+                    else
+                        holder.checkBox.setChecked(true);
+                }
                 else
-                    holder.checkBox.setChecked(true);
+                    songTitleClickedInterface.songTitleClicked(position);
             }
         });
 
@@ -104,7 +108,8 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
         boolean flag = false;
         for (int i = 0; i< FullSearch.checkedList.size(); i++)
         {
-            if(holder.englishTitleTextView.getText().toString().equals(FullSearch.checkedList.get(i).getEnglishTitle()))
+            if(holder.englishTitleTextView.getText().toString().equals(
+                    FullSearch.checkedList.get(i).getEnglishTitle()))
             {
                 flag = true;
                 break;
@@ -177,7 +182,7 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
     /**
      * View holder class
      */
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
+    class ViewHolder extends RecyclerView.ViewHolder   {
         TextView malayalamTextView;
         TextView englishTitleTextView;
         TextView folderNameTextView;
@@ -203,25 +208,8 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
                 checkBox.setVisibility(View.VISIBLE);
 
             this.songTitleClicked = songTitleClicked;
-            itemView.setOnClickListener(this);
+//            itemView.setOnClickListener(this);
 
-        }
-
-        @Override
-        public void onClick(View v) {
-            if(mode.equals("off"))
-                songTitleClickedInterface.songTitleClicked(getAbsoluteAdapterPosition());
-            else
-            {
-//                checkedList.add(new ModalFullSearch(
-//                        fileNameTextView.getText().toString(),
-//                        englishTitleTextView.getText().toString(),
-//                        malayalamTextView.getText().toString(),
-//                        folderNameTextView.getText().toString()
-//
-//
-//                ));
-            }
         }
     }
 
@@ -238,7 +226,8 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
                 {
                     flag = false;
 
-                    if(holder.englishTitleTextView.getText().toString().equals(FullSearch.checkedList.get(i).getEnglishTitle()))
+                    if(holder.englishTitleTextView.getText().toString().equals(
+                            FullSearch.checkedList.get(i).getEnglishTitle()))
                     {
                         flag = true;
                         break;
@@ -267,7 +256,8 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
                 // search and remove the unchecked element from the checkedList
                 for (int i = 0; i< FullSearch.checkedList.size(); i++)
                 {
-                    if(holder.englishTitleTextView.getText().toString().equals(FullSearch.checkedList.get(i).getEnglishTitle()))
+                    if(holder.englishTitleTextView.getText().toString().equals(
+                            FullSearch.checkedList.get(i).getEnglishTitle()))
                     {
                         FullSearch.checkedList.remove(i);
                         break;

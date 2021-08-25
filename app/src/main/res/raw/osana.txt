@@ -1,11 +1,12 @@
-ssZh]nXmhnt\mim\ Hmim\, Hmim\
-tZhZqX Km\w DbÀ¶nSp¶nXm
-IÀ¯mhmæw ssZhw, \nXyw ]cnip²³
-AX|¶X§fnÂ Hmim\ ]mSnSmw
-Hmim\ PbKoXw ]mSoSmw
-]cnip²³, amemJamêsS Km\apbêì
-ssk¶y§Ä¯³ IÀ¯mth ]cnip²³ \o ]cnip²³
-kzÀ¤kvX\mb \Â ]nXmth
-tZhZqXtc kzÀ¤ \nhmknItf
-kzÀ¤ob knwlmk\¯nÂ hmgpw
-Hmim\ Hmim\, D¶X\mw cmPmth a¶h\mbv XoÀ¶ht\
+daivapithavin_osana,				daiva pithaavinosana osana,				ssZh]nXmhnt\mim\ Hmim\, Hmim\,				osana,	Unknown Album, Unknown Unknown, 2021, G Major
+athyunnathangalil_vaazhunna,		athyunnathangalil vaazhunna thaatha,	tZhZqX Km\w DbÀ¶nSp¶nXm,					osana,	Unknown Album, Unknown Unknown, 2021, G Major
+devadootha_gaanam,					devadootha gaanam uyarnnidunnitha,		IÀ¯mhmæw ssZhw, \nXyw ]cnip²³,				osana,	Unknown Album, Unknown Unknown, 2021, G Major
+karthavakum_daivam_nithyam,			karthaavakum daivam nithyam,			AX|¶X§fnÂ Hmim\ ]mSnSmw,					osana,	Unknown Album, Unknown Unknown, 2021, G Major
+athyunnathangalil_osana_paadidaam,	athyunnathangail osana paadidaam,		Hmim\ PbKoXw ]mSoSmw,						osana,	Unknown Album, Unknown Unknown, 2021, G Major
+osana_jayageetham,					osana jayageetham paadeedam,			]cnip²³, amemJamêsS Km\apbêì,				osana,	Unknown Album, Unknown Unknown, 2021, G Major	
+maalakhamarude_gaanam,				maalakhamaarude gaanamuyarunnu,			amemJamêsS Km\apbêì,						osana,	Unknown Album, Unknown Unknown, 2021, G Major
+sainyangal_than,					sainyangal than karthaave parisudhan,	ssk¶y§Ä¯³ IÀ¯mth ]cnip²³ \o ]cnip²³,		osana,	Unknown Album, Unknown Unknown, 2021, G Major
+swargasthanaaya_nal_pithave,		swargasthanaaya nal pithave balavaanum,	kzÀ¤kvX\mb \Â ]nXmth,						osana,	Unknown Album, Unknown Unknown, 2021, G Major
+daivadoothare_swarga,				daivadoothare swarga nivaasikale,		tZhZqXtc kzÀ¤ \nhmknItf,					osana,	Unknown Album, Unknown Unknown, 2021, G Major
+swargeeya_simhaasanathil,			swargeeya simhaasanathil vaazhum,		kzÀ¤ob knwlmk\¯nÂ hmgpw,					osana,	Unknown Album, Unknown Unknown, 2021, G Major
+unnathanaam_raajave,				osana unnathanaam raajave,				Hmim\ Hmim\, D¶X\mw cmPmth a¶h\mbv XoÀ¶ht\,	osana,	Unknown Album, Unknown Unknown, 2021, G Major

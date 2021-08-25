@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -39,8 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListOfSongs extends AppCompatActivity  implements
-        BottomNavigationView.OnNavigationItemSelectedListener
-        , Adapter.SongClickInterface{
+        Adapter.SongClickInterface{
 
 
     RecyclerView recyclerView;
@@ -67,8 +67,45 @@ public class ListOfSongs extends AppCompatActivity  implements
                 R.id.navigation_list, R.id.navigation_song, R.id.navigation_prayer)
                 .build();
 
-        // changing default selection of bottom bar
-        navView.setOnNavigationItemSelectedListener(this);
+        // Control the bottom navigation buttons
+        navView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+                int menuId = item.getItemId();
+                Intent intent;
+                switch(menuId)
+                {
+                    case R.id.navigation_song: {
+                        intent = new Intent(getApplicationContext(), HomePage.class);
+                        searchView.setQuery("", false);
+                        searchView.clearFocus();
+//                searchView.setIconified(true);
+                        startActivity(intent);
+                        break;
+                    }
+
+                    case R.id.navigation_list:{
+                        intent = new Intent(getApplicationContext(), ListActivity.class);
+                        searchView.setQuery("", false);
+                        searchView.clearFocus();
+//                searchView.setIconified(true);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+                        break;
+                    }
+                    case R.id.navigation_prayer:
+                    {
+                        intent = new Intent(getApplicationContext(), PrayerActivity.class);
+                        searchView.setQuery("", false);
+                        searchView.clearFocus();
+//                searchView.setIconified(true);
+                        startActivity(intent);
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
 
 
         Intent intent = getIntent();
@@ -81,45 +118,6 @@ public class ListOfSongs extends AppCompatActivity  implements
         initRecyclerView();
 
 
-    }
-
-
-    @Override
-    // handle the bottom navigation item click event
-    public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
-        int menuId = item.getItemId();
-        Intent intent;
-        switch(menuId)
-        {
-            case R.id.navigation_song: {
-                intent = new Intent(getApplicationContext(), HomePage.class);
-                searchView.setQuery("", false);
-                searchView.clearFocus();
-//                searchView.setIconified(true);
-                startActivity(intent);
-                break;
-            }
-
-            case R.id.navigation_list:{
-                intent = new Intent(getApplicationContext(), ListActivity.class);
-                searchView.setQuery("", false);
-                searchView.clearFocus();
-//                searchView.setIconified(true);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-                break;
-            }
-            case R.id.navigation_prayer:
-            {
-                intent = new Intent(getApplicationContext(), PrayerActivity.class);
-                searchView.setQuery("", false);
-                searchView.clearFocus();
-//                searchView.setIconified(true);
-                startActivity(intent);
-                break;
-            }
-        }
-        return true;
     }
 
     @Override
