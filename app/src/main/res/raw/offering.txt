@@ -1,15 +1,19 @@
-aadiphalam_daiva_sannidhe,			aadiphalam daiva sannidhe,			BZn^ew ssZh k¶nt[bÀ¸n¨,							offering,	Unknown Album, Unknown Unknown, 2021, G Major	
-ee_balipeedathil_ekidunnu,			ee balipeedathil ekidunnu njan,		Cu _en]oT¯nÂ GInSp¶q Rm³,						offering,	Unknown Album, Unknown Unknown, 2021, G Major	
-ee_snehabaliyil,					ee snehabaliyil kazhchayekan,		Cu kvt\l_enbnÂ Imgv¨tbIm³ AWbp¶nXm, 			offering,	Unknown Album, Unknown Unknown, 2021, G Major
-ente_daivam_enikku,					ente daivam enikku thanna,			Fsâ ssZhw F\nç X¶ kvt\l k½m\w,					offering,	Unknown Album, Unknown Unknown, 2021, G Major
-israyelin_nayaka,					israyelin nayaka ente nalla,		C{ktben³ \mbIm Fsâ \Ã ssZhta,					offering,	Unknown Album, Unknown Unknown, 2021, G Major
-kaasayil_peelasayil,				kaasayil peelasayil kazhchayekam,	ImkbnÂ ]oemkbnÂ Imgv¨tbImw PohnXw,				offering,	Unknown Album, Unknown Unknown, 2021, G Major
-kai_neetti_nilkkunna,				kai neetti nilkkunna,				ssI\o«n \nÂç¶ tbip\Ym,							offering,	Unknown Album, Unknown Unknown, 2021, G Major
-kazchayekam_kasayil,				kazchayekam kasayil pakarnnidam,	Imgv¨tbImw ImkbnÂ ]IÀ¶nSmw ]oemkbnÂ,			offering,	Unknown Album, Unknown Unknown, 2021, G Major
-kazchayekeedam_ee_vediyil,			kazchayekeedam ee vediyil sweekar,	Imgv¨tbIoSmw Cu thZnbnÂ kzoImcyamw Cu thfbnÂ,	offering,	Unknown Album, Unknown Unknown, 2021, G Major
-kazchayekam_daivame_jeevitham,		kazchayekam daivame jeevitham bali,	Imgv¨tbImw ssZhta PohnXw _enbmbv,				offering,	Unknown Album, Unknown Unknown, 2021, G Major
-moriya_malayil,						moriya malayil dahana balithan,		tamdnbm aebnÂ Zl\_en X³ thZnbnÂ,				offering,	Unknown Album, Unknown Unknown, 2021, G Major
-oru_kunju_poovu,					oru kunju poovu njan,				Hê æªp ]qhp Rm³ Imgv¨tbæì,						offering,	Unknown Album, Unknown Unknown, 2021, G Major
-poornnamay_ekidunnu,				poornnamay ekidunnu daivame, 		]qÀ®ambv GInSpì ssZhta,							offering,	Unknown Album, Unknown Unknown, 2021, G Major
-snehapoorvam_nalkunnu,				snehapoorvam nalkunnu nadha,		kvt\l]qÀÆw \Âæì \mYm,							offering,	Unknown Album, Unknown Unknown, 2021, G Major
-snehaswaroopa_thava,				snehaswaroopa thava darsanam,		kvt\lkzcq]m Xh ZÀi\w Cu ZmkcnÂ GInSq,			offering,	Unknown Album, Unknown Unknown, 2021, G Major
+aadiphalam_daiva_sannidhe,		aadiphalam daiva sannidhe,			BZn^ew ssZh k¶nt[bÀ¸n¨,							offering,  Gm,	https://www.youtube.com/watch?v=zHxfUVRyDbs,	Un Available
+appatheppole_nirmalam,			appattheppole nirmmalamaakkaname,	A¸s¯t¸mse \nÀ½eam¡Wta,							offering,  D Major,	https://www.youtube.com/watch?v=dD-kFwwv_WU,	https://www.youtube.com/watch?v=MHnwZHJ4tkM
+ee_balipeedathil_ekidunnu,		ee balipeedathil ekidunnu njan,		Cu _en]oT¯nÂ GInSp¶q Rm³,						offering,  Gm,	https://www.youtube.com/watch?v=p1BGOCZ3WiE,	https://www.youtube.com/watch?v=PNLepjSt1dc
+ee_snehabaliyil,				ee snehabaliyil kazhchayekan,		Cu kvt\l_enbnÂ Imgv¨tbIm³ AWbp¶nXm, 			offering,  E Major,	https://www.youtube.com/watch?v=mkEK14G2K80, https://www.youtube.com/watch?v=NzxeGubbs64	
+ente_daivam_enikku,				ente daivam enikku thanna,			Fsâ ssZhw F\nç X¶ kvt\l k½m\w,					offering,  Dm,	https://www.youtube.com/watch?v=kVZhiMbAHNM,	https://www.youtube.com/watch?v=hbOmn7spjHc
+eeshoykku_nalkaan,				eeshoykku nalkaan enkayyilinn,		Cutimíp \ÂIm³ F³I¿nen¶v,						offering,  Em,	https://www.youtube.com/watch?v=jpb228I_7ME, 	Un Available
+israyelin_nayaka,				israyelin nayaka ente nalla,		C{ktben³ \mbIm Fsâ \Ã ssZhta,					offering,  Em,	https://www.youtube.com/watch?v=lMnNQf6mj4w,	https://www.youtube.com/watch?v=CPW4dBEvMDU
+kaasayil_peelasayil,			kaasayil peelasayil kazhchayekam,	ImkbnÂ ]oemkbnÂ Imgv¨tbImw PohnXw,				offering,  Fm,	https://www.youtube.com/watch?v=B4uMI28M9-U,	https://www.youtube.com/watch?v=7OgKEG-oZsE
+kaazchayekan_samayamay,			kazhchayekan samayamaay sarvvavum,  Imgv¨tbIm³ kabambv kÀÆhpw kaÀ¸Ww,				offering,  D# Major,	https://www.youtube.com/watch?v=6o6EA1mRNls,	https://www.youtube.com/watch?v=whNnsJ3WAc8 
+kai_neetti_nilkkunna,			kai neetti nilkkunna,				ssI\o«n \nÂç¶ tbip\Ym,							offering,  Em,	https://www.youtube.com/watch?v=jefF_ViU41A,	https://www.youtube.com/watch?v=aWBj1tT3FdI
+kazchayekam_kasayil,			kazchayekam kasayil pakarnnidam,	Imgv¨tbImw ImkbnÂ ]IÀ¶nSmw ]oemkbnÂ,			offering,  F Major, https://www.youtube.com/watch?v=EZZQuYnWXuQ,	https://www.youtube.com/watch?v=D4YwansiDNU
+kazchayekeedam_ee_vediyil,		kazchayekeedam ee vediyil sweekar,	Imgv¨tbIoSmw Cu thZnbnÂ kzoImcyamw Cu thfbnÂ,	offering,  Gm,	https://www.youtube.com/watch?v=ltXmjIqXz7c,	https://www.youtube.com/watch?v=S1LiX1AK2Jg
+kazchayekam_daivame_jeevitham,	kazchayekam daivame jeevitham bali,	Imgv¨tbImw ssZhta PohnXw _enbmbv,				offering,  Unknown, https://www.youtube.com/watch?v=FkNO8RXIWTY,	https://www.youtube.com/watch?v=FkNO8RXIWTY
+moriya_malayil,					moriya malayil dahana balithan,		tamdnbm aebnÂ Zl\_en X³ thZnbnÂ,				offering,  Am,	https://www.youtube.com/watch?v=eGphu5HfCCw, Un Available
+oru_kunju_poovu,				oru kunju poovu njan,				Hê æªp ]qhp Rm³ Imgv¨tbæì,						offering,  Am,	https://www.youtube.com/watch?v=8D6IfAegyXw,	https://www.youtube.com/watch?v=WiOi1Hi64B4
+orubali_vasthuvaay,				oru balivasthuvaay althaarayil nad,	Hê _enhkvXphmbv,						 		offering,  A Major,	https://www.youtube.com/watch?v=p9dhXYach74,	Un Available	
+poornnamay_ekidunnu,			poornnamay ekidunnu daivame, 		]qÀ®ambv GInSpì ssZhta,							offering,  G Major,	https://www.youtube.com/watch?v=mLBMJxa25SE, Un Available
+snehapoorvam_nalkunnu,			snehapoorvam nalkunnu nadha,		kvt\l]qÀÆw \Âæì \mYm,							offering,  E Major,	https://www.youtube.com/watch?v=uDfpHB6GS6M, Un Available
+snehaswaroopa_thava,			snehaswaroopa thava darsanam,		kvt\lkzcq]m Xh ZÀi\w Cu ZmkcnÂ GInSq,			offering,  Dm,	https://www.youtube.com/watch?v=ICsr9O69Axk,	https://www.youtube.com/watch?v=O_I2lwO6asI

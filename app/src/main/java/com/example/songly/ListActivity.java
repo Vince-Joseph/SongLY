@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
@@ -48,31 +49,33 @@ public class ListActivity extends AppCompatActivity
     List<String> listNames;
     AdapterList adapter;
     File currentDir = Environment.getExternalStorageDirectory();
+    File requiredPath;
     String newFileName;
     ActionMode actionMode;
     Activity activity = ListActivity.this;
     BottomNavigationView navView;
-    Toolbar toolbar;
-    ImageView editIconToolbar, imageViewEmpty, sortIcon, addIcon;
+    ImageView  imageViewEmpty,addIcon;
+    TextView textViewEmpty, pageTitle;
     RelativeLayout relativeLayoutEmpty;
-    TextView textViewEmpty;
-    File requiredPath;
 
     Intent intent;
-    SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferences; // sharedprefs to store some temp data
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        toolbar = findViewById(R.id.toolbar_lists);
-        setSupportActionBar(toolbar); // replace appbar with custom toolbar
+// -------------------------- Toolbar has been replaced with custome icons -------------------------
 
-// ------------------ Navigation controls --------------------------------------
+//        toolbar = findViewById(R.id.toolbar_lists);
+//        setSupportActionBar(toolbar); // replace appbar with custom toolbar
+
+
+// ------------------ Bottom Navigation controls --------------------------------------
 
         navView = findViewById(R.id.nav_view);
-
+        pageTitle = findViewById(R.id.pageTitle);
         // changing default selection of bottom bar
         navView.getMenu().findItem(R.id.navigation_list).setChecked(true);
 
@@ -118,15 +121,18 @@ public class ListActivity extends AppCompatActivity
         imageViewEmpty = findViewById(R.id.empty_icon);
         textViewEmpty.setText("No lists available");
         imageViewEmpty.setImageResource(R.drawable.empty_list);
-//---------------------------------------------------------------------------
-        editIconToolbar = findViewById(R.id.editIconToolbar); // edit list name icon
-        sortIcon = findViewById(R.id.sortIcon); // sort songs icon(for list of songs activity)
 
-        // hide both of them initially.
-        sortIcon.setVisibility(View.GONE);
-        editIconToolbar.setVisibility(View.INVISIBLE);
-        ImageView searchIcon = findViewById(R.id.searchIcon);
-        searchIcon.setVisibility(View.GONE);
+
+//------------------------- Hide toolbar icons - replaced with custom icon----------------------------------
+//        editIconToolbar = findViewById(R.id.editIconToolbar); // edit list name icon
+//        sortIcon = findViewById(R.id.sortIcon); // sort songs icon(for list of songs activity)
+//
+//        // hide both of them initially.
+//        sortIcon.setVisibility(View.GONE);
+//        editIconToolbar.setVisibility(View.INVISIBLE);
+//        ImageView searchIcon = findViewById(R.id.searchIcon);
+//        searchIcon.setVisibility(View.GONE);
+// ------------------------------------------------------------------------------------------------
 
         listSetRecycler = findViewById(R.id.list_recycler);
         listNames = new ArrayList<>(); // to temp store the list names
@@ -135,12 +141,12 @@ public class ListActivity extends AppCompatActivity
         checkPermission(); // check for storage permissions
         setUpRecycler(); // setup the lists
 
-        toggleDefaultText(); // toggle the view if there are no lists present
+        toggleDefaultText(); // toggle the empty list indicating view if there are no lists present
 
         adapter.setActionModeReceiver((AdapterList.OnClickAction) activity);
 
-        addIcon = findViewById(R.id.addIcon); // icon to add new list
-        // when clicked on new list icon, show the custome alert box
+        addIcon = findViewById(R.id.addListIcon);// icon to add new list
+        // when clicked on new list icon, show the custom alert box
         addIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -216,17 +222,23 @@ public class ListActivity extends AppCompatActivity
                     listNames.add(fname); // add each filename to arraylist
                 }
 
+
+// ------------------------ Gridlayout has been replaced with linear layout ------------------------
+
               // set the layout manager of list recycler view
-                GridLayoutManager gridLayoutManager =
-                        new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL,
-                                false);
-                listSetRecycler.setLayoutManager(gridLayoutManager);
+//                GridLayoutManager gridLayoutManager =
+//                        new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL,
+//                                false);
+// ------------------------------------------------------------------------------------------------
+
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+                listSetRecycler.setLayoutManager(linearLayoutManager);
 
                 // set the adapter
                 adapter = new AdapterList(this , listNames);
                 listSetRecycler.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
-
 
                 toggleDefaultText();
         }
@@ -408,6 +420,8 @@ public class ListActivity extends AppCompatActivity
 
         @Override
         public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            addIcon.setVisibility(View.INVISIBLE);
+            pageTitle.setVisibility(View.INVISIBLE);
             return false;
         }
 
@@ -457,6 +471,8 @@ public class ListActivity extends AppCompatActivity
             actionMode = null;
             adapter.removeAllSelections();
             navView.setVisibility(View.VISIBLE); // bring back the bottom nav bar
+            addIcon.setVisibility(View.VISIBLE);
+            pageTitle.setVisibility(View.VISIBLE);
             toggleDefaultText(); // toggle empty view
         }
     };

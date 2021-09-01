@@ -60,10 +60,9 @@ public class HelperClass {
                                         splited[1].trim(), // eng title
                                         splited[2].trim(), // malayalam title
                                         splited[3].trim(), // folder name
-                                        splited[4].trim(), // album
-                                        splited[5].trim(), // singer
-                                        splited[6].trim(), // year
-                                        splited[7].trim(), // chord
+                                        splited[4].trim(), // chord
+                                        splited[5].trim(), // song link
+                                        splited[6].trim(), // karaoke link
                                         typeface));
                     }
                     is.close();

@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:padding="20dp"
     android:gravity="center"
+    android:forceDarkAllowed="false"
     android:background="@drawable/rounded_edges">
 
     <TextView
@@ -20,10 +21,13 @@
         android:text="Create new list"
         android:textColor="@color/grey"/>
     <EditText
+        android:backgroundTint="@color/DarkGray"
+        android:textColor="@color/DarkGray"
         android:id="@+id/new_list_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLength="15"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"

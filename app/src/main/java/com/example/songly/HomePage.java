@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ActivityOptions;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -35,42 +37,46 @@ public class HomePage extends AppCompatActivity {
     int counter = 0; // for counting how much time back button has been pressed
 
     Intent intent;
-    Toolbar toolbar;
-    ImageView im1, im2, im3, searchIcon;
+    ImageView searchIcon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen_activity);
 
-        toolbar = findViewById(R.id.toolbar_lists);
-        setSupportActionBar(toolbar); // replace appbar with custom toolbar
+// --------------------- Toolbar has been avoided and replaced by custom views ----------------------
+//        toolbar = findViewById(R.id.toolbar_lists);
+//        setSupportActionBar(toolbar); // replace appbar with custom toolbar
 
-        ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null)
-            actionBar.setTitle("Home");
+//        ActionBar actionBar = getSupportActionBar();
+//        if(actionBar != null)
+//            actionBar.setTitle("Home");
 
-        im1 = findViewById(R.id.editIconToolbar);
-        im2 = findViewById(R.id.addIcon);
-        im3 = findViewById(R.id.sortIcon);
-        searchIcon = findViewById(R.id.searchIcon);
+//        im1 = findViewById(R.id.editIconToolbar);
+//        im2 = findViewById(R.id.addIcon);
+//        im3 = findViewById(R.id.sortIcon);
+//        im1.setVisibility(View.INVISIBLE);
+//        im2.setVisibility(View.INVISIBLE);
+//        im3.setVisibility(View.INVISIBLE);
+// --------------------------------------------------------------------------------------------------
 
-        im1.setVisibility(View.INVISIBLE);
-        im2.setVisibility(View.INVISIBLE);
-        im3.setVisibility(View.INVISIBLE);
+        searchIcon = findViewById(R.id.searchIcon); // custom search button (image view actually)
 
+        // upon clicking the search button, move to the full_search activity with a small transition
         searchIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Pair pair;
                 pair = new Pair<View, String>(v, "searchTransition");
-
+//                searchIcon.startAnimation(AnimationUtils.loadAnimation(searchIcon.getContext(),
+//                        R.anim.slide_to_left));
                 ActivityOptions activityOptions =
                         ActivityOptions.makeSceneTransitionAnimation(HomePage.this, pair);
 
                 intent = new Intent(HomePage.this, FullSearch.class);
-                intent.putExtra("mode","off"); // the select mode is off now
+                intent.putExtra("mode","off"); // the select mode of songs is off now
+
+                // we have to pass the bundle to make the transition happen
                 startActivity(intent, activityOptions.toBundle());
-//                startActivity(intent);
             }
         });
 
@@ -83,11 +89,22 @@ public class HomePage extends AppCompatActivity {
 
         // adapter object - accepts the folder names arraylist
         AdapterHomePage adapterHomePage = new AdapterHomePage(this, folderNames);
+
+// ----------------- Grid layout of home page has been replaced with linear layout ----------------
         // layout of recycler - Grid layout
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-        recyclerView.setLayoutManager(gridLayoutManager);
+//        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+//        recyclerView.setLayoutManager(gridLayoutManager);
+// ------------------------------------------------------------------------------------------------
+
+        // setting layout for the recycler view (linearlayout)
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.hasFixedSize();
         recyclerView.setAdapter(adapterHomePage); // set the adapter for recycler
+
+
+// ---------------------- Bottom navigation bar --------------------------------------------
 
         // bottom navigation bar
         navView = findViewById(R.id.nav_view);
@@ -122,6 +139,7 @@ public class HomePage extends AppCompatActivity {
                 return true;
             }
         });
+// ------------------------------- Bottom nav ends here ------------------------------------------------
 
     }
 
@@ -134,6 +152,8 @@ public class HomePage extends AppCompatActivity {
         super.onStart();
     }
 
+// ------------------------- Double press back button to exit the app -------------------------------
+
     @Override
     public void onBackPressed() {
 
@@ -144,6 +164,9 @@ public class HomePage extends AppCompatActivity {
 
         counter++;
     }
+
+
+// ---------------------------- Toolbar menu items has been replaced by custom search button ---------------
 
     /**
      * Set the search icon at the top right corner
@@ -180,4 +203,6 @@ public class HomePage extends AppCompatActivity {
 //        }
 //
 //    }
+// ------------------------------------------------------------------------------------------------
+
 }

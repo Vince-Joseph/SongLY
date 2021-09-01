@@ -1,10 +1,12 @@
-aaba_daivame_aliyum, 			aaba daivame aliyum snehame,	B_m ssZhta Aenbpw kvt\lta,					others,	Unknown Album, Unknown Unknown, 2021, G Major
-amme_ente_eeshoyude_amme,		amme ente amme ente eeshoyude,	At½ Fsâ At½ Fsâ CutimbpsS At½,				others,	Unknown Album, Unknown Unknown, 2021, G Major
-en_daivame_en_snehame,			en daivame en snehame nee,		F³ ssZhta F³ kvt\lta \o X¶ Z\m\atÃ,			others,	Unknown Album, Unknown Unknown, 2021, G Major
-emmanuel_emmanuel,				emmanuel emmanuel ninnodu,		F½mëthÂ F½ëthÂ \nt¶mSp IqsS hmgpì,			others,	Unknown Album, Unknown Unknown, 2021, G Major
-en_mano_bhalakangalil,			en mano bhalakangalil ninte,	F³ at\m ^eI§fnÂ \nsâ IÂ¸\tbmsSbo,			others,	Unknown Album, Unknown Unknown, 2021, G Major
-kanivinte_niravaarnnoramme,		kanivinte niravaarnnoramme,		I\nhnsâ \ndhmÀs¶mct½ \n\t¡æì kvt\l{]Wmaw,	others,	Unknown Album, Unknown Unknown, 2021, G Major
-mekhangalkkidayil,				mekhangalkkidayil prabhaatha,	taL§Ä¡nSbnÂ {]`mX Xmcw t]mse,				others,	Unknown Album, Unknown Unknown, 2021, G Major
-neeyente_prarthana_kettu,		neeyente praarthana kettu,		\o Fsâ {]mÀ°\ tI«q \o Fsâ am\kw I­p,	others,	Unknown Album, Unknown Unknown, 2021, G Major
-orukodi_janmami,				orukodi janmami bhoomiyil,		Hê tImSn P·ao `qanbnÂ X¶mepw,				others,	Unknown Album, Unknown Unknown, 2021, G Major
-rosapoove_rosapoove,			rosapoove rosapoove swarggeeya,	tdmkm ]qth tdmkm ]qth kzÀ¤ob..,				others,	Unknown Album, Unknown Unknown, 2021, G Major
+aaba_daivame_aliyum, 		aaba daivame aliyum snehame,	B_m ssZhta Aenbpw kvt\lta,				  others,  Gm,	https://www.youtube.com/watch?v=ZfR8kAhLc74,	Un Available
+amme_ente_eeshoyude_amme,	amme ente amme ente eeshoyude,	At½ Fsâ At½ Fsâ CutimbpsS At½,			  others,  E Majo,	https://www.youtube.com/watch?v=xeQtY0d9Zhw,	https://www.youtube.com/watch?v=jkPVmSfot-0	
+aasamsa_gaanam_paadam,		aasamsa gaanam paadaam,			Biwk Km\w ]mSmw,						  others,  Am C,	https://www.youtube.com/watch?v=iv4Nigm2NrA,	https://www.youtube.com/watch?v=SgD1y_AhLq0
+en_daivame_en_snehame,		en daivame en snehame nee,		F³ ssZhta F³ kvt\lta \o X¶ Z\m\atÃ,		  others,  Bm,	https://www.youtube.com/watch?v=atofgIstI8I,	https://www.youtube.com/watch?v=2jSI-uJBINo	
+emmanuel_emmanuel,			emmanuel emmanuel ninnodu,		F½mëthÂ F½ëthÂ \nt¶mSp IqsS hmgpì,		  others,  Em,	https://www.youtube.com/watch?v=gnK8ofGmu1A,	https://www.youtube.com/watch?v=FOXGJPUeX5Y	
+en_mano_bhalakangalil,		en mano bhalakangalil ninte,	F³ at\m ^eI§fnÂ \nsâ IÂ¸\tbmsSbo,		  others,  Em,	https://www.youtube.com/watch?v=C2d8nHawiWM,	https://www.youtube.com/watch?v=iuLAh2ZGnyY
+ennamaye_orkkumbol,			ennammaye orkkumbol maathave,	F¶½sb HmÀçt¼mÄ amXmth,					  others,  Fm,	https://www.youtube.com/watch?v=Cwr5xsJIeQo,	https://www.youtube.com/watch?v=w_2VJDhnnwU
+kanivinte_niravaarnnoramme,	kanivinte niravaarnnoramme,		I\nhnsâ \ndhmÀs¶mct½ \n\t¡æì kvt\l{]Wmaw, others,  F Major,	https://www.youtube.com/watch?v=LIoJYD2zCpA, https://www.youtube.com/watch?v=vdp0yhFdu1U	
+mekhangalkkidayil,			mekhangalkkidayil prabhaatha,	taL§Ä¡nSbnÂ {]`mX Xmcw t]mse,			  others,  D Major,	https://www.youtube.com/watch?v=Z0a6UUImu1E,	https://www.youtube.com/watch?v=ZIxPo1WiDVg
+neeyente_prarthana_kettu,	neeyente praarthana kettu,		\o Fsâ {]mÀ°\ tI«q \o Fsâ am\kw I­p, others,  Gm,	https://www.youtube.com/watch?v=TRdWwqOzCwU,	https://www.youtube.com/watch?v=-VYWbgAtgYQ	
+orukodi_janmami,			orukodi janmami bhoomiyil,		Hê tImSn P·ao `qanbnÂ X¶mepw,			  others,  A Major,	https://www.youtube.com/watch?v=sSJEVa16fq4,	https://www.youtube.com/watch?v=yte2qLJuVRk
+rosapoove_rosapoove,		rosapoove rosapoove swarggeeya,	tdmkm ]qth tdmkm ]qth kzÀ¤ob..,			  others,  F Major,	https://www.youtube.com/watch?v=6-rPnTvACqs,	https://www.youtube.com/watch?v=LQ6s4GjOE7M

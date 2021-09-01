@@ -52,11 +52,32 @@ public class FullSearch extends AppCompatActivity
         tickMark = findViewById(R.id.tickMarkSelection);
 
         searchView.setIconified(false); // make the search view focused by default
+//        searchView.requestFocus();
         helperClass = new HelperClass();
 
         intent = getIntent();
         mode = intent.getStringExtra("mode");
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                if(mode.equals("off"))
+                {
+                    intent = new Intent(getApplicationContext(), HomePage.class);
+                    startActivity(intent);
+//                    finish();
+                }
+                else
+                {
+                    intent = new Intent(getApplicationContext(), ViewIndividualList.class);
+                    startActivity(intent);
+//                    finish();
+                }
+                finish();
+                return false;
+            }
+        });
 
+        // if select songs mode is off then don't show the check boxes, else show 'em
         if(mode.equals("off"))
             tickMark.setVisibility(View.GONE);
         else
@@ -93,6 +114,7 @@ public class FullSearch extends AppCompatActivity
                 editor.apply();
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
             }
         });
         fullListOfSongs = new ArrayList<>();
@@ -161,10 +183,9 @@ public class FullSearch extends AppCompatActivity
         bundle.putStringArray("contents", new String[]{
                 fullListOfSongs.get(position).getFileName(),
                 fullListOfSongs.get(position).getFolderName(),
-                fullListOfSongs.get(position).getAlbum(),
-                fullListOfSongs.get(position).getSingers(),
-                fullListOfSongs.get(position).getYear(),
-                fullListOfSongs.get(position).getChord()
+                fullListOfSongs.get(position).getChord(),
+                fullListOfSongs.get(position).getSong(),
+                fullListOfSongs.get(position).getKaraoke()
         });
         intent.putExtras(bundle);
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightBlue"
+    android:background="@color/dodgerblue"
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".SplashScreen">
@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Song LY"
         android:textSize="25dp"
+        android:textColor="@color/white"
         android:gravity="center_horizontal"/>
     <TextView
         android:id="@+id/subtitle"
@@ -21,6 +22,7 @@
         android:layout_height="wrap_content"
         android:text="Officially Yours"
         android:textSize="20dp"
+        android:textColor="@color/white"
         android:gravity="center_horizontal"/>
 
 </LinearLayout>

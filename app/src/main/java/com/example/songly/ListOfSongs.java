@@ -7,20 +7,27 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,17 +54,21 @@ public class ListOfSongs extends AppCompatActivity  implements
     LinearLayoutManager layoutManager;
     List<ModelClassSongList> songsList;
     Adapter adapter;
-    SearchView searchView;
+    ImageView searchViewButton;
+    TextView pageTitle;
     Typeface typeface;
     BottomNavigationView navView;
+    SearchView searchCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_songs);
 
-//        searchView = findViewById(R.id.searchIcon);
+        searchViewButton = findViewById(R.id.searchIcon);
 
+        pageTitle = findViewById(R.id.pageTitle);
+        searchCategory = findViewById(R.id.searchCategory);
         typeface = Typeface.createFromAsset(getAssets(),"font/MLKR0NTT.TTF");
 
         navView = findViewById(R.id.nav_view);
@@ -77,18 +88,12 @@ public class ListOfSongs extends AppCompatActivity  implements
                 {
                     case R.id.navigation_song: {
                         intent = new Intent(getApplicationContext(), HomePage.class);
-                        searchView.setQuery("", false);
-                        searchView.clearFocus();
-//                searchView.setIconified(true);
                         startActivity(intent);
                         break;
                     }
 
                     case R.id.navigation_list:{
                         intent = new Intent(getApplicationContext(), ListActivity.class);
-                        searchView.setQuery("", false);
-                        searchView.clearFocus();
-//                searchView.setIconified(true);
                         startActivity(intent);
                         overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
                         break;
@@ -96,14 +101,68 @@ public class ListOfSongs extends AppCompatActivity  implements
                     case R.id.navigation_prayer:
                     {
                         intent = new Intent(getApplicationContext(), PrayerActivity.class);
-                        searchView.setQuery("", false);
-                        searchView.clearFocus();
-//                searchView.setIconified(true);
                         startActivity(intent);
                         break;
                     }
                 }
                 return true;
+            }
+        });
+
+        searchCategory.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override // upon search text change
+            public boolean onQueryTextChange(String newText) {
+                // filter the list using new search keyword
+                adapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+
+        // upon closing the searchView, hide it and display other icons and page title
+        searchCategory.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                pageTitle.startAnimation(AnimationUtils.loadAnimation(searchCategory.getContext(),
+                        R.anim.slide_from_left));
+                searchViewButton.startAnimation(AnimationUtils.loadAnimation(searchCategory.getContext(),
+                        R.anim.slide_from_left));
+                searchCategory.setVisibility(View.GONE);
+                searchViewButton.setVisibility(View.VISIBLE);
+                pageTitle.setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
+
+        searchViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                searchCategory.startAnimation(AnimationUtils.loadAnimation(searchCategory.getContext(),
+                        R.anim.slide_from_right));
+                searchCategory.setIconified(false);
+                searchCategory.setVisibility(View.VISIBLE);
+                searchViewButton.setVisibility(View.GONE);
+
+                pageTitle.startAnimation(AnimationUtils.loadAnimation(searchCategory.getContext(),
+                        R.anim.slide_to_left));
+                pageTitle.setVisibility(View.GONE);
+
+//                pageTitle.animate()
+//                        .translationX(-100)
+//                        .setListener(new AnimatorListenerAdapter() {
+//                            @Override
+//                            public void onAnimationEnd(Animator animation, boolean isReverse) {
+//                                pageTitle.setVisibility(View.GONE);
+//                            }
+//                        });
+
+
             }
         });
 
@@ -113,12 +172,11 @@ public class ListOfSongs extends AppCompatActivity  implements
         String activityTitle = fileName;
         fileName = fileName.toLowerCase();
 
-        setTitle(activityTitle);
+        pageTitle.setText(activityTitle);
         initData(fileName);
         initRecyclerView();
-
-
     }
+
 
     @Override
     protected void onStart() {
@@ -126,14 +184,6 @@ public class ListOfSongs extends AppCompatActivity  implements
         super.onStart();
     }
 
-    @Override
-    public void onBackPressed() {
-//        temp_intent = new Intent(getApplicationContext(), HomePage.class);
-//        temp_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-//        startActivity(temp_intent);
-//        ListOfSongs.this.finish();
-        super.onBackPressed();
-    }
 
     private void initRecyclerView() {
         recyclerView=findViewById(R.id.songListRecycler);
@@ -150,7 +200,6 @@ public class ListOfSongs extends AppCompatActivity  implements
 
         String data = "";
         InputStream is = null;
-
 
 
         if(fileName.equals("entrance"))
@@ -185,10 +234,9 @@ public class ListOfSongs extends AppCompatActivity  implements
                                 splited[2].trim(), // mal title
                                 splited[1].trim(), // eng title
                                 splited[3].trim(), // song's folder
-                                splited[4].trim(), // song's album
-                                splited[5].trim(), // song's singers
-                                splited[6].trim(), // song's year
-                                splited[7].trim() // song's chord
+                                splited[4].trim(), // song's chord
+                                splited[5].trim(), // song's song
+                                splited[6].trim() // song's karaoke
                                 ));
 
                     }
@@ -213,48 +261,50 @@ public class ListOfSongs extends AppCompatActivity  implements
         bundle.putStringArray("contents", new String[]{
                 songsList.get(position).getFileName(),
                 songsList.get(position).getFolderName(),
-                songsList.get(position).getAlbum(),
-                songsList.get(position).getSingers(),
-                songsList.get(position).getYear(),
-                songsList.get(position).getChord()
+                songsList.get(position).getChord(),
+                songsList.get(position).getSong(),
+                songsList.get(position).getKaraoke()
         });
         intent.putExtras(bundle);
 
-        searchView.setQuery("", false);
-        searchView.clearFocus();
+//        searchView.setQuery("", false);
+//        searchView.clearFocus();
 //        searchView.setIconified(true);
 
 //        // now invoke the intent
         startActivity(intent);
+//        closeSearchAction(searchText);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_menu, menu); // inflating menu/search_menu.xml
+// -------------------------- Toolbar menu is commented and replaced with cutome layouts ----------------------
 
-        MenuItem searchItem = menu.findItem(R.id.searchIcon); // finding search icon
-
-        searchView = (SearchView) searchItem.getActionView();
-        searchView.setIconifiedByDefault(false);
-        searchView.requestFocus();
-//        searchView.setFocusable(true);
-        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE); // change the search icon in keyboard
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
-                return false;
-            }
-        });
-
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.search_menu, menu); // inflating menu/search_menu.xml
+//
+//        MenuItem searchItem = menu.findItem(R.id.searchIcon); // finding search icon
+//
+//        searchView = (SearchView) searchItem.getActionView();
+//        searchView.setIconifiedByDefault(false);
+//        searchView.requestFocus();
+////        searchView.setFocusable(true);
+//        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE); // change the search icon in keyboard
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                adapter.getFilter().filter(newText);
+//                return false;
+//            }
+//        });
+//
+//        return true;
+//    }
 
 }

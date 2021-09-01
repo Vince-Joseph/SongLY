@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,13 +56,13 @@ public class ViewIndividualList extends AppCompatActivity
     private RecyclerView individualSetRecycler;
     List<ModalFullSearch> songNames;
     AdapterIndividualList adapter;
+    ItemTouchHelper itemTouchHelper;
     ActionMode actionMode;
     Activity activity = ViewIndividualList.this;
     BottomNavigationView navView;
-    Toolbar toolbar;
-    ImageView addIcon;
+    ImageView addIcon,  sortIcon;
     RelativeLayout relativeLayoutEmpty;
-    TextView textViewEmpty;
+    TextView textViewEmpty, pageTitle;
     ImageView imageViewEmpty;
     Intent intent;
     int countOfLines = 0; // to store the number of lines read from the file
@@ -85,18 +86,18 @@ public class ViewIndividualList extends AppCompatActivity
 
 //        Toast.makeText(this, currentFileName, Toast.LENGTH_SHORT).show();
 
-        toolbar = findViewById(R.id.toolbar_lists);
-        setSupportActionBar(toolbar); // replace appbar with custome toolbar
-        toolbar.setTitle("File");
+
+// --------------------------- Toolbar has been replaced ------------------------------------
+
+//        toolbar = findViewById(R.id.toolbar_lists);
+//        setSupportActionBar(toolbar); // replace appbar with custome toolbar
+//        toolbar.setTitle("File");
 //        toolbar.inflateMenu(R.menu.bottom_nav_menu);
+// ------------------------------------------------------------------------------------------
 
-        ImageView editIcon = findViewById(R.id.editIconToolbar);
-        ImageView sortIcon = findViewById(R.id.sortIcon);
-        ImageView searchIcon = findViewById(R.id.searchIcon);
-        searchIcon.setVisibility(View.GONE);
 
-        editIcon.setVisibility(View.INVISIBLE);
-
+        sortIcon = findViewById(R.id.sortSongsIcon);
+        pageTitle = findViewById(R.id.pageTitle);
         navView = findViewById(R.id.nav_view);
 
         // changing default selection of bottom bar;
@@ -164,7 +165,7 @@ public class ViewIndividualList extends AppCompatActivity
         toggleDefaultText(); // toggle the view if there are no lists present
 
 
-        addIcon = findViewById(R.id.addIcon); // icon to add new song to the list
+        addIcon = findViewById(R.id.addSongsIcon); // icon to add new song to the list
         // when clicked on new list icon, show the activity to search and add songs to the list
         addIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,10 +231,9 @@ public class ViewIndividualList extends AppCompatActivity
                                                 +md.getEnglishTitle()+",\t\t\t"
                                                 +md.getMalayalamTitle()+",\t\t\t"
                                                 +md.getFolderName()+",\t\t\t"
-                                                +md.getAlbum()+",\t\t\t"
-                                                +md.getSingers()+",\t\t\t"
-                                                +md.getYear()+",\t\t\t"
-                                                +md.getChord()+"\n"
+                                                +md.getChord()+",\t\t\t"
+                                                +md.getSong()+",\t\t\t"
+                                                +md.getKaraoke()+"\n"
                                 );
 
                                 countOfLines++;
@@ -253,6 +253,10 @@ public class ViewIndividualList extends AppCompatActivity
                 }
             }
         });
+
+
+        itemTouchHelper = new ItemTouchHelper(handleDragDrop);
+        itemTouchHelper.attachToRecyclerView(individualSetRecycler);
     }
 
     private void toggleDefaultText() {
@@ -332,10 +336,9 @@ public class ViewIndividualList extends AppCompatActivity
                                     splited[1].trim(), // eng title
                                     splited[2].trim(), // malayalam title
                                     splited[3].trim(), // folder name
-                                    splited[4].trim(), // album
-                                    splited[5].trim(), // singer
-                                    splited[6].trim(), // year
-                                    splited[7].trim() // chord
+                                    splited[4].trim(), // chord
+                                    splited[5].trim(), // song link
+                                    splited[6].trim() // karaoke link
                                      ));
 
                 }
@@ -352,7 +355,7 @@ public class ViewIndividualList extends AppCompatActivity
 
                     if(storedList != null)
                     {
-//                        Toast.makeText(this, "haredprefs", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(this, "sharedprefs", Toast.LENGTH_SHORT).show();
                         for (ModalFullSearch md: storedList)
                         {
 //                            // this has to be checked 'cause we are calling setupRecycler from onStartActivity, not onCreate
@@ -365,10 +368,9 @@ public class ViewIndividualList extends AppCompatActivity
                                         +md.getEnglishTitle()+",\t\t\t"
                                         +md.getMalayalamTitle()+",\t\t\t"
                                         +md.getFolderName()+",\t\t\t"
-                                        +md.getAlbum()+",\t\t\t"
-                                        +md.getSingers()+",\t\t\t"
-                                        +md.getYear()+",\t\t\t"
-                                        +md.getChord()+"\n"
+                                        +md.getChord()+",\t\t\t"
+                                        +md.getSong()+",\t\t\t"
+                                        +md.getKaraoke()+"\n"
                                 );
 
                                 writeToFile.close();
@@ -466,13 +468,12 @@ public class ViewIndividualList extends AppCompatActivity
                             {
                                 writeToFile.write(
                                         songNames.get(i).getFileName()+",\t\t\t"
-                                                +songNames.get(i).getEnglishTitle()+",\t\t\t"
-                                                +songNames.get(i).getMalayalamTitle()+",\t\t\t"
-                                                +songNames.get(i).getFolderName()+",\t\t\t"
-                                                +songNames.get(i).getAlbum()+",\t\t\t"
-                                                +songNames.get(i).getSingers()+",\t\t\t"
-                                                +songNames.get(i).getYear()+",\t\t\t"
-                                                +songNames.get(i).getChord()+"\n"
+                                           +songNames.get(i).getEnglishTitle()+",\t\t\t"
+                                           +songNames.get(i).getMalayalamTitle()+",\t\t\t"
+                                           +songNames.get(i).getFolderName()+",\t\t\t"
+                                           +songNames.get(i).getChord()+",\t\t\t"
+                                           +songNames.get(i).getSong()+",\t\t\t"
+                                           +songNames.get(i).getKaraoke()+"\n"
                                 );
                             }
                             else
@@ -543,12 +544,16 @@ public class ViewIndividualList extends AppCompatActivity
             inflater.inflate(R.menu.selection_menu, menu);
             MenuItem editItem = menu.findItem(R.id.edit_icon);
             editItem.setVisible(false); // make the edit icon invisible
-            navView.setVisibility(View.GONE);
+
             return true;
         }
 
         @Override
         public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            pageTitle.setVisibility(View.INVISIBLE);
+            navView.setVisibility(View.GONE);
+            sortIcon.setVisibility(View.INVISIBLE);
+            addIcon.setVisibility(View.INVISIBLE);
             return false;
         }
 
@@ -581,10 +586,86 @@ public class ViewIndividualList extends AppCompatActivity
 
         @Override
         public void onDestroyActionMode(ActionMode mode) {
+            pageTitle.setVisibility(View.VISIBLE);
             actionMode = null;
             adapter.removeAllSelections();
             navView.setVisibility(View.VISIBLE);
+            sortIcon.setVisibility(View.VISIBLE);
+            addIcon.setVisibility(View.VISIBLE);
             toggleDefaultText();
+        }
+    };
+
+    // handle the drag and drop functionality of the items
+
+    ItemTouchHelper.SimpleCallback handleDragDrop = new ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.START | ItemTouchHelper.END, 0
+    ) {
+        @Override
+        public boolean onMove(@NonNull @NotNull RecyclerView recyclerView, @NonNull @NotNull RecyclerView.ViewHolder viewHolder, @NonNull @NotNull RecyclerView.ViewHolder target) {
+
+            int fromPosition = viewHolder.getAbsoluteAdapterPosition();
+            int toPosition = target.getAbsoluteAdapterPosition();
+
+//            if(actionMode != null)
+//            {
+//                adapter.clearAll(true);
+//                actionModeCallback.onDestroyActionMode(actionMode);
+////                actionMode.finish();
+//
+//            }
+
+            Collections.swap(songNames, fromPosition, toPosition);
+            recyclerView.getAdapter().notifyItemMoved(fromPosition, toPosition);
+
+            // android/data/com.example.songly/files/lists
+            File requiredPath = getExternalFilesDir("lists");
+            if(requiredPath != null)
+            {
+                File toWrite;
+                toWrite = new File(requiredPath, currentFileName);
+                try
+                {
+                    countOfLines = 0;
+                    FileWriter writeToFile = new FileWriter(toWrite);
+
+                    // write song names to file
+                    for (ModalFullSearch md: songNames)
+                    {
+
+                        writeToFile.write(
+                                md.getFileName()+",\t\t\t"
+                                        +md.getEnglishTitle()+",\t\t\t"
+                                        +md.getMalayalamTitle()+",\t\t\t"
+                                        +md.getFolderName()+",\t\t\t"
+                                        +md.getChord()+",\t\t\t"
+                                        +md.getSong()+",\t\t\t"
+                                        +md.getKaraoke()+"\n"
+                        );
+
+                        countOfLines++;
+                    }
+                    writeToFile.close();
+                }
+                catch (IOException e)
+                {
+                    Toast.makeText(getApplicationContext(), "IO exception", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+            else
+            {
+                Toast.makeText(getApplicationContext(), "No such directory", Toast.LENGTH_SHORT).show();
+            }
+
+
+
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull @NotNull RecyclerView.ViewHolder viewHolder, int direction) {
+
         }
     };
 

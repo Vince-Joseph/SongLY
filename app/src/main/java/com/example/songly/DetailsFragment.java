@@ -1,5 +1,7 @@
 package com.example.songly;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -29,10 +31,9 @@ public class DetailsFragment extends Fragment {
 
     // filename
     // foldername
-    // album
-    // singers
-    // year
     // chord
+    // song
+    // karaoke link
     String details[];
 
     public DetailsFragment() {
@@ -79,16 +80,36 @@ public class DetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_details, container, false);
 
-        TextView albumName = view.findViewById(R.id.album_name);
-        TextView singerNames = view.findViewById(R.id.singers);
-        TextView releaseYear = view.findViewById(R.id.release_year);
+        TextView songLink = view.findViewById(R.id.song_link);
+        TextView karaokeLink = view.findViewById(R.id.karaoke_link);
         TextView chord = view.findViewById(R.id.root_chord);
 
-        albumName.setText(details[2].trim());
-        singerNames.setText(details[3].trim());
-        releaseYear.setText(details[4].trim());
-        chord.setText(details[5].trim());
+        chord.setText(details[2].trim());
+        songLink.setText(details[3].trim());
+        karaokeLink.setText(details[4].trim());
+
+        songLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!songLink.getText().equals("Un Available"))
+                    gotoUrl(details[3].trim());
+            }
+        });
+
+        karaokeLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!karaokeLink.getText().equals("Un Available"))
+                    gotoUrl(details[4].trim());
+            }
+        });
 
         return view;
+    }
+
+    private void gotoUrl(String text) {
+
+        Uri uri = Uri.parse(text);
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 }

@@ -3,13 +3,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ListActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background">
 
-    <include
+<!--    <include-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        layout="@layout/toolbar"/>-->
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/toolbar"/>
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="25dp">
+        <TextView
+            android:id="@+id/pageTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Songs"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/addSongsIcon"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:src="@drawable/add_icon"
+            app:tint="@color/white"/>
+        <ImageView
+            android:id="@+id/sortSongsIcon"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:src="@drawable/sort_alpha"
+            android:layout_marginHorizontal="10dp"
+            app:tint="@color/white"/>
+    </LinearLayout>
 
     <include
         android:layout_weight="1"
@@ -22,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        />
+        android:layout_marginTop="15dp"/>
     <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -20,12 +21,14 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); // force night mode off
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); // force night mode off
 
         super.onCreate(savedInstanceState);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_screen);
 
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        getSupportActionBar().hide();
 
         textView1 = findViewById(R.id.appname);
         textView2 = findViewById(R.id.subtitle);
@@ -38,7 +41,7 @@ public class SplashScreen extends AppCompatActivity {
         textView1.startAnimation(fadeDown);
         textView2.startAnimation(fadeUp);
 
-        int TimeOut = 2000; // the timeout interval
+        int TimeOut = 1200; // the timeout interval
 
         new Handler().postDelayed(new Runnable() {
             @Override

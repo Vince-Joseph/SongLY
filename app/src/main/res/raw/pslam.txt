@@ -1,9 +1,9 @@
-abrahathin_daivamanente,	abrahathin daivamanente,	A{_ml¯n³ ssZhamsWsâ CSb³,								pslam,	Unknown Album, Unknown Unknown, 2021, G Major
-bhayamethumillente_daivam,	bhayamethumillente daivam,	`btaXpansÃsâ ssZhw Fs¶ ]cn]men¨p hfÀ¯pw,				pslam,	Unknown Album, Unknown Unknown, 2021, G Major
-daveedin_puthrane,			daveedin puthrane,			ZmhoZn³ ]p{Xt\ cmPm[n cmPt\,							pslam,	Unknown Album, Unknown Unknown, 2021, G Major
-idayane_vilichu,			idayane vilichu	njan,		CSbs\ hnfn¨p Rm³ Icªt¸mÄ,								pslam,	Unknown Album, Unknown Unknown, 2021, G Major
-israyele_sthuthi,			israyele sthuthicheeduka,	C{kmtbte kvXpXn¨nSpI,									pslam,	Unknown Album, Unknown Unknown, 2021, G Major
-neelakasa_konil,			neelakasakkonil	thooven,	\oemImit¡mWnÂ Xqsht×Jt¯cnÂ,								pslam,	Unknown Album, Unknown Unknown, 2021, G Major
-prapanja_srushtavin,		prapanja srushttavin,		{]]© krãmhn³ \maw AX|¶Xw atlm¶Xw,						pslam,	Unknown Album, Unknown Unknown, 2021, G Major
-koodeyund_snehamulla,		koodeyund snehamulla,		IqsSbp­v kvt\lapÅ ssZhw Fsâ PohnX¯nÂ ]¦mfnbmbn,	pslam,	Unknown Album, Unknown Unknown, 2021, D Major
-kaatte_kadale,				kaatte kadale vaa,			Imtä ISte hm, ssZhs¯ kvXpXn¸n³,							pslam,	Unknown Album, Unknown Unknown, 2021, D Major
+abrahathin_daivamanente,	abrahathin daivamanente,	A{_ml¯n³ ssZhamsWsâ CSb³,								pslam, Gm,		https://www.youtube.com/watch?v=e0v31duM70U,	https://www.youtube.com/watch?v=HGM7kqVsNVU
+bhayamethumillente_daivam,	bhayamethumillente daivam,	`btaXpansÃsâ ssZhw Fs¶ ]cn]men¨p hfÀ¯pw,				pslam, A Major,	https://www.youtube.com/watch?v=A-1fA9-e2SY,	Un Available
+daveedin_puthrane,			daveedin puthrane,			ZmhoZn³ ]p{Xt\ cmPm[n cmPt\,							pslam, A Major,	https://www.youtube.com/watch?v=GoadVC3XJK0,	https://www.youtube.com/watch?v=MlK0RlEvBuM
+idayane_vilichu,			idayane vilichu	njan,		CSbs\ hnfn¨p Rm³ Icªt¸mÄ,								pslam, Dm,		https://www.youtube.com/watch?v=_jkk0MiI2f4,	https://www.youtube.com/watch?v=PCVmCm6L2Q4	
+israyele_sthuthi,			israyele sthuthicheeduka,	C{kmtbte kvXpXn¨nSpI,									pslam, Ab Major, https://www.youtube.com/watch?v=mzKeBOfv5Jo,	https://www.youtube.com/watch?v=G0c7iNXcW3s	
+neelakasa_konil,			neelakasakkonil	thooven,	\oemImit¡mWnÂ Xqsht×Jt¯cnÂ,								pslam, F Major,	https://www.youtube.com/watch?v=Nwd3ce-gRVM,	https://www.youtube.com/watch?v=CMZica2D9mE
+prapanja_srushtavin,		prapanja srushttavin,		{]]© krãmhn³ \maw AX|¶Xw atlm¶Xw,						pslam, F#m,		https://www.youtube.com/watch?v=opghSAjFbEE,	Un Available
+koodeyund_snehamulla,		koodeyund snehamulla,		IqsSbp­v kvt\lapÅ ssZhw Fsâ PohnX¯nÂ ]¦mfnbmbn,	pslam, D Major,	https://www.youtube.com/watch?v=hXPfDH0WzOk,	Un Available
+kaatte_kadale_vaa,			kaatte kadale vaa,			Imtä ISte hm ssZhs¯ kvXpXn¸n³,							pslam, D Major, https://www.youtube.com/watch?v=OGxzKVXzMD4,	https://www.youtube.com/watch?v=Fz0f_CZf79A	

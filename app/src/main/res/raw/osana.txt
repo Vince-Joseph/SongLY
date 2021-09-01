@@ -1,12 +1,14 @@
-daivapithavin_osana,				daiva pithaavinosana osana,				ssZh]nXmhnt\mim\ Hmim\, Hmim\,				osana,	Unknown Album, Unknown Unknown, 2021, G Major
-athyunnathangalil_vaazhunna,		athyunnathangalil vaazhunna thaatha,	tZhZqX Km\w DbÀ¶nSp¶nXm,					osana,	Unknown Album, Unknown Unknown, 2021, G Major
-devadootha_gaanam,					devadootha gaanam uyarnnidunnitha,		IÀ¯mhmæw ssZhw, \nXyw ]cnip²³,				osana,	Unknown Album, Unknown Unknown, 2021, G Major
-karthavakum_daivam_nithyam,			karthaavakum daivam nithyam,			AX|¶X§fnÂ Hmim\ ]mSnSmw,					osana,	Unknown Album, Unknown Unknown, 2021, G Major
-athyunnathangalil_osana_paadidaam,	athyunnathangail osana paadidaam,		Hmim\ PbKoXw ]mSoSmw,						osana,	Unknown Album, Unknown Unknown, 2021, G Major
-osana_jayageetham,					osana jayageetham paadeedam,			]cnip²³, amemJamêsS Km\apbêì,				osana,	Unknown Album, Unknown Unknown, 2021, G Major	
-maalakhamarude_gaanam,				maalakhamaarude gaanamuyarunnu,			amemJamêsS Km\apbêì,						osana,	Unknown Album, Unknown Unknown, 2021, G Major
-sainyangal_than,					sainyangal than karthaave parisudhan,	ssk¶y§Ä¯³ IÀ¯mth ]cnip²³ \o ]cnip²³,		osana,	Unknown Album, Unknown Unknown, 2021, G Major
-swargasthanaaya_nal_pithave,		swargasthanaaya nal pithave balavaanum,	kzÀ¤kvX\mb \Â ]nXmth,						osana,	Unknown Album, Unknown Unknown, 2021, G Major
-daivadoothare_swarga,				daivadoothare swarga nivaasikale,		tZhZqXtc kzÀ¤ \nhmknItf,					osana,	Unknown Album, Unknown Unknown, 2021, G Major
-swargeeya_simhaasanathil,			swargeeya simhaasanathil vaazhum,		kzÀ¤ob knwlmk\¯nÂ hmgpw,					osana,	Unknown Album, Unknown Unknown, 2021, G Major
-unnathanaam_raajave,				osana unnathanaam raajave,				Hmim\ Hmim\, D¶X\mw cmPmth a¶h\mbv XoÀ¶ht\,	osana,	Unknown Album, Unknown Unknown, 2021, G Major
+daivapithavin_osana,				daivapithaavinosana osana,				ssZh]nXmhnt\mim\ Hmim\ Hmim\,				osana,	Ab Major,	https://www.youtube.com/watch?v=kWqHc9oqZxE,	https://www.youtube.com/watch?v=SW7PXOCZwSI
+athyunnathangalil_vaazhunna,		athyunnathangalil vaazhunna thaatha,	AX|¶X§fnÂ hmgp¶ XmXm ,						osana,	G Major,	https://www.youtube.com/watch?v=3xP9NMrsQDg,	Un Available
+devadootha_gaanam,					devadootha gaanam uyarnnidunnitha,		tZhZqX Km\w DbÀ¶nSp¶nXm,		 			osana,	Gm,			https://www.youtube.com/watch?v=4hl1WMnmqxg, Un Available
+karthavakum_daivam_nithyam,			karthaavakum daivam nithyam,			IÀ¯mhmæw ssZhw \nXyw ]cnip²³,				osana,	Am,			Un Available, Un Available		
+athyunnathangalil_osana_paadidaam,	athyunnathangail osana paadidaam,		AX|¶X§fnÂ Hmim\ ]mSnSmw,					osana,	Cm,			https://www.youtube.com/watch?v=J6_MuJBM35Y,		https://www.youtube.com/watch?v=3aGXVwwnbq0
+osana_jayageetham,					osana jayageetham paadeedam,			Hmim\ PbKoXw ]mSoSmw,						osana,	C Major	,	https://www.youtube.com/watch?v=BwKIZIuifmM,	https://www.youtube.com/watch?v=vXuw9---560
+maalakhamarude_gaanam,				maalakhamaarude gaanamuyarunnu,			amemJamêsS Km\apbêì,						osana,	Am,			https://www.youtube.com/watch?v=IAUuL2Udgtc&t=0s,	https://www.youtube.com/watch?v=UmfKkjt_0Es
+maalakha_vrunthangal,				maalakha vrunthangal paadidunnu,		amemLhr´§Ä ]mSnSpì,							osana,	Fm,		https://www.youtube.com/watch?v=KCaaY8L8QOA,	https://www.youtube.com/watch?v=slaApVoCH5M
+sainyangal_than,					sainyangal than karthaave parisudhan,	ssk¶y§Ä¯³ IÀ¯mth ]cnip²³ \o ]cnip²³,		osana,	Cm,		https://www.youtube.com/watch?v=rdYFKd5H09M&t=36s,	https://www.youtube.com/watch?v=WkBKe7e4Xkc
+swargasthanaaya_nal_pithave,		swargasthanaaya nal pithave balavaanum,	kzÀ¤kvX\mb \Â ]nXmth,						osana,	Fm,		https://www.youtube.com/watch?v=EYR3B_FJHlE,	Un Available
+daivadoothare_swarga,				daivadoothare swarga nivaasikale,		tZhZqXtc kzÀ¤ \nhmknItf,					osana,	F Major,	Un Available,	Un Available
+swargeeya_simhaasanathil,			swargeeya simhaasanathil vaazhum,		kzÀ¤ob knwlmk\¯nÂ hmgpw,					osana,	Fm,		https://www.youtube.com/watch?v=929DXLTIpYs,	https://www.youtube.com/watch?v=duMGpxGdJQE
+unnathanaam_raajave,				osana unnathanaam raajave,				Hmim\ Hmim\ D¶X\mw cmPmth a¶h\mbv XoÀ¶ht\,	osana,	G#m,	https://www.youtube.com/watch?v=O29KUyPthIE,	https://www.youtube.com/watch?v=UE9ag1r1P04
+vaanamekhangalil_vaanitunnavan,		vaanamekhangalil vaanitunnavan,			hm\taL§fnÂ hmWnSp¶h³,						osana,	Am,		https://www.youtube.com/watch?v=xCp1tTvSmp8,	https://www.youtube.com/watch?v=meQWmNdAIo8

@@ -5,23 +5,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PrayerActivity">
+    tools:context=".PrayerActivity"
+    android:background="@drawable/background">
     <LinearLayout
+        android:id="@+id/headingLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="25dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Prayer"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/pdfLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical">
-
-    <com.github.barteksc.pdfviewer.PDFView
-       android:id="@+id/prayerPdf"
-       android:layout_width="match_parent"
+        android:orientation="vertical"
         android:forceDarkAllowed="false"
-        android:layout_height="match_parent"/>
+        android:background="@drawable/rounded_edges">
+
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/prayerPdf"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:forceDarkAllowed="false" />
 
     </LinearLayout>
-    <include
+
+    <LinearLayout
+        android:id="@+id/layoutBottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/bottom_navigation_bar"/>
+        android:orientation="horizontal">
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/bottom_navigation_bar"/>
+    </LinearLayout>
 
 </LinearLayout>

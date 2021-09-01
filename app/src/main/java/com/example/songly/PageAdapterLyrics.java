@@ -12,10 +12,9 @@ public class PageAdapterLyrics extends FragmentPagerAdapter {
 
     // filename
     // folder name
-    // album
-    // singers
-    // year
     // chord
+    // song link
+    // karaoke link
     String  contents[];
 
     public PageAdapterLyrics(@NonNull @NotNull FragmentManager fm, int behavior,

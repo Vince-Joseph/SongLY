@@ -1,22 +1,24 @@
-altharayorungi,                altharayorungi akathaarorukki,           AÄ¯mcsbmê§n AIXmscmê¡n,                  entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-altharayil_anuthapamode,       altharayil anuthapamode,                 AÄ¯mcbnÂ AëXm]tamsS AWntNÀ¶nSmw,         entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-altharayil_eriyum,             altharayil eriyum,                       AÄ¯mcbnÂ Fcnbpw XncnIÄs¡´p sXfn¨w,       entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-anayam_ee_thiru_altharayil,    anayam ee thiru altharayil,              AWbmw Cu Xnê AÄ¯mcbnÂ ,                  entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-anayu_priaya_janame,	       anayu priya janame baliyekan,		AWbq {]nbP\ta _entbIm³,			 entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-baliyay_thirumunpil_nalkam,    baliyay thirumunpil nalkam,              _enbmbv Xnêap³]nÂ \ÂImw,                 entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-balivediyil_thiruyaagamay,     balivediyil thiruyaagamay,               _enthZnbnÂ XnêbmKambv AWntNêhn³ P\ta,    entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-baliyarppikkan_varuvin,        baliyarppikkan varuvin,                  _enbÀ¸n¡m³ hêhn³ AÄ¯mc ap¶nÂ {]nbP\ta,   entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-daivajaname_unaroo,            daivajaname unaroo daivathmaavaal,       ssZhP\ta DWcq ssZhmßmhmÂ \ndbq,          entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-eriyaan_vembi_nilkkum,         eriyaan vembi nilkkum,                   Fcnbm³ sh¼n \nÂçw Hê sagpæXncn,          entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-hridayam_oru_balivediyakki,    hridayam oru balivediyakki,              lrZbw Hê _enthZnbm¡n Xnêap³]neWbpì R§Ä,  entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-kalvari_malayile_balipeedam,   kalvari malayile balipeedam,             ImÂhcn aebnse ]en]o0w ssIIÄ \o«o hnfn¸q, entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-kalvari_malayude_smaranayumay, kalvari malayude smaranayumay,           ImÂhcn aebpsS kvacWbpambv,               entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-itha_pallimanikal,             itha pallimanikal muzhangi,              CXm ]ÅnaWnIÄ apg§n CXm tZhmebw Hê§n,     entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-manikal_muzhangeedumee,        manikal muzhangeedumee smayamitha,       aWnIÄ apg§oSpao kabanXm,                 entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-mani_muzhangunnu,              mani muzhangunnu thiri,                  aWnapg§pì Xncn sXfnbpì,                  entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-oro_poovilum,                  oro poovilum daiva sneham,               Hmtcm ]qhnepw ssZhkvt\lw hncnbpì,        entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-oru_nimisham,                  oru nimisham manamuyartham,              Hê \nanjw a\apbÀ¯mw AÄ¯mcthZnbneWbmw,    entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-swargavaathil_thurannitha,     swargavaathil thurannitha baliyanaykkan, kzÀ¤hmXnÂ Xpd¶nXm _enbWí³ Hê§phn³,       entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-unaro_manase,                  unaro manase pakaroo,                    DWcq a\tk ]Icq Km\arXw,                  entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-unaro_unaro_manasukale,        unaro unaro manasukale,                  DWcq DWcq a\kpItf bmKanXm,               entrance,  Unknown Album, Unknown Unknown, 2021, G Major
-veendum_oru,                   veendum oru baliyarppana,                ho­pw Hê _enbÀ¸W thZnsbmê§n,           entrance,  Unknown Album, Unknown Unknown, 2021, G Major
+altharayorungi,                altharayorungi akathaarorukki,           AÄ¯mcsbmê§n AIXmscmê¡n,                  entrance,  G Major,	https://www.youtube.com/watch?v=fs1nwX9bca4,	https://www.youtube.com/watch?v=SLAXfVDo6t4
+altharayil_anuthapamode,       altharayil anuthapamode,                 AÄ¯mcbnÂ AëXm]tamsS AWntNÀ¶nSmw,         entrance,  Fm,			https://www.youtube.com/watch?v=hr6jrLUYnh0,	https://www.youtube.com/watch?v=c3bh-0XYV6o
+altharayil_eriyum,             altharayil eriyum,                       AÄ¯mcbnÂ Fcnbpw XncnIÄs¡´p sXfn¨w,       entrance,  Gm,			https://www.youtube.com/watch?v=L4ZiI-hpyrM,	https://www.youtube.com/watch?v=mmg-Wi-ATB4
+anayam_ee_thiru_altharayil,    anayam ee thiru altharayil,              AWbmw Cu Xnê AÄ¯mcbnÂ ,                  entrance,  Dm,			https://www.youtube.com/watch?v=6KU6LQIJuOw,	https://www.youtube.com/watch?v=jGdlpVR41cc
+anayu_priaya_janame,	       anayu priya janame baliyekan,			AWbq {]nbP\ta _entbIm³,			 		 entrance,  C Major, 	https://www.youtube.com/watch?v=XSrJ8t2LoRk,	https://www.youtube.com/watch?v=GO5jgdPQSC4
+baliyay_thirumunpil_nalkam,    baliyay thirumunpil nalkam,              _enbmbv Xnêap³]nÂ \ÂImw,                 entrance,  F Major, 	https://www.youtube.com/watch?v=O6vcRrs670Q,	https://www.youtube.com/watch?v=vtfvvK03aBM
+balivediyil_thiruyaagamay,     balivediyil thiruyaagamay,               _enthZnbnÂ XnêbmKambv AWntNêhn³ P\ta,    entrance,  Fm,			https://www.youtube.com/watch?v=JDsFp0DnyFA,	https://www.youtube.com/watch?v=s4aSoKUmtQk
+baliyarppikkan_varuvin,        baliyarppikkan varuvin,                  _enbÀ¸n¡m³ hêhn³ AÄ¯mc ap¶nÂ {]nbP\ta,   entrance,  Am,			https://www.youtube.com/watch?v=jtSGMrSv8SA,	https://www.youtube.com/watch?v=1H4v1BlBwcI
+baliyekuvaanay_anayunnu,	   baliyekuvaanay anayunnu njangal,			_entbæhm\mbv AWbpì R§Ä,					 entrance,	A Major,	https://www.youtube.com/watch?v=53XZmljmPVA,	Un Available
+daivajaname_unaroo,            daivajaname unaroo daivathmaavaal,       ssZhP\ta DWcq ssZhmßmhmÂ \ndbq,          entrance,  Bb Major,	https://www.youtube.com/watch?v=VfTtwRzBPjE,	https://www.youtube.com/watch?v=5ZD8I1CbBPs
+devadoothar_aninirakkunnu,	   devadoothar aninirakkunnu deepanaalam,	tZhZqXcWn\ncçì Zo]\mfw angnXpdçì,		 entrance,	D Major,	https://www.youtube.com/watch?v=M2VLgEVgUZ4, 	https://www.youtube.com/watch?v=zHw1dfHNNew
+eriyaan_vembi_nilkkum,         eriyaan vembi nilkkum,                   Fcnbm³ sh¼n \nÂçw Hê sagpæXncn,          entrance,  Cm,			https://www.youtube.com/watch?v=3zNAVxmAJBI,	https://www.youtube.com/watch?v=7kCZ-NlW1ZE
+hridayam_oru_balivediyakki,    hridayam oru balivediyakki,              lrZbw Hê _enthZnbm¡n Xnêap³]neWbpì R§Ä,  entrance,  G Major,	https://www.youtube.com/watch?v=wzs40g3fjNk,	https://www.youtube.com/watch?v=yBd8MDCE5c8
+kalvari_malayile_balipeedam,   kalvari malayile balipeedam,             ImÂhcn aebnse ]en]o0w ssIIÄ \o«o hnfn¸q, entrance,  Fm,		 	https://www.youtube.com/watch?v=E3rkF6_MQUo,	Un Available
+kalvari_malayude_smaranayumay, kalvari malayude smaranayumay,           ImÂhcn aebpsS kvacWbpambv,               entrance,  Fm,			https://www.youtube.com/watch?v=jljuNi2KRV0,	https://www.youtube.com/watch?v=b3CTFX6WFkA
+itha_pallimanikal,             itha pallimanikal muzhangi,              CXm ]ÅnaWnIÄ apg§n CXm tZhmebw Hê§n,     entrance,  Fm,			https://www.youtube.com/watch?v=-WmUiAaXBf0,	https://www.youtube.com/watch?v=hQEeHXRkU9U			
+manikal_muzhangeedumee,        manikal muzhangeedumee smayamitha,       aWnIÄ apg§oSpao kabanXm,                 entrance,  G Major,	https://www.youtube.com/watch?v=m6abGMDgW8o,	https://www.youtube.com/watch?v=dUPtsol9CeM	
+mani_muzhangunnu,              mani muzhangunnu thiri,                  aWnapg§pì Xncn sXfnbpì,                  entrance,  F Major,	https://www.youtube.com/watch?v=0ROZYY7lG0M,	Un Available
+oro_poovilum,                  oro poovilum daiva sneham,               Hmtcm ]qhnepw ssZhkvt\lw hncnbpì,        entrance,  G Major,	https://www.youtube.com/watch?v=xDu8imGcjQY,	Un Available
+oru_nimisham,                  oru nimisham manamuyartham,              Hê \nanjw a\apbÀ¯mw AÄ¯mcthZnbneWbmw,    entrance,  Fm,			https://www.youtube.com/watch?v=fptBqL_C_kU,	https://www.youtube.com/watch?v=HK3MvhHoj50
+swargavaathil_thurannitha,     swargavaathil thurannitha baliyanaykkan, kzÀ¤hmXnÂ Xpd¶nXm _enbWí³ Hê§phn³,       entrance,  A Major,	https://www.youtube.com/watch?v=WYCv3CBAEgE,	Un Available	
+unaro_manase,                  unaro manase pakaroo,                    DWcq a\tk ]Icq Km\arXw,                  entrance,  Gm,			https://www.youtube.com/watch?v=OSCWwfAjnU8,	https://www.youtube.com/watch?v=PtKeXKJZDOI
+unaro_unaro_manasukale,        unaro unaro manasukale,                  DWcq DWcq a\kpItf bmKanXm,               entrance,  Am,			https://www.youtube.com/watch?v=Y9Yq9z4f7NI,	https://www.youtube.com/watch?v=xg0L8YWzGYI
+veendum_oru,                   veendum oru baliyarppana,                ho­pw Hê _enbÀ¸W thZnsbmê§n,        entrance,  A Major,	https://www.youtube.com/watch?v=liB5-lYzPBY&t=61s,	https://www.youtube.com/watch?v=73vkgsgZc_w

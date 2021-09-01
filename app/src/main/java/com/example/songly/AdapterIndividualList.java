@@ -56,7 +56,8 @@ public class AdapterIndividualList extends RecyclerView.Adapter<AdapterIndividua
     @Override
     public AdapterIndividualList.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.individual_list_item, parent, false);
+//        View view = inflater.inflate(R.layout.individual_list_item, parent, false);
+        View view = inflater.inflate(R.layout.song_list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -65,7 +66,12 @@ public class AdapterIndividualList extends RecyclerView.Adapter<AdapterIndividua
 
         final ModalFullSearch item = songNames.get(position);
         holder.listText.setText(item.getMalayalamTitle()); // set the title of textview
+        holder.selectionIndicator.setImageResource(R.drawable.check_icon);
+        holder.selectionIndicator.setVisibility(View.GONE);
+        holder.theIcon.setImageResource(R.drawable.library_music);
         fullViewHolder.add(holder);
+
+
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -107,10 +113,9 @@ public class AdapterIndividualList extends RecyclerView.Adapter<AdapterIndividua
                     bundle.putStringArray("contents", new String[]{
                             item.getFileName(),
                             item.getFolderName(),
-                            item.getAlbum(),
-                            item.getSingers(),
-                            item.getYear(),
-                            item.getChord()
+                            item.getChord(),
+                            item.getSong(),
+                            item.getKaraoke()
                     });
                     intent.putExtras(bundle);
 
@@ -196,18 +201,18 @@ public class AdapterIndividualList extends RecyclerView.Adapter<AdapterIndividua
 
         TextView listText;
         TextView malayalamTextView;
-        ImageView selectionIndicator;
+        ImageView selectionIndicator, theIcon;
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
 
             Typeface typeface = Typeface.createFromAsset(context.getAssets(),"font/MLKR0NTT.TTF");
-            listText =  itemView.findViewById(R.id.malayalamTitle);
+//            listText =  itemView.findViewById(R.id.malayalamTitle);
+            listText =  itemView.findViewById(R.id.songTitle);
+            this.theIcon = itemView.findViewById(R.id.theIcon);
             listText.setTypeface(typeface);
             selectionIndicator = itemView.findViewById(R.id.selectionIndicator);
 //            removeView = itemView.findViewById(R.id.removeIcon);
 
         }
     }
-
-
 }

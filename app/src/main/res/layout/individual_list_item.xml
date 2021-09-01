@@ -47,13 +47,13 @@
 <!--            android:layout_marginLeft="15dp"/>-->
 
         <ImageView
-                    android:id="@+id/selectionIndicator"
-                    android:src="@drawable/check_icon"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    app:tint="@color/LimeGreen"
-                    android:visibility="gone"
-                    android:layout_marginLeft="15dp"/>
+            android:id="@+id/selectionIndicator"
+            android:src="@drawable/check_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:tint="@color/LimeGreen"
+            android:visibility="gone"
+            android:layout_marginLeft="15dp"/>
 
     </LinearLayout>
     <TextView

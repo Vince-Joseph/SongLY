@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_marginBottom="15dp"
+    android:background="@drawable/background"
     android:gravity="center_horizontal">
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,6 +24,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:cursorVisible="true"
+                    android:textCursorDrawable="@null"
                     android:id="@+id/searchWholeSongs"/>
 
                 <ImageView
@@ -44,24 +47,4 @@
         android:layout_weight="1"
         android:scrollbars="vertical"
         />
-
-<!--    <com.getbase.floatingactionbutton.FloatingActionsMenu-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:fab_expandDirection="up"-->
-<!--        android:layout_gravity="right"-->
-<!--        app:fab_labelsPosition="right"-->
-<!--        app:fab_labelStyle="@style/LabStyle">-->
-
-
-<!--&lt;!&ndash;    <com.getbase.floatingactionbutton.FloatingActionButton&ndash;&gt;-->
-<!--&lt;!&ndash;        android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;        app:fab_colorNormal="@color/Lime"&ndash;&gt;-->
-<!--&lt;!&ndash;        app:fab_size="mini"&ndash;&gt;-->
-<!--&lt;!&ndash;        app:fab_icon="@drawable/ic_baseline_music_note_24"&ndash;&gt;-->
-<!--&lt;!&ndash;        app:fab_title="5 Songs"/>&ndash;&gt;-->
-<!--    </com.getbase.floatingactionbutton.FloatingActionsMenu>-->
-
-
 </LinearLayout>

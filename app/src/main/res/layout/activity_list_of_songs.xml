@@ -1,16 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ListOfSongs"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/mainLayoutListOfSongs"
+    android:background="@drawable/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="25dp">
+        <TextView
+            android:id="@+id/pageTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Category"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+
+            android:layout_weight="1"/>
+
+        <SearchView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:cursorVisible="true"
+            android:textCursorDrawable="@null"
+            android:visibility="gone"
+            android:id="@+id/searchCategory"/>
+
+        <ImageView
+            android:id="@+id/searchIcon"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:src="@drawable/ic_search"
+            app:tint="@color/white"/>
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
             android:paddingTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/songListRecycler" />
+            android:id="@+id/songListRecycler"/>
     <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

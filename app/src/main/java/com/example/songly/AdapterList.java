@@ -60,7 +60,7 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
     @Override
     public AdapterList.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.individual_grid_view_recycler, parent, false);
+        View view = inflater.inflate(R.layout.song_list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -70,6 +70,7 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
 
         final String item = listNames.get(position);
         holder.listText.setText(item); // set the list name
+        holder.theIcon.setImageResource(R.drawable.list_icon_100);
         fullViewHolder.add(holder); // add current list view to full list of view holders
 
         // upon long pressing a list view
@@ -130,12 +131,13 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
 
     // method to highlight the given view
     private void highlightView(AdapterList.ViewHolder holder) {
-        holder.checkIcon.setVisibility(View.VISIBLE);
+        holder.checkIcon.setImageResource(R.drawable.check_icon);
+//        holder.checkIcon.setVisibility(View.VISIBLE);
     }
 
     // method to UN highlight the given view
     private void unhighlightView(AdapterList.ViewHolder holder) {
-        holder.checkIcon.setVisibility(View.GONE);
+        holder.checkIcon.setImageResource(R.drawable.right_arrow_go);
     }
 
 
@@ -200,11 +202,12 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView listText;
-        ImageView checkIcon;
+        ImageView checkIcon, theIcon;
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            listText =  itemView.findViewById(R.id.list_name);
-            checkIcon = itemView.findViewById(R.id.iconCheck);
+            listText =  itemView.findViewById(R.id.songTitle);
+            theIcon =  itemView.findViewById(R.id.theIcon);
+            checkIcon = itemView.findViewById(R.id.selectionIndicator);
         }
     }
 }

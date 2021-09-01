@@ -11,38 +11,35 @@ public class ModalFullSearch implements Comparable<ModalFullSearch> {
     private  String fileName;
     private  String folderName;
 
-    private String album, singers, year, chord;
+    private String song, karaoke, chord;
 
     Typeface typeface;
 
     public ModalFullSearch(String fileName, String englishTitle, String malayalamTitle,
                            String folderName,
-                           String album, String singers, String year,
-                           String chord, Typeface typeface) {
+                           String chord, String song, String karaoke, Typeface typeface) {
 //        this.imageResource = imageResource;
         this.fileName = fileName;
         this.folderName = folderName;
         this.malayalamTitle = malayalamTitle;
         this.englishTitle = englishTitle;
-        this.album = album;
-        this.singers = singers;
-        this.year = year;
         this.chord = chord;
+        this.song = song;
+        this.karaoke = karaoke;
         this.typeface = typeface;
     }
 
     public ModalFullSearch(String fileName, String englishTitle, String malayalamTitle,
-                           String folderName,String album, String singers, String year,
-                           String chord) {
+                           String folderName,
+                           String chord, String song, String karaoke) {
 //        this.imageResource = imageResource;
         this.fileName = fileName;
         this.folderName = folderName;
         this.malayalamTitle = malayalamTitle;
         this.englishTitle = englishTitle;
-        this.album = album;
-        this.singers = singers;
-        this.year = year;
         this.chord = chord;
+        this.song = song;
+        this.karaoke = karaoke;
     }
 
     public Typeface getTypeface() {
@@ -65,16 +62,12 @@ public class ModalFullSearch implements Comparable<ModalFullSearch> {
         return malayalamTitle;
     }
 
-    public String getAlbum() {
-        return album;
+    public String getKaraoke() {
+        return karaoke;
     }
 
-    public String getSingers() {
-        return singers;
-    }
-
-    public String getYear() {
-        return year;
+    public String getSong() {
+        return song;
     }
 
     public String getChord() {

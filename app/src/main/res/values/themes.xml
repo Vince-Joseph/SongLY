@@ -18,23 +18,32 @@
         <item name="android:windowActivityTransitions">true</item>
     </style>
 
+    <style name="Theme.SongLY.NoActionBarSplashScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground"  >@color/dodgerblue</item>
+<!--        <item name="colorPrimary">@color/dodgerblue</item>-->
+<!--        <item name="colorPrimaryDark">@color/dodgerblue</item>-->
+<!--        <item name="colorAccent">@color/dodgerblue</item>-->
+        <item name="android:statusBarColor">@color/dodgerblue</item>
 
-    <style name="Theme.SongLY.NoActionBarSplashScreen">
-<!--        <item name="android:background">@android:color/transparent</item>-->
-        <item name="android:windowDisablePreview">true</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@null</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:statusBarColor" tools:targetApi="l">@color/LightBlue</item>
     </style>
+
+
+<!--    <style name="Theme.SongLY.NoActionBarSplashScreen">-->
+<!--        <item name="android:windowDisablePreview">true</item>-->
+<!--        <item name="android:windowIsTranslucent">true</item>-->
+<!--        <item name="android:windowBackground">@null</item>-->
+<!--        <item name="android:windowFullscreen">true</item>-->
+<!--        <item name="android:windowContentOverlay">@null</item>-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--        <item name="android:statusBarColor" tools:targetApi="l">@color/LightBlue</item>-->
+<!--    </style>-->
 
     <style name="Theme.SongLY.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/dodgerblue</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Theme.SongLY.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -47,11 +56,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/dodgerblue</item>
     </style>
-
-<style name="LabStyle">
-    <item name="android:background">@drawable/bg_label</item>
-    <item name="android:textColor">@color/white</item>
-</style>
+    <style name="textColorTheme">
+        <item name="android:textColor" >@color/black</item>
+    </style>
 
 <!--    <style name="Theme.SongLY.ActionMode">-->
 <!--        <item name="background" >@color/dodgerblue</item>-->
@@ -62,5 +69,4 @@
 <!--        <item name="windowActionModeOverlay">true</item>-->
 <!--        <item name="actionMenuTextColor">@color/white</item>-->
 <!--    </style>-->
-
 </resources>

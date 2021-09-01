@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,13 +32,14 @@ public class AdapterHomePage extends RecyclerView.Adapter<AdapterHomePage.ViewHo
     @Override
     public AdapterHomePage.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
 
-        View view = layoutInflater.inflate(R.layout.individual_folder_item, parent, false);
+        View view = layoutInflater.inflate(R.layout.song_list_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull AdapterHomePage.ViewHolder holder, int position) {
         holder.folderName.setText(folderNames.get(position)); // on binding, set text for each folder
+        holder.theIcon.setImageResource(R.drawable.ic_baseline_folder_24);
     }
 
     @Override
@@ -50,9 +52,11 @@ public class AdapterHomePage extends RecyclerView.Adapter<AdapterHomePage.ViewHo
      */
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView folderName;
+        ImageView theIcon;
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            this.folderName = itemView.findViewById(R.id.folderName);
+            this.folderName = itemView.findViewById(R.id.songTitle);
+            this.theIcon = itemView.findViewById(R.id.theIcon);
 
             // on clicking a view(folder icon + its text), go to next activity
             itemView.setOnClickListener(new View.OnClickListener() {

@@ -101,7 +101,6 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
             }
         });
 
-//        Log.d("size_of_list", Integer.toString(FullSearch.checkedList.size()));
 
 
         // set the already selected song's checkboxes to checked
@@ -243,10 +242,9 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
                             currentItem.getEnglishTitle(),
                             currentItem.getMalayalamTitle(),
                             currentItem.getFolderName(),
-                            currentItem.getAlbum(),
-                            currentItem.getSingers(),
-                            currentItem.getYear(),
                             currentItem.getChord(),
+                            currentItem.getSong(),
+                            currentItem.getKaraoke(),
                             typeface
                     ));
                 }
