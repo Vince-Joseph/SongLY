@@ -4,19 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
@@ -26,15 +20,15 @@ import java.util.List;
 
 public class AdapterIndividualList extends RecyclerView.Adapter<AdapterIndividualList.ViewHolder> {
 
-    List<ModalFullSearch> songNames;
-    List<ModalFullSearch> selected;
+    final List<ModalFullSearch> songNames;
+    final List<ModalFullSearch> selected;
 
-    List<AdapterIndividualList.ViewHolder> viewHoldersList;
-    List<AdapterIndividualList.ViewHolder> fullViewHolder;
+    final List<AdapterIndividualList.ViewHolder> viewHoldersList;
+    final List<AdapterIndividualList.ViewHolder> fullViewHolder;
     AdapterIndividualList.OnClickAction receiver;
 
-    Context context;
-    LayoutInflater inflater;
+    final Context context;
+    final LayoutInflater inflater;
     public  AdapterIndividualList(Context context, List<ModalFullSearch> listNames)
     {
         this.context = context;
@@ -111,8 +105,8 @@ public class AdapterIndividualList extends RecyclerView.Adapter<AdapterIndividua
                     Bundle bundle = new Bundle();
                     // we are passing an array of strings to TabbedLyricsView
                     bundle.putStringArray("contents", new String[]{
-                            item.getFileName(),
-                            item.getFolderName(),
+                            item.getPageStart(),
+                            item.getPageEnd(),
                             item.getChord(),
                             item.getSong(),
                             item.getKaraoke()
@@ -199,9 +193,10 @@ public class AdapterIndividualList extends RecyclerView.Adapter<AdapterIndividua
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView listText;
+        final TextView listText;
         TextView malayalamTextView;
-        ImageView selectionIndicator, theIcon;
+        final ImageView selectionIndicator;
+        final ImageView theIcon;
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
 

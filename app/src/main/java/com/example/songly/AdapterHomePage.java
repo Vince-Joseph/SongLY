@@ -17,9 +17,9 @@ import java.util.List;
 
 public class AdapterHomePage extends RecyclerView.Adapter<AdapterHomePage.ViewHolder> {
 
-    List<String> folderNames; // folder names list
-    Context context;
-    LayoutInflater layoutInflater;
+    final List<String> folderNames; // folder names list
+    final Context context;
+    final LayoutInflater layoutInflater;
 
     public AdapterHomePage(Context context,  List<String> folderNames)
     {
@@ -50,9 +50,9 @@ public class AdapterHomePage extends RecyclerView.Adapter<AdapterHomePage.ViewHo
     /**
      * View holder class
      */
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView folderName;
-        ImageView theIcon;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        final TextView folderName;
+        final ImageView theIcon;
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             this.folderName = itemView.findViewById(R.id.songTitle);

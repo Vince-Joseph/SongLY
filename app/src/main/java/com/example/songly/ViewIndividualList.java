@@ -3,7 +3,6 @@ package com.example.songly;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +36,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -46,7 +46,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -58,9 +57,9 @@ public class ViewIndividualList extends AppCompatActivity
     AdapterIndividualList adapter;
     ItemTouchHelper itemTouchHelper;
     ActionMode actionMode;
-    Activity activity = ViewIndividualList.this;
+    final Activity activity = ViewIndividualList.this;
     BottomNavigationView navView;
-    ImageView addIcon,  sortIcon;
+    ImageView addIcon,  sortIcon, applyIcon;
     RelativeLayout relativeLayoutEmpty;
     TextView textViewEmpty, pageTitle;
     ImageView imageViewEmpty;
@@ -73,9 +72,8 @@ public class ViewIndividualList extends AppCompatActivity
     Gson gson;
     String json;
     String currentFileName;
-    private List<ModalFullSearch> fullListOfSongs; // to store full list of songs (from all categories)
     HelperClass helperClass;
-    File requiredPath;
+    File requiredPath, requiredPathOfAppliedList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +95,7 @@ public class ViewIndividualList extends AppCompatActivity
 
 
         sortIcon = findViewById(R.id.sortSongsIcon);
+        applyIcon = findViewById(R.id.applyIcon);
         pageTitle = findViewById(R.id.pageTitle);
         navView = findViewById(R.id.nav_view);
 
@@ -111,27 +110,18 @@ public class ViewIndividualList extends AppCompatActivity
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 int menuId = item.getItemId();
 
-                switch(menuId)
-                {
-                    case R.id.navigation_list:
-                    {
-                        intent = new Intent(getApplicationContext(),ListActivity.class);
-                        startActivity(intent);
-                        finish();
-                        break;
-                    }
-                    case R.id.navigation_song:
-                    {
-                        intent = new Intent(getApplicationContext(),HomePage.class);
-                        startActivity(intent);
-                        finish();
-                        break;
-                    }
-                    case R.id.navigation_prayer:
-                        intent = new Intent(getApplicationContext(),PrayerActivity.class);
-                        startActivity(intent);
-                        finish();
-                        break;
+                if (menuId == R.id.navigation_list) {
+                    intent = new Intent(getApplicationContext(), ListActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else if (menuId == R.id.navigation_song) {
+                    intent = new Intent(getApplicationContext(), HomePage.class);
+                    startActivity(intent);
+                    finish();
+                } else if (menuId == R.id.navigation_prayer) {
+                    intent = new Intent(getApplicationContext(), PrayerWithTab.class);
+                    startActivity(intent);
+                    finish();
                 }
                 return true;
             }
@@ -142,7 +132,9 @@ public class ViewIndividualList extends AppCompatActivity
         relativeLayoutEmpty = findViewById(R.id.relative_empty);
         textViewEmpty = findViewById(R.id.default_text);
         imageViewEmpty = findViewById(R.id.empty_icon);
-        textViewEmpty.setText("Add some songs");
+
+        // nothing but using string resource value from @string/add_new_songs
+        textViewEmpty.setText(getResources().getString(R.string.add_new_songs));
         imageViewEmpty.setImageResource(R.drawable.add_comment); // change the image icon
 //--------------------------------------------------------------------------------------------
 
@@ -155,7 +147,8 @@ public class ViewIndividualList extends AppCompatActivity
         songNames = new ArrayList<>(); // to temp store the list names
         helperClass = new HelperClass();
 
-        fullListOfSongs = new ArrayList<>();
+        // to store full list of songs (from all categories)
+        List<ModalFullSearch> fullListOfSongs = new ArrayList<>();
 
         checkPermission(); // check for storage permissions, each time activity get displayed
         fullListOfSongs.addAll( helperClass.fillSongTitles(this) ); // fill the list with all song's titles
@@ -180,6 +173,7 @@ public class ViewIndividualList extends AppCompatActivity
                 // call the search activity
                 intent = new Intent(getApplicationContext(), FullSearch.class);
                 intent.putExtra("mode", "on");
+                intent.putExtra("from", "ViewIndividualList");
                 startActivity(intent, activityOptions.toBundle());
 //                overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
                 finish();
@@ -225,12 +219,16 @@ public class ViewIndividualList extends AppCompatActivity
                             // write sorted song names to file
                             for (ModalFullSearch md: songNames)
                             {
-
+                                // startPage
+                                // endPage
+                                // chord
+                                // song link
+                                // karaoke link
                                 writeToFile.write(
-                                        md.getFileName()+",\t\t\t"
+                                        md.getPageStart()+",\t\t\t"
+                                                +md.getPageEnd()+",\t\t\t"
                                                 +md.getEnglishTitle()+",\t\t\t"
                                                 +md.getMalayalamTitle()+",\t\t\t"
-                                                +md.getFolderName()+",\t\t\t"
                                                 +md.getChord()+",\t\t\t"
                                                 +md.getSong()+",\t\t\t"
                                                 +md.getKaraoke()+"\n"
@@ -254,6 +252,81 @@ public class ViewIndividualList extends AppCompatActivity
             }
         });
 
+        applyIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(songNames.size() == 0)
+                    Toast.makeText(ViewIndividualList.this, "Empty list can't be applied !",
+                            Toast.LENGTH_LONG).show();
+                else
+                {
+//                    editor = sharedPreferences.edit();
+//                    editor.putString("applied_list", currentFileName);
+//                    editor.apply();
+                    requiredPathOfAppliedList = getExternalFilesDir("appliedList");
+                    if(requiredPathOfAppliedList != null)
+                    {
+                        if(requiredPathOfAppliedList.listFiles() == null) // folder has no files
+                        {
+                            Toast.makeText(ViewIndividualList.this, "No files present", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            File toBeWrite = new File(requiredPathOfAppliedList,
+                                    "applied_list.txt");
+                            FileWriter writeToFile = null;
+                            try
+                            {
+                                boolean flag;
+                                writeToFile = new FileWriter(toBeWrite);
+                                for (int i = 0; i< songNames.size(); i++)
+                                {
+
+                                        writeToFile.write(
+                                                songNames.get(i).getPageStart()+",\t\t\t"
+                                                        +songNames.get(i).getPageEnd()+",\t\t\t"
+                                                        +songNames.get(i).getEnglishTitle()+",\t\t\t"
+                                                        +songNames.get(i).getMalayalamTitle()+",\t\t\t"
+                                                        +songNames.get(i).getChord()+",\t\t\t"
+                                                        +songNames.get(i).getSong()+",\t\t\t"
+                                                        +songNames.get(i).getKaraoke()+"\n"
+                                        );
+                                }
+                                writeToFile.close();
+
+                                AlertDialog.Builder ab = new AlertDialog.Builder(ViewIndividualList.this);
+                                View view = getLayoutInflater().inflate(R.layout.confirm_box_layout, null);
+                                Button deleteBtn = (Button) view.findViewById(R.id.delete_button);
+                                Button cancelBtn = (Button) view.findViewById(R.id.cancel_button);
+                                TextView mainTitle = view.findViewById(R.id.mainTitle);
+                                TextView subTitle = view.findViewById(R.id.subTitle);
+                                mainTitle.setText("Applied successfully");
+                                subTitle.setText("This list has been applied to the prayer section");
+                                cancelBtn.setVisibility(View.GONE);
+                                deleteBtn.setText("Ok");
+                                deleteBtn.setBackgroundColor(Color.GRAY);
+                                ab.setView(view);
+                                AlertDialog alert = ab.create();
+                                alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                                alert.show();// show the dialog box
+                                deleteBtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        alert.dismiss();
+                                    }
+                                });
+
+                            }
+                            catch (IOException e)
+                            {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                }
+            }
+        });
 
         itemTouchHelper = new ItemTouchHelper(handleDragDrop);
         itemTouchHelper.attachToRecyclerView(individualSetRecycler);
@@ -332,19 +405,19 @@ public class ViewIndividualList extends AppCompatActivity
                     // now create new object of Modal class and add it to the list
                     songNames.add(
                             new ModalFullSearch(
-                                    splited[0].trim(), // filename
-                                    splited[1].trim(), // eng title
-                                    splited[2].trim(), // malayalam title
-                                    splited[3].trim(), // folder name
-                                    splited[4].trim(), // chord
-                                    splited[5].trim(), // song link
-                                    splited[6].trim() // karaoke link
+                                    splited[0], // page start
+                                    splited[1].trim(), // page end
+                                    splited[2].trim(), // eng title
+                                    splited[3].trim(), // malayalam title
+                                    splited[4].trim(), // song's chord
+                                    splited[5].trim(), // song's song link
+                                    splited[6].trim() // song's karaoke
                                      ));
 
                 }
                 fileReader.close();
 
-                ArrayList<ModalFullSearch> storedList = new ArrayList<>();
+                ArrayList<ModalFullSearch> storedList;
 
                 if(sharedPreferences.getString("selected", null).equals("on"))
                 {
@@ -364,10 +437,10 @@ public class ViewIndividualList extends AppCompatActivity
                                 songNames.add(md);
                                 FileWriter writeToFile = new FileWriter(toBeRead, true);
                                 writeToFile.write(
-                                        md.getFileName()+",\t\t\t"
+                                        md.getPageStart()+",\t\t\t"
+                                        +md.getPageEnd()+",\t\t\t"
                                         +md.getEnglishTitle()+",\t\t\t"
                                         +md.getMalayalamTitle()+",\t\t\t"
-                                        +md.getFolderName()+",\t\t\t"
                                         +md.getChord()+",\t\t\t"
                                         +md.getSong()+",\t\t\t"
                                         +md.getKaraoke()+"\n"
@@ -385,6 +458,9 @@ public class ViewIndividualList extends AppCompatActivity
 
 
                 editor = sharedPreferences.edit();
+                editor.putString("selected_songs", "");
+                editor.putString("selected", "off");
+                editor.apply();
                 if(countOfLines>0)
                 {
 //                  sharedPreferences = getSharedPreferences("SongLY", MODE_PRIVATE);
@@ -407,6 +483,7 @@ public class ViewIndividualList extends AppCompatActivity
                 Toast.makeText(getApplicationContext(), "IO exception", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
+
             LinearLayoutManager linearLayoutManager =
                     new LinearLayoutManager(this);
             individualSetRecycler.setLayoutManager(linearLayoutManager);
@@ -467,10 +544,10 @@ public class ViewIndividualList extends AppCompatActivity
                             if(flag)
                             {
                                 writeToFile.write(
-                                        songNames.get(i).getFileName()+",\t\t\t"
+                                        songNames.get(i).getPageStart()+",\t\t\t"
+                                           +songNames.get(i).getPageEnd()+",\t\t\t"
                                            +songNames.get(i).getEnglishTitle()+",\t\t\t"
                                            +songNames.get(i).getMalayalamTitle()+",\t\t\t"
-                                           +songNames.get(i).getFolderName()+",\t\t\t"
                                            +songNames.get(i).getChord()+",\t\t\t"
                                            +songNames.get(i).getSong()+",\t\t\t"
                                            +songNames.get(i).getKaraoke()+"\n"
@@ -537,13 +614,16 @@ public class ViewIndividualList extends AppCompatActivity
 
     }
 
-    private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
+    private final ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
             MenuInflater inflater = mode.getMenuInflater();
             inflater.inflate(R.menu.selection_menu, menu);
             MenuItem editItem = menu.findItem(R.id.edit_icon);
-            editItem.setVisible(false); // make the edit icon invisible
+            editItem.setVisible(false); // make the edit icon invisible for this activity
+
+//            MenuItem applyIcon = menu.findItem(R.id.apply_icon);
+//            applyIcon.setVisible(false); // make the apply icon invisible for this activity
 
             return true;
         }
@@ -598,7 +678,7 @@ public class ViewIndividualList extends AppCompatActivity
 
     // handle the drag and drop functionality of the items
 
-    ItemTouchHelper.SimpleCallback handleDragDrop = new ItemTouchHelper.SimpleCallback(
+    final ItemTouchHelper.SimpleCallback handleDragDrop = new ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.START | ItemTouchHelper.END, 0
     ) {
         @Override
@@ -634,10 +714,10 @@ public class ViewIndividualList extends AppCompatActivity
                     {
 
                         writeToFile.write(
-                                md.getFileName()+",\t\t\t"
+                                md.getPageStart()+",\t\t\t"
+                                        +md.getPageEnd()+",\t\t\t"
                                         +md.getEnglishTitle()+",\t\t\t"
                                         +md.getMalayalamTitle()+",\t\t\t"
-                                        +md.getFolderName()+",\t\t\t"
                                         +md.getChord()+",\t\t\t"
                                         +md.getSong()+",\t\t\t"
                                         +md.getKaraoke()+"\n"

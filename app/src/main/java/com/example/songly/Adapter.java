@@ -4,8 +4,6 @@ import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
@@ -19,11 +17,11 @@ import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements Filterable {
 
-    private List<ModelClassSongList> OriginalSongList;
-    private List<ModelClassSongList> exampleList;
+    private final List<ModelClassSongList> OriginalSongList;
+    private final List<ModelClassSongList> exampleList;
 
-    SongClickInterface songClickInterface;
-    Typeface typeface; // to set malayalam font for the recycler view
+    final SongClickInterface songClickInterface;
+    final Typeface typeface; // to set malayalam font for the recycler view
 
     public Adapter(List<ModelClassSongList>userList, SongClickInterface songClickInterface,
     Typeface typeface) {
@@ -64,8 +62,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements
     //view holder class
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        SongClickInterface songClickInterface;
-        private TextView textView;
+        final SongClickInterface songClickInterface;
+        private final TextView textView;
 
 
 
@@ -99,7 +97,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements
         void songClicked(int position);
     }
 
-    private Filter exampleFilter = new Filter() {
+    private final Filter exampleFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<ModelClassSongList> filteredList = new ArrayList<>();

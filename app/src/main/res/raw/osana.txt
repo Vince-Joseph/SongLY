@@ -1,14 +1,14 @@
-daivapithavin_osana,				daivapithaavinosana osana,				ssZh]nXmhnt\mim\ Hmim\ Hmim\,				osana,	Ab Major,	https://www.youtube.com/watch?v=kWqHc9oqZxE,	https://www.youtube.com/watch?v=SW7PXOCZwSI
-athyunnathangalil_vaazhunna,		athyunnathangalil vaazhunna thaatha,	AX|¶X§fnÂ hmgp¶ XmXm ,						osana,	G Major,	https://www.youtube.com/watch?v=3xP9NMrsQDg,	Un Available
-devadootha_gaanam,					devadootha gaanam uyarnnidunnitha,		tZhZqX Km\w DbÀ¶nSp¶nXm,		 			osana,	Gm,			https://www.youtube.com/watch?v=4hl1WMnmqxg, Un Available
-karthavakum_daivam_nithyam,			karthaavakum daivam nithyam,			IÀ¯mhmæw ssZhw \nXyw ]cnip²³,				osana,	Am,			Un Available, Un Available		
-athyunnathangalil_osana_paadidaam,	athyunnathangail osana paadidaam,		AX|¶X§fnÂ Hmim\ ]mSnSmw,					osana,	Cm,			https://www.youtube.com/watch?v=J6_MuJBM35Y,		https://www.youtube.com/watch?v=3aGXVwwnbq0
-osana_jayageetham,					osana jayageetham paadeedam,			Hmim\ PbKoXw ]mSoSmw,						osana,	C Major	,	https://www.youtube.com/watch?v=BwKIZIuifmM,	https://www.youtube.com/watch?v=vXuw9---560
-maalakhamarude_gaanam,				maalakhamaarude gaanamuyarunnu,			amemJamêsS Km\apbêì,						osana,	Am,			https://www.youtube.com/watch?v=IAUuL2Udgtc&t=0s,	https://www.youtube.com/watch?v=UmfKkjt_0Es
-maalakha_vrunthangal,				maalakha vrunthangal paadidunnu,		amemLhr´§Ä ]mSnSpì,							osana,	Fm,		https://www.youtube.com/watch?v=KCaaY8L8QOA,	https://www.youtube.com/watch?v=slaApVoCH5M
-sainyangal_than,					sainyangal than karthaave parisudhan,	ssk¶y§Ä¯³ IÀ¯mth ]cnip²³ \o ]cnip²³,		osana,	Cm,		https://www.youtube.com/watch?v=rdYFKd5H09M&t=36s,	https://www.youtube.com/watch?v=WkBKe7e4Xkc
-swargasthanaaya_nal_pithave,		swargasthanaaya nal pithave balavaanum,	kzÀ¤kvX\mb \Â ]nXmth,						osana,	Fm,		https://www.youtube.com/watch?v=EYR3B_FJHlE,	Un Available
-daivadoothare_swarga,				daivadoothare swarga nivaasikale,		tZhZqXtc kzÀ¤ \nhmknItf,					osana,	F Major,	Un Available,	Un Available
-swargeeya_simhaasanathil,			swargeeya simhaasanathil vaazhum,		kzÀ¤ob knwlmk\¯nÂ hmgpw,					osana,	Fm,		https://www.youtube.com/watch?v=929DXLTIpYs,	https://www.youtube.com/watch?v=duMGpxGdJQE
-unnathanaam_raajave,				osana unnathanaam raajave,				Hmim\ Hmim\ D¶X\mw cmPmth a¶h\mbv XoÀ¶ht\,	osana,	G#m,	https://www.youtube.com/watch?v=O29KUyPthIE,	https://www.youtube.com/watch?v=UE9ag1r1P04
-vaanamekhangalil_vaanitunnavan,		vaanamekhangalil vaanitunnavan,			hm\taL§fnÂ hmWnSp¶h³,						osana,	Am,		https://www.youtube.com/watch?v=xCp1tTvSmp8,	https://www.youtube.com/watch?v=meQWmNdAIo8
+198, 199, athyunnathangail osana paadidaam,		AX|¶X§fnÂ Hmim\ ]mSnSmw,						Cm,			https://www.youtube.com/watch?v=J6_MuJBM35Y,		https://www.youtube.com/watch?v=3aGXVwwnbq0
+200, 202, athyunnathangalil vaazhunna thaatha,	AX|¶X§fnÂ hmgp¶ XmXm ,							G Major,	https://www.youtube.com/watch?v=3xP9NMrsQDg,	Un Available
+203, 203, daivadoothare swarga nivaasikale,		tZhZqXtc kzÀ¤ \nhmknItf,						F Major,	Un Available,	Un Available
+204, 205, daivapithaavinosana,	 				ssZh]nXmhnt\mim\ Hmim\ Hmim\,						Ab Major,	https://www.youtube.com/watch?v=kWqHc9oqZxE,	https://www.youtube.com/watch?v=SW7PXOCZwSI
+206, 207, devadootha gaanam uyarnnidunnitha,	tZhZqX Km\w DbÀ¶nSp¶nXm,		 			Gm,			https://www.youtube.com/watch?v=4hl1WMnmqxg, 	Un Available
+208, 209, karthaavakum daivam nithyam,			IÀ¯mhmæw ssZhw \nXyw ]cnip²³,					Am,			Un Available, Un Available		
+210, 211, maalakha vrunthangal paadidunnu,		amemLhr´§Ä ]mSnSpì,								Fm,		https://www.youtube.com/watch?v=KCaaY8L8QOA,	https://www.youtube.com/watch?v=slaApVoCH5M
+212, 212, maalakhamaarude gaanamuyarunnu,			amemJamêsS Km\apbêì,						Am,			https://www.youtube.com/watch?v=IAUuL2Udgtc&t=0s,	https://www.youtube.com/watch?v=UmfKkjt_0Es
+213, 215, osana jayageetham paadeedam,			Hmim\ PbKoXw ]mSoSmw,							C Major	,	https://www.youtube.com/watch?v=BwKIZIuifmM,	https://www.youtube.com/watch?v=vXuw9---560
+216, 218, sainyangal than karthaave parisudhan,	ssk¶y§Ä¯³ IÀ¯mth ]cnip²³ \o ]cnip²³,			Cm,		https://www.youtube.com/watch?v=rdYFKd5H09M&t=36s,	https://www.youtube.com/watch?v=WkBKe7e4Xkc
+219, 221, swargasthanaaya nal pithave balavaanum,	kzÀ¤kvX\mb \Â ]nXmth,						Fm,		https://www.youtube.com/watch?v=EYR3B_FJHlE,	Un Available
+222, 225, swargeeya simhaasanathil vaazhum,		kzÀ¤ob knwlmk\¯nÂ hmgpw,						Fm,		https://www.youtube.com/watch?v=929DXLTIpYs,	https://www.youtube.com/watch?v=duMGpxGdJQE
+226, 226, osana unnathanaam raajave,				Hmim\ Hmim\ D¶X\mw cmPmth a¶h\mbv XoÀ¶ht\,	G#m,	https://www.youtube.com/watch?v=O29KUyPthIE,	https://www.youtube.com/watch?v=UE9ag1r1P04
+227, 229, vaanamekhangalil vaanitunnavan,			hm\taL§fnÂ hmWnSp¶h³,						Am,		https://www.youtube.com/watch?v=xCp1tTvSmp8,	https://www.youtube.com/watch?v=meQWmNdAIo8

@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.songly"
-        minSdkVersion 26
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -42,25 +42,13 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.getbase:floatingactionbutton:1.10.1'
-//    implementation 'com.android.support.recyclerview-v7:28.0.0' // newly added recycler
-//    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
-
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-     //  dependency for youtube player
-//    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // for getting json
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.github.mhiew:android-pdf-viewer:3.2.0-beta.1'
-//    implementation 'com.verygoodsecurity:android-pdf-viewer:1.0.0'
-//    implementation 'com.github.MikeOrtiz:TouchImageView:1.4.1' // for image view in prayer section
-
-//    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
-
 }

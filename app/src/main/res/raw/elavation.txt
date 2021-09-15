@@ -1,15 +1,15 @@
-aaradhanayennum_eeshoykku,			aaradhanayennum eeshoykku mathram,		 Bcm[\sbìw Cutimíp am{Xw,					elavation,  E Major,	https://www.youtube.com/watch?v=qwwJD4nvq9o,	https://www.youtube.com/watch?v=ubNltB3OZJ8
-aaradhanaykkettam_yogyanaayavane,	aaradhanaykkettam yogyanaayavane,		 Bc[\tíäw tbmKy\mbht\ A\izc\mb X¼pcmt\,		elavation,  Gm,			https://www.youtube.com/watch?v=Xef_k3SQYSQ,	https://www.youtube.com/watch?v=JhKABFLL3ks
-anupama_snehathin,					anupama snehatthin nimishamithaa,		 Aë]akvt\l¯n³ \nanjanXm,					elavation,	F,		https://www.youtube.com/watch?v=P9FZcPIrj6Y,	https://www.youtube.com/watch?v=AB1_NubfGQA
-divyakaarunyame_aaradhyane,			divyakaarunyame aaradhyane,				 ZnhyImê®yta Bcm[yt\ Iê\mÀ{Z kvt\lta,		elavation,  D Major,	https://www.youtube.com/watch?v=zL-XMm9fZtg,	https://www.youtube.com/watch?v=zL-XMm9fZtg
-divya_sakraariyil_ninnitha,			divya sakraariyil ninnithaa aagatha,	 Znhyk{ImcnbnÂ \n¶nXm,						elavation,  Fm,		https://www.youtube.com/watch?v=q8rZl2SO57A&t=96s,	https://www.youtube.com/watch?v=t9oY3GqH6uQ
-itha_daivam,						itha daivam bhoomiyil vannu,			 CXm ssZhw `qanbnÂ hì,						elavation,  Em,			https://www.youtube.com/watch?v=8HnPhNwhtRc,	Un Available
-ee_loka_paapangal,					eeloka paapangal neekkum,				 Cu temI ]m]§Ä \oçw,						elavation,  Unknown,	https://www.youtube.com/watch?v=2PiXu7sd_a8,	https://www.youtube.com/watch?v=C0y5CvaRia8
-en_jeevithathinte_saubhagyame,		aaradhana en jeevithathinte saubhagyame, F³ PohnX¯nsâ ku`mKyta F³ Bßmhn³ kmbqPyta,	elavation,  G Major,	https://www.youtube.com/watch?v=Hi4nOWvtaks,	https://www.youtube.com/watch?v=EZKbTfjCzkM
-itha_itha_ee_althaarayil,			itha itha ee althaarayil snehapithavam,	 CXm CXm Cu AÄ¯mcbnÂ,						elavation,  A Major,	https://www.youtube.com/watch?v=ge4wuirGTNU,	https://www.youtube.com/watch?v=z-X016D8g4Q
-koode_vasikkunna,					koode vasikkunna daivam snehathin,		 IqsS hknç¶ ssZhw kvt\l¯n³ cq]¯nembv,		elavation,  G Major,	https://www.youtube.com/watch?v=tODj0dNW26U,	https://www.youtube.com/watch?v=h7Zhs1IUU3U
-parisudha_parama,					parisudha parama divya kaarunyame,		 ]cnip² ]ca Znhy Imê®yta,					elavation,  Gm,			https://www.youtube.com/watch?v=fx5SIh4LsrY,	Un Available
-swargathin_sammanamay,				swargathin sammanamaay bhoovilekk,		 kzÀ¤¯n³ k½m\ambv `qhnte¡nì h¶,				elavation,  E Major,	https://www.youtube.com/watch?v=VTTaIu9V_0s,	Un Available
-swargathil_ninnum,					swargathil ninnum bhoovilirangiya,		 kzÀ¤¯nÂ \nìw `qhnend§nb,					elavation,  Am,			https://www.youtube.com/watch?v=ji03_o6fEoo,	https://www.youtube.com/watch?v=sHZe6r42VDk
-swargeeya_raajavezhunnellunnu,		swargeeya raajavezhunnellunnu,			 kzÀ¤ob cmPmshgps¶Åpì,						elavation,  Dm,			https://www.youtube.com/watch?v=r3TMHCPPs3Q,	https://www.youtube.com/watch?v=Rqij1auUz7k	
-oh_divyamaam_snehame,				oh divyamaam snehame oh divya,			 Hm Znhyamw kvt\lta Hm Znhy Imê®yta,		elavation,  E Major,	https://www.youtube.com/watch?v=hLmfRTZaWgM,	https://www.youtube.com/watch?v=Wd7vl8tBDyQ
+230, 231, aaradhanayennum eeshoykku mathram,		 Bcm[\sbìw Cutimíp am{Xw,					E Major,	https://www.youtube.com/watch?v=qwwJD4nvq9o,	https://www.youtube.com/watch?v=ubNltB3OZJ8
+232, 234, aaradhanaykkettam yogyanaayavane,		 Bc[\tíäw tbmKy\mbht\ A\izc\mb X¼pcmt\,			Gm,			https://www.youtube.com/watch?v=Xef_k3SQYSQ,	https://www.youtube.com/watch?v=JhKABFLL3ks
+235, 237, anupama snehatthin nimishamithaa,		 Aë]akvt\l¯n³ \nanjanXm,						F,		https://www.youtube.com/watch?v=P9FZcPIrj6Y,	https://www.youtube.com/watch?v=AB1_NubfGQA
+238, 240, divya sakraariyil ninnithaa aagatha,	 Znhyk{ImcnbnÂ \n¶nXm,							Fm,		https://www.youtube.com/watch?v=q8rZl2SO57A&t=96s,	https://www.youtube.com/watch?v=t9oY3GqH6uQ
+241, 243, divyakaarunyame aaradhyane,				 ZnhyImê®yta Bcm[yt\ Iê\mÀ{Z kvt\lta,		D Major,	https://www.youtube.com/watch?v=zL-XMm9fZtg,	https://www.youtube.com/watch?v=zL-XMm9fZtg
+244, 246, eeloka paapangal neekkum,				 Cu temI ]m]§Ä \oçw,							Unknown,	https://www.youtube.com/watch?v=2PiXu7sd_a8,	https://www.youtube.com/watch?v=C0y5CvaRia8
+247, 249, aaradhana en jeevithathinte saubhagyame, F³ PohnX¯nsâ ku`mKyta F³ Bßmhn³ kmbqPyta,	G Major,	https://www.youtube.com/watch?v=Hi4nOWvtaks,	https://www.youtube.com/watch?v=EZKbTfjCzkM
+250, 250,itha daivam bhoomiyil vannu,			 CXm ssZhw `qanbnÂ hì,							Em,			https://www.youtube.com/watch?v=8HnPhNwhtRc,	Un Available
+251, 252, itha itha ee althaarayil snehapithavam,	 CXm CXm Cu AÄ¯mcbnÂ,						A Major,	https://www.youtube.com/watch?v=ge4wuirGTNU,	https://www.youtube.com/watch?v=z-X016D8g4Q
+253, 254, koode vasikkunna daivam snehathin,		 IqsS hknç¶ ssZhw kvt\l¯n³ cq]¯nembv,		G Major,	https://www.youtube.com/watch?v=tODj0dNW26U,	https://www.youtube.com/watch?v=h7Zhs1IUU3U
+255, 257, oh divyamaam snehame oh divya,			 Hm Znhyamw kvt\lta Hm Znhy Imê®yta,		E Major,	https://www.youtube.com/watch?v=hLmfRTZaWgM,	https://www.youtube.com/watch?v=Wd7vl8tBDyQ
+258, 260, parisudha parama divya kaarunyame,		 ]cnip² ]ca Znhy Imê®yta,					Gm,			https://www.youtube.com/watch?v=fx5SIh4LsrY,	Un Available
+261, 262, swargathil ninnum bhoovilirangiya,		 kzÀ¤¯nÂ \nìw `qhnend§nb,					Am,			https://www.youtube.com/watch?v=ji03_o6fEoo,	https://www.youtube.com/watch?v=sHZe6r42VDk
+263, 263, swargathin sammanamaay bhoovilekk,		 kzÀ¤¯n³ k½m\ambv `qhnte¡nì h¶,				E Major,	https://www.youtube.com/watch?v=VTTaIu9V_0s,	Un Available
+264, 266, swargeeya raajavezhunnellunnu,			 kzÀ¤ob cmPmshgps¶Åpì,						Dm,			https://www.youtube.com/watch?v=r3TMHCPPs3Q,	https://www.youtube.com/watch?v=Rqij1auUz7k	

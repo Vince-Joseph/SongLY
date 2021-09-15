@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PrayerWithTab"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/headingLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginHorizontal="20dp"-->
+<!--        android:layout_marginTop="20dp">-->
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/prayer"-->
+<!--            android:textSize="@dimen/headerTextSize"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:layout_weight="1"/>-->
+<!--    </LinearLayout>-->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabPrayer"
+        android:paddingTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dodgerblue"
+        app:tabTextColor="@color/black"
+        app:tabSelectedTextColor="@color/white"
+        app:tabIndicatorColor="@color/white">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_prayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prayer" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_extra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Extra" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPagerPrayer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/bottom_navigation_bar"/>
+
+</LinearLayout>

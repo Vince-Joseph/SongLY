@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rounded_edges"
+    android:forceDarkAllowed="false">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:layout_marginBottom="25dp">
+        <ImageView
+            android:id="@+id/clearIcon"
+            android:layout_width="@dimen/headerIconSize"
+            android:layout_height="@dimen/headerIconSize"
+            android:src="@drawable/delete_icon"
+            app:tint="@color/danger"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/delete" />
+        <ImageView
+            android:id="@+id/addSongsIcon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="@dimen/headerIconSize"
+            android:layout_height="@dimen/headerIconSize"
+            app:tint="@color/dodgerblue"
+            android:src="@drawable/add_icon"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/new_list_add_icon" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:backgroundTint="@color/grey"
+            android:text=" "
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerAppliedList"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/emptyMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@color/grey"
+        android:text="No songs present"
+        android:gravity="center_horizontal"
+        android:visibility="gone"/>
+</LinearLayout>

@@ -2,8 +2,6 @@ package com.example.songly;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

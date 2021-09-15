@@ -1,10 +1,7 @@
 package com.example.songly;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.barteksc.pdfviewer.PDFView;
-import com.github.barteksc.pdfviewer.listener.OnPageScrollListener;
 import com.github.barteksc.pdfviewer.listener.OnTapListener;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
@@ -31,7 +27,6 @@ public class PrayerActivity extends AppCompatActivity{
     BottomNavigationView navView;
     boolean visible = true;
     Intent intent;
-    boolean checkScrollingUp = false;
     LinearLayout linearLayout, pdfLayout, layoutBottomBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +35,7 @@ public class PrayerActivity extends AppCompatActivity{
 
         setTitle("Prayer");
         pdfView = findViewById(R.id.prayerPdf);
-        pdfView.fromAsset("prayer/HolyMassPrayer.pdf")
+        pdfView.fromAsset("prayer/kurbaana.pdf")
                 .enableDoubletap(true)
                 .pageFitPolicy(FitPolicy.BOTH)
                 .nightMode(false)
@@ -61,18 +56,13 @@ public class PrayerActivity extends AppCompatActivity{
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 int menuId = item.getItemId();
 
-                switch(menuId)
-                {
-                    case R.id.navigation_list:{
-                        intent = new Intent(PrayerActivity.this, ListActivity.class);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-                        break;
-                    }
-                    case R.id.navigation_song:
-                        intent = new Intent(PrayerActivity.this, HomePage.class);
-                        startActivity(intent);
-                        break;
+                if (menuId == R.id.navigation_list) {
+                    intent = new Intent(PrayerActivity.this, ListActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+                } else if (menuId == R.id.navigation_song) {
+                    intent = new Intent(PrayerActivity.this, HomePage.class);
+                    startActivity(intent);
                 }
                 return true;
             }

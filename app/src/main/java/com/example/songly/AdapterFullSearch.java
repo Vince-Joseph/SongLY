@@ -5,9 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,22 +15,21 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.ViewHolder> implements Filterable {
-    private List<ModalFullSearch> modifiedList;
-    private List<ModalFullSearch> fullListOfSongs;
+    private final List<ModalFullSearch> modifiedList;
+    private final List<ModalFullSearch> fullListOfSongs;
 
 //    List<ModalFullSearch> checkedList;
     List<ModalFullSearch> existingList;
 
-    SongTitleClicked songTitleClickedInterface;
+    final SongTitleClicked songTitleClickedInterface;
     public String mode = "";
-    Context context;
+    final Context context;
 
     // constructor - initialises the full song's arrayList with passed data
     AdapterFullSearch(List<ModalFullSearch> modifiedList, SongTitleClicked songTitleClickedInterface,
@@ -71,8 +68,10 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
         // set the passed text from ActiitySearchSongList
         holder.malayalamTextView.setText(currentItem.getMalayalamTitle());
         holder.englishTitleTextView.setText(currentItem.getEnglishTitle());
-        holder.folderNameTextView.setText(currentItem.getFolderName());
-        holder.fileNameTextView.setText(currentItem.getFileName());
+
+
+        holder.folderNameTextView.setText(currentItem.getPageStart());
+        holder.fileNameTextView.setText(currentItem.getPageEnd());
 
 
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -91,10 +90,7 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
                 if(mode.equals("on"))
                 {
                     selectSong( currentItem,  holder,  holder.checkBox.isChecked());
-                    if(holder.checkBox.isChecked())
-                        holder.checkBox.setChecked(false);
-                    else
-                        holder.checkBox.setChecked(true);
+                    holder.checkBox.setChecked(!holder.checkBox.isChecked());
                 }
                 else
                     songTitleClickedInterface.songTitleClicked(position);
@@ -115,10 +111,7 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
             }
         }
 
-        if(flag)
-            holder.checkBox.setChecked(true);
-        else
-             holder.checkBox.setChecked(false);
+            holder.checkBox.setChecked(flag);
 
     }
 
@@ -132,7 +125,7 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
         return exampleFilter;
     }
 
-    private Filter exampleFilter = new Filter() {
+    private final Filter exampleFilter = new Filter() {
 
         @Override // filter the list using english title
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -181,14 +174,14 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
     /**
      * View holder class
      */
-    class ViewHolder extends RecyclerView.ViewHolder   {
-        TextView malayalamTextView;
-        TextView englishTitleTextView;
-        TextView folderNameTextView;
-        TextView fileNameTextView;
-        LinearLayout linearLayoutHolder;
-        CheckBox checkBox;
-        SongTitleClicked songTitleClicked;
+    static class ViewHolder extends RecyclerView.ViewHolder   {
+        final TextView malayalamTextView;
+        final TextView englishTitleTextView;
+        final TextView folderNameTextView;
+        final TextView fileNameTextView;
+        final LinearLayout linearLayoutHolder;
+        final CheckBox checkBox;
+        final SongTitleClicked songTitleClicked;
 
 
         ViewHolder(View itemView,  AdapterFullSearch.SongTitleClicked songTitleClicked, String mode) {
@@ -217,7 +210,7 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
 
         if(mode.equals("on"))
         {
-            if(isChecked == true)
+            if(isChecked)
             {
                 boolean flag = false;
                 // search whether current song has been selected already or not, using checkedList
@@ -233,15 +226,15 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
                     }
                 }
                 // if not, then add current song to the checkedlist
-                if(flag == false)
+                if(!flag)
                 {
                     Typeface typeface = Typeface.createFromAsset(context.getAssets(), "font/MLKR0NTT.TTF");
 
                     FullSearch.checkedList.add(new ModalFullSearch(
-                            currentItem.getFileName(),
+                            currentItem.getPageStart(),
+                            currentItem.getPageEnd(),
                             currentItem.getEnglishTitle(),
                             currentItem.getMalayalamTitle(),
-                            currentItem.getFolderName(),
                             currentItem.getChord(),
                             currentItem.getSong(),
                             currentItem.getKaraoke(),

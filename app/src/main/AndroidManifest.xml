@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.songly">
-    <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> -->
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -11,24 +11,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SongLY">
-
-        <activity android:name=".PrayerActivity"
+        <activity
+            android:name=".KarososaViewActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.SongLY.NoActionBar" />
+        <activity
+            android:name=".PrayerWithTab"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SongLY.NoActionBar" />
+        <activity
+            android:name=".PrayerActivity"
             android:parentActivityName=".HomePage"
-            android:theme="@style/Theme.SongLY.NoActionBar"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SongLY.NoActionBar" />
         <activity
             android:name=".ViewIndividualList"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SongLY.NoActionBar" />
-
-        <!-- Home activity has launchMode=singleTask.
-         this is to make the activity appear only once in activity stack -->
+        <!--
+ Home activity has launchMode=singleTask.
+         this is to make the activity appear only once in activity stack
+        -->
         <activity
             android:name=".HomePage"
-            android:launchMode="singleTask"
             android:label="Category"
-            android:theme="@style/Theme.SongLY.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SongLY.NoActionBar" />
         <activity
             android:name=".ListActivity"
             android:screenOrientation="portrait"
@@ -45,7 +54,8 @@
             android:name=".ListOfSongs"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SongLY.NoActionBar"/>
+            android:theme="@style/Theme.SongLY.NoActionBar"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
         <activity
             android:name=".SplashScreen"
             android:screenOrientation="portrait"

@@ -23,20 +23,16 @@ public class LyricsFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    String fileName, folderName;
+    int pageStart, pageEnd;
     PDFView pdfView;
 
     public LyricsFragment() {
         // Required empty public constructor
     }
 
-    public LyricsFragment(String fileName, String folderName) {
-        this.fileName = fileName;
-        this.folderName = folderName;
+    public LyricsFragment(String pageStart, String pageEnd) {
+        this.pageStart = Integer.parseInt(pageStart);
+        this.pageEnd = Integer.parseInt(pageEnd);
     }
     /**
      * Use this factory method to create a new instance of
@@ -60,8 +56,9 @@ public class LyricsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            // TODO: Rename and change types of parameters
+            String mParam1 = getArguments().getString(ARG_PARAM1);
+            String mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -73,12 +70,62 @@ public class LyricsFragment extends Fragment {
 
         // load the required pdf lyrics from file
         pdfView = view.findViewById(R.id.lyricsFragment);
-        pdfView.fromAsset(folderName+"/"+fileName+".pdf")
-                .enableDoubletap(true)
-                .pageFitPolicy(FitPolicy.WIDTH)
-                .nightMode(false)
-                .disableLongpress()
-                .load();
+
+        // check whether starpage and endpage are equal or not
+        if(pageStart == pageEnd) // only one page
+        {
+            pdfView.fromAsset("songs/songs.pdf")
+                    .pages(pageStart-1)
+                    .enableDoubletap(true)
+                    .pageFitPolicy(FitPolicy.WIDTH)
+                    .nightMode(false)
+                    .disableLongpress()
+                    .load();
+
+        }
+        else if(pageEnd == pageStart+1) // 2 pages
+        {
+            pdfView.fromAsset("songs/songs.pdf")
+                    .pages(pageStart-1, pageStart)
+                    .enableDoubletap(true)
+                    .pageFitPolicy(FitPolicy.WIDTH)
+                    .nightMode(false)
+                    .disableLongpress()
+                    .load();
+
+        }
+        else if(pageEnd == pageStart+2) // 3 pages
+        {
+            pdfView.fromAsset("songs/songs.pdf")
+                    .pages(pageStart-1, pageStart, pageStart+1)
+                    .enableDoubletap(true)
+                    .pageFitPolicy(FitPolicy.WIDTH)
+                    .nightMode(false)
+                    .disableLongpress()
+                    .load();
+
+        }
+        else if(pageEnd == pageStart+3) // 4 pages
+        {
+            pdfView.fromAsset("songs/songs.pdf")
+                    .pages(pageStart-1, pageStart, pageStart+1, pageStart+2)
+                    .enableDoubletap(true)
+                    .pageFitPolicy(FitPolicy.WIDTH)
+                    .nightMode(false)
+                    .disableLongpress()
+                    .load();
+
+        }
+        else // 5 pages or more
+        {
+            pdfView.fromAsset("songs/songs.pdf")
+                    .pages(pageStart-1, pageStart, pageStart+1, pageStart+3, pageEnd-1)
+                    .enableDoubletap(true)
+                    .pageFitPolicy(FitPolicy.WIDTH)
+                    .nightMode(false)
+                    .disableLongpress()
+                    .load();
+        }
 
         pdfView.setMaxZoom(1.3f);
         pdfView.setMidZoom(1);

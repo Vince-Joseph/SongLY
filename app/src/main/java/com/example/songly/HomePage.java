@@ -1,11 +1,7 @@
 package com.example.songly;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,11 +9,8 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,7 +21,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class HomePage extends AppCompatActivity {
 
@@ -119,22 +111,14 @@ public class HomePage extends AppCompatActivity {
                 int menuId = item.getItemId(); // get the id of the button clicked
 
 
-                switch(menuId)
-                {
-                    // no comparison for homepage because we are at home page
-                    case R.id.navigation_list:// goto list activity
-                    {
-                        intent = new Intent(HomePage.this, ListActivity.class);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-                        break;
-                    }
-                    case R.id.navigation_prayer:  // goto prayer activity
-                    {
-                        intent = new Intent(HomePage.this, PrayerActivity.class);
-                        startActivity(intent);
-                        break;
-                    }
+                // no comparison for homepage because we are at home page
+                if (menuId == R.id.navigation_list) {// goto list activity
+                    intent = new Intent(HomePage.this, ListActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+                } else if (menuId == R.id.navigation_prayer) {  // goto prayer activity
+                    intent = new Intent(HomePage.this, PrayerWithTab.class);
+                    startActivity(intent);
                 }
                 return true;
             }
@@ -168,9 +152,9 @@ public class HomePage extends AppCompatActivity {
 
 // ---------------------------- Toolbar menu items has been replaced by custom search button ---------------
 
-    /**
-     * Set the search icon at the top right corner
-     */
+//    /**
+//     * Set the search icon at the top right corner
+//     */
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        MenuInflater inflater = getMenuInflater(); // search menu inflation

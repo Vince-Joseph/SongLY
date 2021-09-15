@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".PrayerActivity"
+    android:background="@drawable/background">
+    <LinearLayout
+        android:id="@+id/headingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Karososa"
+            android:textSize="@dimen/headerTextSize"
+            android:textColor="@color/white"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/karososaClose"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            app:tint="@color/white"
+            android:src="@drawable/close_icon"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/pdfLayoutKarososaView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:forceDarkAllowed="false"
+        android:background="@drawable/rounded_edges">
+
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/prayerPdfKarososaView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:forceDarkAllowed="false" />
+
+    </LinearLayout>
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/layoutBottomBar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
+<!--        <include-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            layout="@layout/bottom_navigation_bar"/>-->
+<!--    </LinearLayout>-->
+
+</LinearLayout>

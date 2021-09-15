@@ -46,21 +46,7 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="Theme.SongLY.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.SongLY.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="Theme.Design.NoActionBarViewLyrics">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/dodgerblue</item>
-    </style>
-    <style name="textColorTheme">
-        <item name="android:textColor" >@color/black</item>
-    </style>
-
-<!--    <style name="Theme.SongLY.ActionMode">-->
+    <!--    <style name="Theme.SongLY.ActionMode">-->
 <!--        <item name="background" >@color/dodgerblue</item>-->
 <!--    </style>-->
 

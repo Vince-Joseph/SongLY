@@ -21,13 +21,13 @@
             android:id="@+id/tab_lyrics"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lyrics" />
+            android:text="@string/lyrics" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Details" />
+            android:text="@string/details" />
 
 
     </com.google.android.material.tabs.TabLayout>

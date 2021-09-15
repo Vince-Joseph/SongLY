@@ -29,12 +29,11 @@ public class TabbedLyricsView extends AppCompatActivity {
 
         Bundle bundle = this.getIntent().getExtras();
 
-        // filename
-        // foldername
-        // album
-        // singers
-        // year
+        // startPage
+        // endPage
         // chord
+        // song link
+        // karaoke link
         String [] contents = bundle.getStringArray("contents");
 
 

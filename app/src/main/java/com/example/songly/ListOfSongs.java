@@ -2,36 +2,19 @@ package com.example.songly;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.app.ActionBar;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -39,16 +22,18 @@ import com.google.android.material.navigation.NavigationBarView;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListOfSongs extends AppCompatActivity  implements
         Adapter.SongClickInterface{
 
+//1, 3, altharayil anuthapamode,
+// AÄ¯mcbnÂ AëXm]tamsS AWntNÀ¶nSmw,
+// Fm,
+// https://www.youtube.com/watch?v=hr6jrLUYnh0,	https://www.youtube.com/watch?v=c3bh-0XYV6o
 
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
@@ -84,26 +69,16 @@ public class ListOfSongs extends AppCompatActivity  implements
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 int menuId = item.getItemId();
                 Intent intent;
-                switch(menuId)
-                {
-                    case R.id.navigation_song: {
-                        intent = new Intent(getApplicationContext(), HomePage.class);
-                        startActivity(intent);
-                        break;
-                    }
-
-                    case R.id.navigation_list:{
-                        intent = new Intent(getApplicationContext(), ListActivity.class);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-                        break;
-                    }
-                    case R.id.navigation_prayer:
-                    {
-                        intent = new Intent(getApplicationContext(), PrayerActivity.class);
-                        startActivity(intent);
-                        break;
-                    }
+                if (menuId == R.id.navigation_song) {
+                    intent = new Intent(getApplicationContext(), HomePage.class);
+                    startActivity(intent);
+                } else if (menuId == R.id.navigation_list) {
+                    intent = new Intent(getApplicationContext(), ListActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+                } else if (menuId == R.id.navigation_prayer) {
+                    intent = new Intent(getApplicationContext(), PrayerWithTab.class);
+                    startActivity(intent);
                 }
                 return true;
             }
@@ -230,12 +205,12 @@ public class ListOfSongs extends AppCompatActivity  implements
                     {
                         String[] splited = data.split("[,]", 0);
                         songsList.add(new ModelClassSongList(
-                                splited[0], // filename
-                                splited[2].trim(), // mal title
-                                splited[1].trim(), // eng title
-                                splited[3].trim(), // song's folder
+                                splited[0], // page start
+                                splited[1].trim(), // page end
+                                splited[2].trim(), // eng title
+                                splited[3].trim(), // malayalam title
                                 splited[4].trim(), // song's chord
-                                splited[5].trim(), // song's song
+                                splited[5].trim(), // song's song link
                                 splited[6].trim() // song's karaoke
                                 ));
 
@@ -259,8 +234,8 @@ public class ListOfSongs extends AppCompatActivity  implements
 
         // we are passing an array of strings to TabbedLyricsView
         bundle.putStringArray("contents", new String[]{
-                songsList.get(position).getFileName(),
-                songsList.get(position).getFolderName(),
+                songsList.get(position).getStartPage(),
+                songsList.get(position).getEndPage(),
                 songsList.get(position).getChord(),
                 songsList.get(position).getSong(),
                 songsList.get(position).getKaraoke()

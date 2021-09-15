@@ -6,7 +6,13 @@
         android:id="@+id/edit_icon"
         android:title="Edit list"
         android:icon="@drawable/edit_icon"
-        app:showAsAction="ifRoom|collapseActionView" />
+        app:showAsAction="always" />
+<!--    <item-->
+<!--        android:id="@+id/apply_icon"-->
+<!--        android:title="Apply list"-->
+<!--        android:iconTint="@color/white"-->
+<!--        android:icon="@drawable/ic_baseline_book_24"-->
+<!--        app:showAsAction="always" />-->
 
     <item
         android:id="@+id/delete_icon"

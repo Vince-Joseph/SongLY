@@ -8,17 +8,17 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import org.jetbrains.annotations.NotNull;
 
 public class PageAdapterLyrics extends FragmentPagerAdapter {
-    int tabCount;
+    final int tabCount;
 
-    // filename
-    // folder name
+    // startPage
+    // endPage
     // chord
     // song link
     // karaoke link
-    String  contents[];
+    final String[] contents;
 
     public PageAdapterLyrics(@NonNull @NotNull FragmentManager fm, int behavior,
-                             String contents[]) {
+                             String[] contents) {
         super(fm, behavior);
         this.tabCount = behavior;
         this.contents = contents;
@@ -30,7 +30,7 @@ public class PageAdapterLyrics extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
 
         switch (position)
-        {                                    // filename   folder name
+        {                                    // pageStart   pageEnd
             case 0: return new LyricsFragment(contents[0], contents[1]);
             case 1: return new DetailsFragment(contents);
         }

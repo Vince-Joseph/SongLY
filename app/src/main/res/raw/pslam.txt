@@ -1,9 +1,9 @@
-abrahathin_daivamanente,	abrahathin daivamanente,	A{_ml¯n³ ssZhamsWsâ CSb³,								pslam, Gm,		https://www.youtube.com/watch?v=e0v31duM70U,	https://www.youtube.com/watch?v=HGM7kqVsNVU
-bhayamethumillente_daivam,	bhayamethumillente daivam,	`btaXpansÃsâ ssZhw Fs¶ ]cn]men¨p hfÀ¯pw,				pslam, A Major,	https://www.youtube.com/watch?v=A-1fA9-e2SY,	Un Available
-daveedin_puthrane,			daveedin puthrane,			ZmhoZn³ ]p{Xt\ cmPm[n cmPt\,							pslam, A Major,	https://www.youtube.com/watch?v=GoadVC3XJK0,	https://www.youtube.com/watch?v=MlK0RlEvBuM
-idayane_vilichu,			idayane vilichu	njan,		CSbs\ hnfn¨p Rm³ Icªt¸mÄ,								pslam, Dm,		https://www.youtube.com/watch?v=_jkk0MiI2f4,	https://www.youtube.com/watch?v=PCVmCm6L2Q4	
-israyele_sthuthi,			israyele sthuthicheeduka,	C{kmtbte kvXpXn¨nSpI,									pslam, Ab Major, https://www.youtube.com/watch?v=mzKeBOfv5Jo,	https://www.youtube.com/watch?v=G0c7iNXcW3s	
-neelakasa_konil,			neelakasakkonil	thooven,	\oemImit¡mWnÂ Xqsht×Jt¯cnÂ,								pslam, F Major,	https://www.youtube.com/watch?v=Nwd3ce-gRVM,	https://www.youtube.com/watch?v=CMZica2D9mE
-prapanja_srushtavin,		prapanja srushttavin,		{]]© krãmhn³ \maw AX|¶Xw atlm¶Xw,						pslam, F#m,		https://www.youtube.com/watch?v=opghSAjFbEE,	Un Available
-koodeyund_snehamulla,		koodeyund snehamulla,		IqsSbp­v kvt\lapÅ ssZhw Fsâ PohnX¯nÂ ]¦mfnbmbn,	pslam, D Major,	https://www.youtube.com/watch?v=hXPfDH0WzOk,	Un Available
-kaatte_kadale_vaa,			kaatte kadale vaa,			Imtä ISte hm ssZhs¯ kvXpXn¸n³,							pslam, D Major, https://www.youtube.com/watch?v=OGxzKVXzMD4,	https://www.youtube.com/watch?v=Fz0f_CZf79A	
+70, 72, abrahathin daivamanente,	A{_ml¯n³ ssZhamsWsâ CSb³,								Gm,		https://www.youtube.com/watch?v=e0v31duM70U,	https://www.youtube.com/watch?v=HGM7kqVsNVU
+73, 75, bhayamethumillente daivam,	`btaXpansÃsâ ssZhw Fs¶ ]cn]men¨p hfÀ¯pw,				A Major,	https://www.youtube.com/watch?v=A-1fA9-e2SY,	Un Available
+76, 78, daveedin puthrane,			ZmhoZn³ ]p{Xt\ cmPm[n cmPt\,							A Major,	https://www.youtube.com/watch?v=GoadVC3XJK0,	https://www.youtube.com/watch?v=MlK0RlEvBuM
+79, 80, idayane vilichu	njan,		CSbs\ hnfn¨p Rm³ Icªt¸mÄ,								Dm,		https://www.youtube.com/watch?v=_jkk0MiI2f4,	https://www.youtube.com/watch?v=PCVmCm6L2Q4	
+81, 84, israyele sthuthicheeduka,	C{kmtbte kvXpXn¨nSpI,									Ab Major, https://www.youtube.com/watch?v=mzKeBOfv5Jo,	https://www.youtube.com/watch?v=G0c7iNXcW3s	
+85, 86, kaatte kadale vaa,			Imtä ISte hm ssZhs¯ kvXpXn¸n³,							D Major, https://www.youtube.com/watch?v=OGxzKVXzMD4,	https://www.youtube.com/watch?v=Fz0f_CZf79A	
+87, 89, koodeyund snehamulla,		IqsSbp­v kvt\lapÅ ssZhw Fsâ PohnX¯nÂ ]¦mfnbmbn,	D Major,	https://www.youtube.com/watch?v=hXPfDH0WzOk,	Un Available
+90, 93, neelakasakkonil	thooven,	\oemImit¡mWnÂ Xqsht×Jt¯cnÂ,								F Major,	https://www.youtube.com/watch?v=Nwd3ce-gRVM,	https://www.youtube.com/watch?v=CMZica2D9mE
+94, 96, prapanja srushttavin,		{]]© krãmhn³ \maw AX|¶Xw atlm¶Xw,						F#m,		https://www.youtube.com/watch?v=opghSAjFbEE,	Un Available

@@ -13,18 +13,16 @@
             android:id="@+id/empty_icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/empty_list" />
+            android:paddingBottom="30dp"
+            android:src="@drawable/empty_list"
+            android:contentDescription="@string/empty_image" />
 
         <TextView
             android:id="@+id/default_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No lists, create new list"
+            android:text="@string/no_lists_create_new_list"
             android:textSize="20sp"
-            android:paddingLeft="18sp"
-            android:layout_weight="1"
             android:layout_alignBottom="@+id/empty_icon"
             android:gravity="center_horizontal"
             android:textColor="@color/grey"/>

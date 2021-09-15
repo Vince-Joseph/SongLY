@@ -2,26 +2,28 @@ package com.example.songly;
 
 public class ModelClassSongList {
 
-    private String textViewSongTitle;
-    private String fileName;
-    private String folderName;
-    private String engName;
-    private String song, karaoke, chord;
+    private final String textViewSongTitle;
+    private final String startPage;
+    private final String endPage;
+    private final String engName;
+    private final String song;
+    private final String karaoke;
+    private final String chord;
 
 
-    ModelClassSongList (String fileName,
-                        String malayalamTitle,
+    ModelClassSongList (String startPage,
+                        String endPage,
                         String engName,
-                        String folderName,
+                        String malayalamTitle,
                         String chord,
                         String song,
                         String karaoke)
     {
 
-        this.fileName = fileName;
-        this.textViewSongTitle=malayalamTitle;
-        this.folderName = folderName;
+        this.startPage = startPage;
+        this.endPage = endPage;
         this.engName = engName;
+        this.textViewSongTitle=malayalamTitle;
         this.chord = chord;
         this.song = song;
         this.karaoke = karaoke;
@@ -31,12 +33,12 @@ public class ModelClassSongList {
         return engName;
     }
 
-    public String getFolderName() {
-        return folderName;
+    public String getEndPage() {
+        return endPage;
     }
 
-    public String getFileName() {
-        return fileName;
+    public String getStartPage() {
+        return startPage;
     }
 
     public String getTextViewSongTitle() {

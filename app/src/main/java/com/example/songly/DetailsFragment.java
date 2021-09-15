@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,23 +23,19 @@ public class DetailsFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-
-    // filename
-    // foldername
+    // startPage
+    // endPage
     // chord
-    // song
+    // song link
     // karaoke link
-    String details[];
+    String[] details;
 
     public DetailsFragment() {
         // Required empty public constructor
     }
 
-    public DetailsFragment(String details[]) {
+    public DetailsFragment(String[] details) {
 //        Log.d("The string is:", details);
         this.details =  details;
     }
@@ -68,8 +63,9 @@ public class DetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            // TODO: Rename and change types of parameters
+            String mParam1 = getArguments().getString(ARG_PARAM1);
+            String mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 

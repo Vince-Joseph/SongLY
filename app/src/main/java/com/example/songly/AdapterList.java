@@ -19,17 +19,17 @@ import java.util.List;
 
 public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
 
-    List<String> listNames;
-    List<String> selected;
+    final List<String> listNames;
+    final List<String> selected;
 
-    List<AdapterList.ViewHolder> viewHoldersList;
-    List<AdapterList.ViewHolder> fullViewHolder; // list to hold all list views
+    final List<AdapterList.ViewHolder> viewHoldersList;
+    final List<AdapterList.ViewHolder> fullViewHolder; // list to hold all list views
     AdapterList.OnClickAction receiver;
 
-    SharedPreferences sharedPreferences;
+    final SharedPreferences sharedPreferences;
 
-    Context context;
-    LayoutInflater inflater;
+    final Context context;
+    final LayoutInflater inflater;
     Intent intent;
     public  AdapterList(Context context, List<String> listNames)
     {
@@ -199,10 +199,11 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView listText;
-        ImageView checkIcon, theIcon;
+        final TextView listText;
+        final ImageView checkIcon;
+        final ImageView theIcon;
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             listText =  itemView.findViewById(R.id.songTitle);

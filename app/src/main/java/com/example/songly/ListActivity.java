@@ -3,8 +3,6 @@ package com.example.songly;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,14 +46,14 @@ public class ListActivity extends AppCompatActivity
     private RecyclerView listSetRecycler; // recycler view for displaying list names
     List<String> listNames;
     AdapterList adapter;
-    File currentDir = Environment.getExternalStorageDirectory();
+    final File currentDir = Environment.getExternalStorageDirectory();
     File requiredPath;
     String newFileName;
     ActionMode actionMode;
-    Activity activity = ListActivity.this;
+    final Activity activity = ListActivity.this;
     BottomNavigationView navView;
     ImageView  imageViewEmpty,addIcon;
-    TextView textViewEmpty, pageTitle;
+    TextView  pageTitle;
     RelativeLayout relativeLayoutEmpty;
 
     Intent intent;
@@ -86,23 +84,15 @@ public class ListActivity extends AppCompatActivity
                 int menuId = item.getItemId();
 
 
-                switch(menuId)
-                {
-                    case R.id.navigation_song:
-                    {
-                        intent = new Intent(getApplicationContext(), HomePage.class);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-                        finish();
-
-                        break;
-                    }
-                    case R.id.navigation_prayer:{
-                        intent = new Intent(ListActivity.this, PrayerActivity.class);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-                        break;
-                    }
+                if (menuId == R.id.navigation_song) {
+                    intent = new Intent(getApplicationContext(), HomePage.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                    finish();
+                } else if (menuId == R.id.navigation_prayer) {
+                    intent = new Intent(ListActivity.this, PrayerWithTab.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                 }
                 return true;
             }
@@ -117,9 +107,7 @@ public class ListActivity extends AppCompatActivity
         // this layout will be shown if there are no lists present
 //-------------------------------------------------------------------------
         relativeLayoutEmpty = findViewById(R.id.relative_empty);
-        textViewEmpty = findViewById(R.id.default_text);
         imageViewEmpty = findViewById(R.id.empty_icon);
-        textViewEmpty.setText("No lists available");
         imageViewEmpty.setImageResource(R.drawable.empty_list);
 
 
@@ -172,15 +160,15 @@ public class ListActivity extends AppCompatActivity
     // check storage permission
     private void checkPermission() {
 
-        if(Build.VERSION.SDK_INT >= 23) // for Lollipop or higher
-        {
+//        if(Build.VERSION.SDK_INT >= 23) // for Lollipop or higher
+//        {
             // if permission is not granted then ask for it
             if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
                     PackageManager.PERMISSION_GRANTED)
             {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
-        }
+//        }
     }
 
     // when request is granted
@@ -407,7 +395,7 @@ public class ListActivity extends AppCompatActivity
 
 //--------------------------The action mode ---------------------------------------
 
-    private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
+    private final ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
 
@@ -428,42 +416,31 @@ public class ListActivity extends AppCompatActivity
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
 
-            switch (item.getItemId()) {
-                case R.id.delete_icon:  // upon clicking delete icon of action mode menu
-                {
-                    showConfirmDialog(mode);
-                    return true;
-                }
-                case R.id.select_all:
-                {
-                    adapter.selectAll();
-                    mode.setTitle("Selected: "+adapter.listNames.size());
-                    return true;
-                }
-                case R.id.deselect_all:
-                {
-                    adapter.clearAll(true);
-                    actionMode.finish(); // finish the action mode after de-selecting all songs
-                    actionMode = null;
-                    return true;
-                }
-                case R.id.edit_icon:
-                {
-                    if(adapter.getSelected().size() > 1)
-                    {
-                        Toast.makeText(activity, "Please select only one list item", Toast.LENGTH_LONG).show();
-                    }
-                    else
-                    {
-                        renameFileTo(adapter.getSelected().get(0));
-                    }
-                    mode.finish(); // finish the action mode after editing a list name
-                    actionMode = null;
-                    return  true;
-                }
-                default:
-                    return false;
+            int itemId = item.getItemId();
+            if (itemId == R.id.delete_icon) {  // upon clicking delete icon of action mode menu
+                showConfirmDialog(mode);
+                return true;
+            } else if (itemId == R.id.select_all) {
+                adapter.selectAll();
+                mode.setTitle("Selected: " + adapter.listNames.size());
+                return true;
+            } else if (itemId == R.id.deselect_all) {
+                adapter.clearAll(true);
+                actionMode.finish(); // finish the action mode after de-selecting all songs
+                actionMode = null;
+                return true;
+            } else if (itemId == R.id.edit_icon) {
+                if (adapter.getSelected().size() > 1) {
+                    Toast.makeText(activity, "Please select only one list item", Toast.LENGTH_LONG).show();
             }
+            else {
+                    renameFileTo(adapter.getSelected().get(0));
+                }
+                mode.finish(); // finish the action mode after editing a list name
+                actionMode = null;
+                return true;
+            }
+            return false;
         }
 
         @Override

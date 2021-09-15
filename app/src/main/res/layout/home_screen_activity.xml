@@ -18,23 +18,24 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="25dp">
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Home"
-            android:textSize="30dp"
+            android:textSize="@dimen/headerTextSize"
             android:textColor="@color/white"
             android:layout_weight="1"/>
         <ImageView
             android:id="@+id/searchIcon"
-            android:layout_width="37dp"
-            android:layout_height="37dp"
+            android:layout_width="@dimen/headerIconSize"
+            android:layout_height="@dimen/headerIconSize"
             android:src="@drawable/ic_search"
-            app:tint="@color/white"/>
+            app:tint="@color/white"
+            android:contentDescription="@string/search_songs" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:paddingTop="20dp"
         android:orientation="vertical">

@@ -12,16 +12,16 @@
         android:id="@+id/appname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Song LY"
-        android:textSize="25dp"
+        android:text="@string/appName"
+        android:textSize="25sp"
         android:textColor="@color/white"
         android:gravity="center_horizontal"/>
     <TextView
         android:id="@+id/subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Officially Yours"
-        android:textSize="20dp"
+        android:text="@string/moto"
+        android:textSize="20sp"
         android:textColor="@color/white"
         android:gravity="center_horizontal"/>
 
