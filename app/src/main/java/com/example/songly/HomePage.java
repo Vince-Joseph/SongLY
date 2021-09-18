@@ -22,7 +22,15 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * This activity act as the home page of the app.
+ * This activity displays all the categories available.
+ * User can click on a category to view that particular category songs.
+ * The search functionality provided will allow user to search for songs in the whole list of songs
+ */
 public class HomePage extends AppCompatActivity {
+
+// --------------------- Global Variable declarations --------------------------------
 
     RecyclerView recyclerView; // recycler for holding the folders
     BottomNavigationView navView;
@@ -30,6 +38,9 @@ public class HomePage extends AppCompatActivity {
 
     Intent intent;
     ImageView searchIcon;
+
+// --------------------- Global Variable declarations  ends here ----------------------
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +68,8 @@ public class HomePage extends AppCompatActivity {
         searchIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Pair pair;
-                pair = new Pair<View, String>(v, "searchTransition");
+
+               Pair pair = new Pair<View, String>(v, "searchTransition");
 //                searchIcon.startAnimation(AnimationUtils.loadAnimation(searchIcon.getContext(),
 //                        R.anim.slide_to_left));
                 ActivityOptions activityOptions =
@@ -75,8 +86,8 @@ public class HomePage extends AppCompatActivity {
         recyclerView = findViewById(R.id.homeScreenRecycler);
 
         // folder-names arraylist
-        ArrayList<String> folderNames = new ArrayList<String>(
-                Arrays.asList("Entrance","Pslam","Gospel","Offering","Osana","Elavation","Communion","Others"));
+        ArrayList<String> folderNames = new ArrayList<>(
+                Arrays.asList("Entrance","Psalms","Gospel","Offering","Osana","Adoration","Communion","Others"));
 
 
         // adapter object - accepts the folder names arraylist
@@ -97,6 +108,8 @@ public class HomePage extends AppCompatActivity {
 
 
 // ---------------------- Bottom navigation bar --------------------------------------------
+// This code is common for most of the activities. But it can't be embedded into the helper class
+// because each one have different transitions
 
         // bottom navigation bar
         navView = findViewById(R.id.nav_view);
@@ -124,7 +137,6 @@ public class HomePage extends AppCompatActivity {
             }
         });
 // ------------------------------- Bottom nav ends here ------------------------------------------------
-
     }
 
     /**

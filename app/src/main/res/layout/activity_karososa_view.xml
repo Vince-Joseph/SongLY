@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".PrayerActivity"
+    tools:context=".PrayerWithTab"
     android:background="@drawable/background">
     <LinearLayout
         android:id="@+id/headingLayout"
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp">
         <TextView
             android:layout_width="0dp"
@@ -44,16 +45,4 @@
             android:forceDarkAllowed="false" />
 
     </LinearLayout>
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/layoutBottomBar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal">-->
-<!--        <include-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            layout="@layout/bottom_navigation_bar"/>-->
-<!--    </LinearLayout>-->
-
 </LinearLayout>

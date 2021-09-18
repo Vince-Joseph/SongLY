@@ -12,6 +12,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
+ *
+ * This file is used to display the details of a song like Root chord, Karaoke and Song links.
+ * This comes as the second tab of the tabbed lyrics activity.
+ * The links displayed are clickable and will go to corresponding youtube videos.
+ * If a link is unavailable, it won't be clickable
+ *
+ */
+
+/**
  * A simple {@link Fragment} subclass.
  * Use the {@link DetailsFragment#newInstance} factory method to
  * create an instance of this fragment.

@@ -65,7 +65,7 @@ public class AdapterHomePage extends RecyclerView.Adapter<AdapterHomePage.ViewHo
                     Intent intent = new Intent(v.getContext(), ListOfSongs.class);
 
                     // notify the next activity which folder has been clicked
-                    intent.putExtra("folder", folderName.getText().toString());
+                    intent.putExtra("fileName", folderName.getText().toString());
                     itemView.getContext().startActivity(intent);
                 }
             });

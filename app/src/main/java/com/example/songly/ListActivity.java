@@ -40,6 +40,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This activity lists all the user created lists.
+ * Each of these lists are stored as individual files in the memory.
+ * This activity required file permissions.
+ */
 public class ListActivity extends AppCompatActivity
         implements AdapterList.OnClickAction{
 
@@ -55,7 +60,7 @@ public class ListActivity extends AppCompatActivity
     ImageView  imageViewEmpty,addIcon;
     TextView  pageTitle;
     RelativeLayout relativeLayoutEmpty;
-
+    MenuItem editItem;
     Intent intent;
     SharedPreferences sharedPreferences; // sharedprefs to store some temp data
 
@@ -160,15 +165,12 @@ public class ListActivity extends AppCompatActivity
     // check storage permission
     private void checkPermission() {
 
-//        if(Build.VERSION.SDK_INT >= 23) // for Lollipop or higher
-//        {
-            // if permission is not granted then ask for it
-            if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
-                    PackageManager.PERMISSION_GRANTED)
-            {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-            }
-//        }
+        // if permission is not granted then ask for it
+        if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
+                PackageManager.PERMISSION_GRANTED)
+        {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        }
     }
 
     // when request is granted
@@ -402,6 +404,7 @@ public class ListActivity extends AppCompatActivity
             // upon action mode creation, display the action mode menu on action bar
             MenuInflater inflater = mode.getMenuInflater();
             inflater.inflate(R.menu.selection_menu, menu);
+            editItem = menu.findItem(R.id.edit_icon);
             navView.setVisibility(View.GONE); // now the bottom nav bar is invisible
             return true;
         }
@@ -430,12 +433,7 @@ public class ListActivity extends AppCompatActivity
                 actionMode = null;
                 return true;
             } else if (itemId == R.id.edit_icon) {
-                if (adapter.getSelected().size() > 1) {
-                    Toast.makeText(activity, "Please select only one list item", Toast.LENGTH_LONG).show();
-            }
-            else {
-                    renameFileTo(adapter.getSelected().get(0));
-                }
+                renameFileTo(adapter.getSelected().get(0));
                 mode.finish(); // finish the action mode after editing a list name
                 actionMode = null;
                 return true;
@@ -478,10 +476,9 @@ public class ListActivity extends AppCompatActivity
             {
                 actionMode.setTitle("Selected: " + selected); // else update count of selected list items
 
-                if(selected > 1)
-                {
-                    // disable edit button
-                }
+                // toggle edit button
+                if(selected > 1)  editItem.setVisible(false);
+                else editItem.setVisible(true);
             }
 
             return true;

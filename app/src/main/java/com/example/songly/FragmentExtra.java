@@ -1,33 +1,28 @@
 package com.example.songly;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+/**
+ *
+ * This file is a Fragment which displays the list of Karososa prayers.
+ * This comes as the second tab of PrayerWithTab activity.
+ * To display the list of karososa prayers, we've used a recyclerview.
+ *
+ */
 public class FragmentExtra extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -91,9 +86,10 @@ public class FragmentExtra extends Fragment {
     }
 
     // create the list of karososa prayers from raw/extraprayerlist file
-    List<ModalExtraPrayers> setUpRecycler()
+    // !!!!!!!!!!!!! we are re-using ModalFullSearch for creating objects   !!!!!!!!!!!!!!!!!!!!!!!!!!
+    List<ModalFullSearch> setUpRecycler()
     {
-        List<ModalExtraPrayers> temp = new ArrayList<>();
+        List<ModalFullSearch> temp = new ArrayList<>();
         String line;
         InputStream is = this.getResources().openRawResource(R.raw.extraprayerlist); // karosoosa list file
 
@@ -108,11 +104,11 @@ public class FragmentExtra extends Fragment {
                 {
                     String[] splited = line.split("[,]", 0);
                     temp.add(
-                            new ModalExtraPrayers(
-                                    splited[0], // malayalam Title
-                                    splited[1].trim(), // english title
+                            new ModalFullSearch(
                                     splited[2].trim(), // page start
-                                    splited[3].trim()// page end
+                                    splited[3].trim(), // page end
+                                    splited[1].trim(), // english title
+                                    splited[0] // malayalam Title
                             ));
                 }
                 is.close();

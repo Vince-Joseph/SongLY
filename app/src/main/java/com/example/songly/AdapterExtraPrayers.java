@@ -15,9 +15,9 @@ import java.util.List;
 
 public class AdapterExtraPrayers extends RecyclerView.Adapter<AdapterExtraPrayers.ViewHolder> {
 
-    List<ModalExtraPrayers> prayerNames;
+    List<ModalFullSearch> prayerNames; // stores karososa titles
 
-    public AdapterExtraPrayers(List<ModalExtraPrayers> prayers)
+    public AdapterExtraPrayers(List<ModalFullSearch> prayers)
     {
         this.prayerNames = prayers;
     }
@@ -31,16 +31,16 @@ public class AdapterExtraPrayers extends RecyclerView.Adapter<AdapterExtraPrayer
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        holder.textViewTitle.setTypeface(holder.typeface);
-        holder.textViewTitle.setText(prayerNames.get(position).getMalayalamTitle());
+        holder.malayalamTitle.setTypeface(holder.typeface);
+        holder.malayalamTitle.setText(prayerNames.get(position).getMalayalamTitle());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(holder.textViewTitle.getContext(), KarososaViewActivity.class);
+                Intent intent = new Intent(holder.malayalamTitle.getContext(), KarososaViewActivity.class);
                 intent.putExtra("pageStart", prayerNames.get(position).getPageStart());
                 intent.putExtra("pageEnd", prayerNames.get(position).getPageEnd());
-                holder.textViewTitle.getContext().startActivity(intent);
+                holder.malayalamTitle.getContext().startActivity(intent);
             }
         });
     }
@@ -52,21 +52,12 @@ public class AdapterExtraPrayers extends RecyclerView.Adapter<AdapterExtraPrayer
     }
 
     public class ViewHolder  extends RecyclerView.ViewHolder{
-        TextView textViewTitle;
+        TextView malayalamTitle;
         Typeface typeface;
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            textViewTitle = itemView.findViewById(R.id.songTitle);
+            malayalamTitle = itemView.findViewById(R.id.songTitle);
             typeface = Typeface.createFromAsset(itemView.getContext().getAssets(),"font/MLKR0NTT.TTF");
-
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                }
-//            });
         }
-
-
     }
 }

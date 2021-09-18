@@ -21,7 +21,7 @@ import java.util.List;
 
 public class AdapterAppliedList extends RecyclerView.Adapter<AdapterAppliedList.ViewHolder> {
 
-    List<ModalFullSearch> itemLists ;
+    List<ModalFullSearch> itemLists ; // list to hold details of applied songs
     LayoutInflater inflater;
 
     public AdapterAppliedList(List<ModalFullSearch> itemLists, Context context)
@@ -40,6 +40,7 @@ public class AdapterAppliedList extends RecyclerView.Adapter<AdapterAppliedList.
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
+        // set malayalam typeface
         holder.malayalamTitle.setTypeface(Typeface.createFromAsset(
                 holder.malayalamTitle.getContext().getAssets(),"font/MLKR0NTT.TTF"));
         holder.malayalamTitle.setText(itemLists.get(position).getMalayalamTitle());

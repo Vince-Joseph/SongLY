@@ -11,6 +11,12 @@ import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 
+/**
+ *
+ * This activity is used to display the individual karososa prayers, selected from FragmentExtra.
+ * Bottom nav is disabled for this activity
+ *
+ */
 public class KarososaViewActivity extends AppCompatActivity {
     PDFView pdfView;
     ImageView karososaClose;

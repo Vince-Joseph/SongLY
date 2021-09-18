@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Song LY</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Hymn</string>
     <string name="new_list_add_icon">New list add icon</string>
     <string name="search_songs">Search songs</string>
     <string name="selection_mark">Selection mark</string>
@@ -14,8 +13,8 @@
     <string name="no_lists_create_new_list">No lists available</string>
     <string name="add_new_songs">Add new songs</string>
     <string name="category">Category</string>
-    <string name="appName">Diary</string>
-    <string name="moto">Officially Yours</string>
+    <string name="appName">Hymn</string>
+    <string name="moto">Always for God</string>
     <string name="lyrics">Lyrics</string>
     <string name="details">Details</string>
     <string name="songs">Songs</string>

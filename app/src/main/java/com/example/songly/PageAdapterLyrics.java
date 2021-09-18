@@ -7,15 +7,16 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ *
+ * This is an adapter which manages the Fragments of the TabbedLyricsView Activity
+ *
+ */
 public class PageAdapterLyrics extends FragmentPagerAdapter {
     final int tabCount;
 
-    // startPage
-    // endPage
-    // chord
-    // song link
-    // karaoke link
-    final String[] contents;
+    // startPag, eendPage, chord, song link, karaoke link
+    final String[] contents; // stores the passed data
 
     public PageAdapterLyrics(@NonNull @NotNull FragmentManager fm, int behavior,
                              String[] contents) {
@@ -32,7 +33,7 @@ public class PageAdapterLyrics extends FragmentPagerAdapter {
         switch (position)
         {                                    // pageStart   pageEnd
             case 0: return new LyricsFragment(contents[0], contents[1]);
-            case 1: return new DetailsFragment(contents);
+            case 1: return new DetailsFragment(contents); // pass all the data
         }
         return null;
     }

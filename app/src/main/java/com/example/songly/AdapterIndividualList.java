@@ -65,8 +65,6 @@ public class AdapterIndividualList extends RecyclerView.Adapter<AdapterIndividua
         holder.theIcon.setImageResource(R.drawable.library_music);
         fullViewHolder.add(holder);
 
-
-
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {

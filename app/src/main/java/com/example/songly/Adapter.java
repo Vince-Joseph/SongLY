@@ -16,25 +16,21 @@ import java.util.List;
 
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements Filterable {
-
-    private final List<ModelClassSongList> OriginalSongList;
-    private final List<ModelClassSongList> exampleList;
+    // contains all the passed list of songs, this list is used to restore the original passed songs
+    private final List<ModalFullSearch> OriginalSongList;
+    private final List<ModalFullSearch> exampleList; // all experiments are done on this list
 
     final SongClickInterface songClickInterface;
-    final Typeface typeface; // to set malayalam font for the recycler view
 
-    public Adapter(List<ModelClassSongList>userList, SongClickInterface songClickInterface,
-    Typeface typeface) {
+    public Adapter(List<ModalFullSearch>userList, SongClickInterface songClickInterface) {
 
-        this.OriginalSongList = new ArrayList<>(userList);
-        this.exampleList = userList;
-
+        this.OriginalSongList = new ArrayList<>(userList); // copy the passed data
+        this.exampleList = userList; // copy the passed data
         this.songClickInterface = songClickInterface;
 
-        this.typeface = typeface;
     }
 
-
+    // upon creating viewholder, inflate individual song list item's layout
     @NonNull
     @Override
     public Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,8 +41,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements
     @Override
     public void onBindViewHolder(@NonNull Adapter.ViewHolder holder, int position) {
 
-        String title=exampleList.get(position).getTextViewSongTitle();
-        holder.setData(title);
+        String title = exampleList.get(position).getMalayalamTitle();
+        // set the typeface(font of textview) to malayalam
+        holder.textView.setTypeface(Typeface.createFromAsset(
+                holder.textView.getContext().getAssets(),"font/MLKR0NTT.TTF"));
+        holder.textView.setText(title); // set the malayalam title
     }
 
     @Override
@@ -65,8 +64,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements
         final SongClickInterface songClickInterface;
         private final TextView textView;
 
-
-
         public ViewHolder(@NonNull View itemView, SongClickInterface songClickInterface) {
             super(itemView);
 
@@ -76,14 +73,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements
 
             this.songClickInterface = songClickInterface;
             itemView.setOnClickListener(this);
-        }
-
-        public void setData(String name) {
-
-
-            textView.setTypeface(typeface);
-            textView.setText(name);
-
         }
 
         @Override
@@ -97,24 +86,23 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements
         void songClicked(int position);
     }
 
+    // filter the list of songs based on query (handle searching)
     private final Filter exampleFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<ModelClassSongList> filteredList = new ArrayList<>();
+            List<ModalFullSearch> filteredList = new ArrayList<>();
 
             if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(OriginalSongList);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                for (ModelClassSongList item : OriginalSongList) {
-                    if (item.getEngName().toLowerCase().contains(filterPattern)) {
+                for (ModalFullSearch item : OriginalSongList) {
+                    if (item.getEnglishTitle().toLowerCase().contains(filterPattern)) {
                         filteredList.add(item);
-
                     }
                 }
             }
-
             FilterResults results = new FilterResults();
             results.values = filteredList;
 
@@ -124,8 +112,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             exampleList.clear();
+            // we are creating new songs list with the help of filtered results
             exampleList.addAll((List) results.values);
-            notifyDataSetChanged();
+            notifyDataSetChanged(); // notify the changes
         }
     };
 }

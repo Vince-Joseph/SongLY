@@ -8,6 +8,11 @@ import android.os.Bundle;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
+/**
+ * This activity holds two fragments namely LyricsFragment and DetailsFragment
+ * Bottom nav is disabled for this activity
+ *
+ */
 public class TabbedLyricsView extends AppCompatActivity {
 
     TabLayout tabLayout;

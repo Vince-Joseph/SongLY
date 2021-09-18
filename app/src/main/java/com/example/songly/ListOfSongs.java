@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,34 +26,36 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * This Activity displays the list of songs belonging to a particular category.
+ * The search functionality will search for a particular song of that particular category.
+ * We've used recycler view to display the list of songs.
+ * Upon clicking individual song, the user will be directed to corresponding lyrics.
+ *
+ */
 public class ListOfSongs extends AppCompatActivity  implements
         Adapter.SongClickInterface{
 
-//1, 3, altharayil anuthapamode,
-// AÄ¯mcbnÂ AëXm]tamsS AWntNÀ¶nSmw,
-// Fm,
-// https://www.youtube.com/watch?v=hr6jrLUYnh0,	https://www.youtube.com/watch?v=c3bh-0XYV6o
-
-    RecyclerView recyclerView;
+    RecyclerView recyclerView; // to contain the list of songs
     LinearLayoutManager layoutManager;
-    List<ModelClassSongList> songsList;
+    // we are re-using ModalFullSearch instead of creating new Modal class
+    List<ModalFullSearch> songsList; // holds list of all songs in this particular category read from file
     Adapter adapter;
     ImageView searchViewButton;
     TextView pageTitle;
-    Typeface typeface;
     BottomNavigationView navView;
     SearchView searchCategory;
-
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_songs);
 
-        searchViewButton = findViewById(R.id.searchIcon);
+        searchViewButton = findViewById(R.id.searchIcon); // search button
+        pageTitle = findViewById(R.id.pageTitle); // page title (hides when search is clicked)
 
-        pageTitle = findViewById(R.id.pageTitle);
-        searchCategory = findViewById(R.id.searchCategory);
-        typeface = Typeface.createFromAsset(getAssets(),"font/MLKR0NTT.TTF");
+        searchCategory = findViewById(R.id.searchCategory); // (hidden searchView - search bar)
 
         navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -68,22 +69,22 @@ public class ListOfSongs extends AppCompatActivity  implements
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 int menuId = item.getItemId();
-                Intent intent;
                 if (menuId == R.id.navigation_song) {
                     intent = new Intent(getApplicationContext(), HomePage.class);
                     startActivity(intent);
                 } else if (menuId == R.id.navigation_list) {
                     intent = new Intent(getApplicationContext(), ListActivity.class);
                     startActivity(intent);
+                    // control the transition animations
                     overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
                 } else if (menuId == R.id.navigation_prayer) {
-                    intent = new Intent(getApplicationContext(), PrayerWithTab.class);
-                    startActivity(intent);
+                    startActivity(new Intent(getApplicationContext(), PrayerWithTab.class));
                 }
                 return true;
             }
         });
 
+        // upon search query text change
         searchCategory.setOnQueryTextListener(new SearchView.OnQueryTextListener()
         {
             @Override
@@ -114,6 +115,7 @@ public class ListOfSongs extends AppCompatActivity  implements
             }
         });
 
+        // display the search bar and hide other things with some transitions
         searchViewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,31 +129,19 @@ public class ListOfSongs extends AppCompatActivity  implements
                 pageTitle.startAnimation(AnimationUtils.loadAnimation(searchCategory.getContext(),
                         R.anim.slide_to_left));
                 pageTitle.setVisibility(View.GONE);
-
-//                pageTitle.animate()
-//                        .translationX(-100)
-//                        .setListener(new AnimatorListenerAdapter() {
-//                            @Override
-//                            public void onAnimationEnd(Animator animation, boolean isReverse) {
-//                                pageTitle.setVisibility(View.GONE);
-//                            }
-//                        });
-
-
             }
         });
 
+        // receive the respective filename from which list of songs of that particular category have to be read
+        intent = getIntent();
+        String fileName = intent.getStringExtra("fileName");
+        pageTitle.setText(fileName); // set the title first
 
-        Intent intent = getIntent();
-        String fileName = intent.getStringExtra("folder");
-        String activityTitle = fileName;
+        // then convert the fileName to all lower cases
         fileName = fileName.toLowerCase();
-
-        pageTitle.setText(activityTitle);
         initData(fileName);
         initRecyclerView();
     }
-
 
     @Override
     protected void onStart() {
@@ -159,13 +149,13 @@ public class ListOfSongs extends AppCompatActivity  implements
         super.onStart();
     }
 
-
+    // setting up the recycler view
     private void initRecyclerView() {
-        recyclerView=findViewById(R.id.songListRecycler);
+        recyclerView = findViewById(R.id.songListRecycler);
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        adapter=new Adapter(songsList, this, typeface);
+        adapter=new Adapter(songsList, this);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
@@ -176,35 +166,35 @@ public class ListOfSongs extends AppCompatActivity  implements
         String data = "";
         InputStream is = null;
 
-
+        // find respective filename in res/raw folder
         if(fileName.equals("entrance"))
             is = this.getResources().openRawResource(R.raw.entrance);
-        else if(fileName.equals("pslam"))
-            is = this.getResources().openRawResource(R.raw.pslam);
+        else if(fileName.equals("psalms"))
+            is = this.getResources().openRawResource(R.raw.psalms);
         else if(fileName.equals("gospel"))
             is = this.getResources().openRawResource(R.raw.gospel);
         else if(fileName.equals("offering"))
             is = this.getResources().openRawResource(R.raw.offering);
         else if(fileName.equals("osana"))
             is = this.getResources().openRawResource(R.raw.osana);
-        else if(fileName.equals("elavation"))
-            is = this.getResources().openRawResource(R.raw.elavation);
+        else if(fileName.equals("adoration"))
+            is = this.getResources().openRawResource(R.raw.adoration);
         else if(fileName.equals("communion"))
             is = this.getResources().openRawResource(R.raw.communion);
         else if(fileName.equals("others"))
             is = this.getResources().openRawResource(R.raw.others);
 
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
 
         if(is != null)
         {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
 
             try {
-
+                    // read each song name from the file and store it in the list as an obj
                     while((data = bufferedReader.readLine()) != null)
                     {
                         String[] splited = data.split("[,]", 0);
-                        songsList.add(new ModelClassSongList(
+                        songsList.add(new ModalFullSearch(
                                 splited[0], // page start
                                 splited[1].trim(), // page end
                                 splited[2].trim(), // eng title
@@ -213,42 +203,34 @@ public class ListOfSongs extends AppCompatActivity  implements
                                 splited[5].trim(), // song's song link
                                 splited[6].trim() // song's karaoke
                                 ));
-
-                    }
+                    } // close while
                     is.close();
                 }
                 catch (Exception e)
                 {
                     e.printStackTrace();
                 }
-        }
-
+        } // close of if
     }
 
     @Override
     public void songClicked(int position) {
         // intent is used to switch activities
-//        Intent intent = new Intent(getApplicationContext(), ViewLyrics.class);
-        Intent intent = new Intent(getApplicationContext(), TabbedLyricsView.class);
+        intent = new Intent(getApplicationContext(), TabbedLyricsView.class);
         Bundle bundle = new Bundle();
 
         // we are passing an array of strings to TabbedLyricsView
         bundle.putStringArray("contents", new String[]{
-                songsList.get(position).getStartPage(),
-                songsList.get(position).getEndPage(),
+                songsList.get(position).getPageStart(),
+                songsList.get(position).getPageEnd(),
                 songsList.get(position).getChord(),
                 songsList.get(position).getSong(),
                 songsList.get(position).getKaraoke()
         });
         intent.putExtras(bundle);
 
-//        searchView.setQuery("", false);
-//        searchView.clearFocus();
-//        searchView.setIconified(true);
-
-//        // now invoke the intent
+       // now invoke the intent
         startActivity(intent);
-//        closeSearchAction(searchText);
     }
 
 // -------------------------- Toolbar menu is commented and replaced with cutome layouts ----------------------

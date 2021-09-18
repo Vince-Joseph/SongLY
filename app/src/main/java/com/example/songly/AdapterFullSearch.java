@@ -25,16 +25,15 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
     private final List<ModalFullSearch> fullListOfSongs;
 
 //    List<ModalFullSearch> checkedList;
-    List<ModalFullSearch> existingList;
 
     final SongTitleClicked songTitleClickedInterface;
-    public String mode = "";
+    public String mode = ""; // indicates selection mode or view mode
     final Context context;
 
     // constructor - initialises the full song's arrayList with passed data
     AdapterFullSearch(List<ModalFullSearch> modifiedList, SongTitleClicked songTitleClickedInterface,
                       String mode,
-                      ArrayList<ModalFullSearch> existingList, Context context){
+                      Context context){
 
         fullListOfSongs = new ArrayList<>(modifiedList);
         FullSearch.checkedList = new ArrayList<>();
@@ -54,7 +53,6 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
         // inflating representation of individual song
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.individual_search_item,
                 parent, false);
-//        Toast.makeText(v.getContext(), mode, Toast.LENGTH_SHORT).show();
         return new ViewHolder(v, songTitleClickedInterface, mode);
     }
 
@@ -63,17 +61,9 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
         ModalFullSearch currentItem = modifiedList.get(position);
 
         // change the font of textView to malayalam using previously defined Typeface obj
-
         holder.malayalamTextView.setTypeface(currentItem.getTypeface());
-        // set the passed text from ActiitySearchSongList
+        // set the passed text from ActivitySearchSongList
         holder.malayalamTextView.setText(currentItem.getMalayalamTitle());
-        holder.englishTitleTextView.setText(currentItem.getEnglishTitle());
-
-
-        holder.folderNameTextView.setText(currentItem.getPageStart());
-        holder.fileNameTextView.setText(currentItem.getPageEnd());
-
-
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -82,7 +72,7 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
             }
         });
 
-        holder.linearLayoutHolder.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -97,22 +87,18 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
             }
         });
 
-
-
         // set the already selected song's checkboxes to checked
         boolean flag = false;
+        String engTitle = modifiedList.get(holder.getAbsoluteAdapterPosition()).getEnglishTitle();
         for (int i = 0; i< FullSearch.checkedList.size(); i++)
         {
-            if(holder.englishTitleTextView.getText().toString().equals(
-                    FullSearch.checkedList.get(i).getEnglishTitle()))
+            if(engTitle.equals(FullSearch.checkedList.get(i).getEnglishTitle()))
             {
                 flag = true;
                 break;
             }
         }
-
             holder.checkBox.setChecked(flag);
-
     }
 
     @Override
@@ -176,10 +162,6 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
      */
     static class ViewHolder extends RecyclerView.ViewHolder   {
         final TextView malayalamTextView;
-        final TextView englishTitleTextView;
-        final TextView folderNameTextView;
-        final TextView fileNameTextView;
-        final LinearLayout linearLayoutHolder;
         final CheckBox checkBox;
         final SongTitleClicked songTitleClicked;
 
@@ -188,11 +170,7 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
             super(itemView);
 
             malayalamTextView = itemView.findViewById(R.id.malayalamTitle);
-            englishTitleTextView = itemView.findViewById(R.id.englishTitle);
-            folderNameTextView = itemView.findViewById(R.id.foldernameofsong);
-            fileNameTextView = itemView.findViewById(R.id.fileNameOfSong);
             checkBox = itemView.findViewById(R.id.selectSong);
-            linearLayoutHolder = itemView.findViewById(R.id.searchHolder);
 
             if(mode.equals("off"))
                 checkBox.setVisibility(View.GONE);
@@ -213,13 +191,12 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
             if(isChecked)
             {
                 boolean flag = false;
-                // search whether current song has been selected already or not, using checkedList
+                // search whether current song has been selected already present or not, using checkedList
+                String engTitle = modifiedList.get(holder.getAbsoluteAdapterPosition()).getEnglishTitle();
                 for (int i = 0; i< FullSearch.checkedList.size(); i++)
                 {
                     flag = false;
-
-                    if(holder.englishTitleTextView.getText().toString().equals(
-                            FullSearch.checkedList.get(i).getEnglishTitle()))
+                    if(engTitle.equals(FullSearch.checkedList.get(i).getEnglishTitle()))
                     {
                         flag = true;
                         break;
@@ -245,10 +222,10 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
             else
             {
                 // search and remove the unchecked element from the checkedList
+                String engTitle = modifiedList.get(holder.getAbsoluteAdapterPosition()).getEnglishTitle();
                 for (int i = 0; i< FullSearch.checkedList.size(); i++)
                 {
-                    if(holder.englishTitleTextView.getText().toString().equals(
-                            FullSearch.checkedList.get(i).getEnglishTitle()))
+                    if(engTitle.equals(FullSearch.checkedList.get(i).getEnglishTitle()))
                     {
                         FullSearch.checkedList.remove(i);
                         break;

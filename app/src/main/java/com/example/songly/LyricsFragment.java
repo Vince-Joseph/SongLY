@@ -12,6 +12,15 @@ import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 
 /**
+ *
+ * This Fragment displays the actual song lyrics.
+ * Bottom nav is disabled for this fragment.
+ * The pdfView allows two zoom levels, not the default 3.
+ * All the lyrics are fetched from a single pdf located in  assets/songs/songs.pdf
+ */
+
+
+/**
  * A simple {@link Fragment} subclass.
  * Use the {@link LyricsFragment#newInstance} factory method to
  * create an instance of this fragment.

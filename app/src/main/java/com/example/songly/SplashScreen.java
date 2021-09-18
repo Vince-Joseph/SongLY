@@ -7,16 +7,18 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 /**
- * The splash screen
+ * The splash screen. This is the launcher activity.
+ *
  */
 
 public class SplashScreen extends AppCompatActivity {
-    TextView textView1, textView2;
+    TextView textView1, textView2, textView3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -29,16 +31,37 @@ public class SplashScreen extends AppCompatActivity {
 
         textView1 = findViewById(R.id.appname);
         textView2 = findViewById(R.id.subtitle);
+        textView3 = findViewById(R.id.subtitle02);
 
         // create animation objects
-        Animation fadeUp = AnimationUtils.loadAnimation(this, R.anim.fade_up_splash);
-        Animation fadeDown = AnimationUtils.loadAnimation(this, R.anim.fade_down_splash);
 
-        // set the animation effects to textviews
+
+        Animation fadeDown = AnimationUtils.loadAnimation(SplashScreen.this, R.anim.fade_down_splash);
+        Animation fadeUp = AnimationUtils.loadAnimation(SplashScreen.this, R.anim.fade_up_splash);
         textView1.startAnimation(fadeDown);
         textView2.startAnimation(fadeUp);
+        textView3.setVisibility(View.INVISIBLE);
 
-        int TimeOut = 1200; // the timeout interval
+        fadeUp.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                Animation custom = AnimationUtils.loadAnimation(SplashScreen.this, R.anim.zoom_in_author);
+                textView3.setVisibility(View.VISIBLE);
+                textView3.startAnimation(custom);
+            }
+        });
+
+        int TimeOut = 1700; // the timeout interval
 
         new Handler().postDelayed(new Runnable() {
             @Override

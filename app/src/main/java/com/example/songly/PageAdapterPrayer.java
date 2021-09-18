@@ -7,6 +7,12 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ *
+ * This is an adapter which manages the Fragments of the PrayerWithTab Activity
+ *
+ */
+
 public class PageAdapterPrayer  extends FragmentPagerAdapter {
 
     final int tabCount;

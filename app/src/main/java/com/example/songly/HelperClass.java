@@ -22,11 +22,11 @@ public class HelperClass {
         // array containing id of text files in res/raw folder
         int [] listOfFiles = {
                 R.raw.entrance,
-                R.raw.pslam,
+                R.raw.psalms,
                 R.raw.gospel,
                 R.raw.offering,
                 R.raw.osana,
-                R.raw.elavation,
+                R.raw.adoration,
                 R.raw.communion,
                 R.raw.others
         };
@@ -73,4 +73,5 @@ public class HelperClass {
         }
         return fullListOfSongs;
     }
+
 }

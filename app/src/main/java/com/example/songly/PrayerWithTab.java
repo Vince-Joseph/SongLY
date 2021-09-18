@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -21,6 +23,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * This activity holds two fragments, FragmentPrayer and FragmentExtra.
+ * The activity is intended to display the mass prayers and karososa prayers in two tabs.
+ *
+ */
 public class PrayerWithTab extends AppCompatActivity {
     TabLayout tabLayout;
     TabItem tabPrayer, tabExtra;
@@ -32,6 +40,8 @@ public class PrayerWithTab extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parayer_with_tab);
+
+        checkPermission(); // check for storage permission
 
         requiredPath = getExternalFilesDir("prayer");;
         tabLayout = findViewById(R.id.tabPrayer);
@@ -99,4 +109,36 @@ public class PrayerWithTab extends AppCompatActivity {
 // ------------------------------- Bottom nav ends here ------------------------------------------------
 
     }
+
+    // check storage permission
+    private void checkPermission() {
+
+        // if permission is not granted then ask for it
+        if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
+                PackageManager.PERMISSION_GRANTED)
+        {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        }
+    }
+
+    // when request is granted
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions,
+                                           @NonNull @NotNull int[] grantResults) {
+
+        if(requestCode == 1)
+        {
+            if(!(grantResults[0] == PackageManager.PERMISSION_GRANTED))
+            {
+                // return back to home screen
+                intent = new Intent(getApplicationContext(), HomePage.class);
+                startActivity(intent);
+                finish(); // we are finishing the activity to pop it out from the stack such that
+                // at a later stage, when we open the page, we get updated items, not some old views
+
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
 }

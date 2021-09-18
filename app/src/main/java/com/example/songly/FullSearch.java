@@ -18,6 +18,12 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This activity is intended to display the whole list of songs available from all categories.
+ * This activity has two modes.
+ * 1. User can search the entire list of songs for a particular song and click on it to view its lyrics
+ * 2. User can select songs and press the tick mark to add the selected songs to a list
+ */
 public class FullSearch extends AppCompatActivity
     implements AdapterFullSearch.SongTitleClicked{
 
@@ -139,7 +145,6 @@ public class FullSearch extends AppCompatActivity
 
         if(storedList == null)
         {
-//            Toast.makeText(this, "No data saved in sharedpreferences", Toast.LENGTH_SHORT).show();
             storedList = new ArrayList<>();
         }
         else
@@ -158,7 +163,7 @@ public class FullSearch extends AppCompatActivity
         // recycler view's layout manager - linear layout
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         adapter = new AdapterFullSearch(fullListOfSongs, this,
-                mode, storedList, this);
+                mode, this);
 
 
         recyclerView.setAdapter(adapter); // set recycler view's adapter
@@ -184,8 +189,6 @@ public class FullSearch extends AppCompatActivity
                 fullListOfSongs.get(position).getKaraoke()
         });
         intent.putExtras(bundle);
-
-
         // now invoke the activity
         startActivity(intent);
         finish();

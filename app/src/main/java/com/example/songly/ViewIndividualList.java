@@ -49,6 +49,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ *
+ * This activity holds the individual list items.
+ * Upon Clicking a list in the ListView activity, its stored lists will be displayed using this activity.
+ * The song names are read from corresponding .txt file with the listname.
+ * This activity provides provisions to add new songs, delete songs, re-arrange songs, apply the list to prayer section etc.
+ */
 public class ViewIndividualList extends AppCompatActivity
         implements AdapterIndividualList.OnClickAction{
 
@@ -65,7 +72,6 @@ public class ViewIndividualList extends AppCompatActivity
     ImageView imageViewEmpty;
     Intent intent;
     int countOfLines = 0; // to store the number of lines read from the file
-
     int songsSortedInOrder = -1;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor ;
@@ -81,9 +87,6 @@ public class ViewIndividualList extends AppCompatActivity
         setContentView(R.layout.activity_view_individual_list);
         sharedPreferences = getSharedPreferences("SongLY", MODE_PRIVATE);
         currentFileName = sharedPreferences.getString("file_name", null);
-
-//        Toast.makeText(this, currentFileName, Toast.LENGTH_SHORT).show();
-
 
 // --------------------------- Toolbar has been replaced ------------------------------------
 
@@ -260,9 +263,6 @@ public class ViewIndividualList extends AppCompatActivity
                             Toast.LENGTH_LONG).show();
                 else
                 {
-//                    editor = sharedPreferences.edit();
-//                    editor.putString("applied_list", currentFileName);
-//                    editor.apply();
                     requiredPathOfAppliedList = getExternalFilesDir("appliedList");
                     if(requiredPathOfAppliedList != null)
                     {
@@ -621,10 +621,6 @@ public class ViewIndividualList extends AppCompatActivity
             inflater.inflate(R.menu.selection_menu, menu);
             MenuItem editItem = menu.findItem(R.id.edit_icon);
             editItem.setVisible(false); // make the edit icon invisible for this activity
-
-//            MenuItem applyIcon = menu.findItem(R.id.apply_icon);
-//            applyIcon.setVisible(false); // make the apply icon invisible for this activity
-
             return true;
         }
 
@@ -686,15 +682,6 @@ public class ViewIndividualList extends AppCompatActivity
 
             int fromPosition = viewHolder.getAbsoluteAdapterPosition();
             int toPosition = target.getAbsoluteAdapterPosition();
-
-//            if(actionMode != null)
-//            {
-//                adapter.clearAll(true);
-//                actionModeCallback.onDestroyActionMode(actionMode);
-////                actionMode.finish();
-//
-//            }
-
             Collections.swap(songNames, fromPosition, toPosition);
             recyclerView.getAdapter().notifyItemMoved(fromPosition, toPosition);
 
@@ -720,8 +707,7 @@ public class ViewIndividualList extends AppCompatActivity
                                         +md.getMalayalamTitle()+",\t\t\t"
                                         +md.getChord()+",\t\t\t"
                                         +md.getSong()+",\t\t\t"
-                                        +md.getKaraoke()+"\n"
-                        );
+                                        +md.getKaraoke()+"\n" );
 
                         countOfLines++;
                     }
@@ -737,9 +723,6 @@ public class ViewIndividualList extends AppCompatActivity
             {
                 Toast.makeText(getApplicationContext(), "No such directory", Toast.LENGTH_SHORT).show();
             }
-
-
-
             return false;
         }
 
@@ -771,14 +754,8 @@ public class ViewIndividualList extends AppCompatActivity
             if (selected == 0)
                 actionMode.finish();
             else
-            {
                 actionMode.setTitle("Selected: " + selected);
 
-                if(selected > 1)
-                {
-                    // disable edit button
-                }
-            }
             return true;
         }
         return false;

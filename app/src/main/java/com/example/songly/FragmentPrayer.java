@@ -42,6 +42,14 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This Fragment is the first tab of PrayerWithTab activity.
+ * This fragment displays the mass prayer and also a floating action button.
+ * The action button shows the list of songs applied to the prayer section.
+ * This list of songs can be used to view the respective lyrics while the actual mass is going on,
+ * and without any additional navigation to other activities.
+ * This activity requires file access permission.
+ */
 public class FragmentPrayer extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -94,6 +102,10 @@ public class FragmentPrayer extends Fragment {
 
         // path to the list of applied songs to show in the alert box
         File requiredPathOfAppliedList = view.getContext().getExternalFilesDir("appliedList");
+        sharedPreferences = view.getContext().getSharedPreferences("SongLY", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("existing_songs", ""); // remove the existing songs prefs
+        editor.apply();
 
         // pdf view which displays the mass prayer
         PDFView pdfView = view.findViewById(R.id.prayerPdfTab);
@@ -103,6 +115,8 @@ public class FragmentPrayer extends Fragment {
                 .nightMode(false)
                 .scrollHandle(new DefaultScrollHandle(view.getContext()))
                 .load();
+        pdfView.setMidZoom(1);
+        pdfView.setMaxZoom(1.3f);
 
         if (requiredPathOfAppliedList != null)
         {
@@ -203,13 +217,12 @@ public class FragmentPrayer extends Fragment {
             }
         });
 
-        sharedPreferences = view.getContext().getSharedPreferences("SongLY", Context.MODE_PRIVATE);
+
 //                 check whether some songs have been added newly
         if (sharedPreferences.getString("selected", null).equals("on")) {
             Gson gson = new Gson();
             String json = sharedPreferences.getString("selected_songs", null);
-            Type type = new TypeToken<ArrayList<ModalFullSearch>>() {
-            }.getType();
+            Type type = new TypeToken<ArrayList<ModalFullSearch>>() {}.getType();
             ArrayList<ModalFullSearch> storedList = gson.fromJson(json, type);
 
             if (storedList != null) {
@@ -242,7 +255,7 @@ public class FragmentPrayer extends Fragment {
 //                else
 //                    Toast.makeText(this, "Note that storedlist is empty", Toast.LENGTH_LONG).show();
 
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+
         editor.putString("selected_songs", "");
         editor.putString("selected", "off");
         editor.apply();
