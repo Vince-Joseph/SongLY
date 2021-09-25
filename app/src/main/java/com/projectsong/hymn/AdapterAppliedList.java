@@ -2,13 +2,11 @@ package com.example.songly;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,13 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterAppliedList extends RecyclerView.Adapter<AdapterAppliedList.ViewHolder> {
 
-    List<ModalFullSearch> itemLists ; // list to hold details of applied songs
-    LayoutInflater inflater;
+    final List<ModalFullSearch> itemLists ; // list to hold details of applied songs
+    final LayoutInflater inflater;
 
     public AdapterAppliedList(List<ModalFullSearch> itemLists, Context context)
     {
@@ -74,8 +71,8 @@ public class AdapterAppliedList extends RecyclerView.Adapter<AdapterAppliedList.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView malayalamTitle;
-        ImageView deleteIcon;
+        final TextView malayalamTitle;
+        // --Commented out by Inspection (18-09-2021 05:47 PM):ImageView deleteIcon;
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
 

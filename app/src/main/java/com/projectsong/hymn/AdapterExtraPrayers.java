@@ -15,7 +15,7 @@ import java.util.List;
 
 public class AdapterExtraPrayers extends RecyclerView.Adapter<AdapterExtraPrayers.ViewHolder> {
 
-    List<ModalFullSearch> prayerNames; // stores karososa titles
+    final List<ModalFullSearch> prayerNames; // stores karososa titles
 
     public AdapterExtraPrayers(List<ModalFullSearch> prayers)
     {
@@ -52,8 +52,8 @@ public class AdapterExtraPrayers extends RecyclerView.Adapter<AdapterExtraPrayer
     }
 
     public class ViewHolder  extends RecyclerView.ViewHolder{
-        TextView malayalamTitle;
-        Typeface typeface;
+        final TextView malayalamTitle;
+        final Typeface typeface;
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             malayalamTitle = itemView.findViewById(R.id.songTitle);

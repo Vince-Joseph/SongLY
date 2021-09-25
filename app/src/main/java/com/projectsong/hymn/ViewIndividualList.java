@@ -36,7 +36,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -150,11 +149,11 @@ public class ViewIndividualList extends AppCompatActivity
         songNames = new ArrayList<>(); // to temp store the list names
         helperClass = new HelperClass();
 
-        // to store full list of songs (from all categories)
-        List<ModalFullSearch> fullListOfSongs = new ArrayList<>();
+//        // to store full list of songs (from all categories)
+//        List<ModalFullSearch> fullListOfSongs = new ArrayList<>(helperClass.fillSongTitles(this));// fill the list with all song's titles
 
-        checkPermission(); // check for storage permissions, each time activity get displayed
-        fullListOfSongs.addAll( helperClass.fillSongTitles(this) ); // fill the list with all song's titles
+//        checkPermission(); // check for storage permissions, each time activity get displayed
+//        fullListOfSongs.addAll(  );
         setUpRecycler();
         adapter.setActionModeReceiver((AdapterIndividualList.OnClickAction) activity);
 
@@ -274,11 +273,11 @@ public class ViewIndividualList extends AppCompatActivity
                         {
                             File toBeWrite = new File(requiredPathOfAppliedList,
                                     "applied_list.txt");
-                            FileWriter writeToFile = null;
+
                             try
                             {
                                 boolean flag;
-                                writeToFile = new FileWriter(toBeWrite);
+                                FileWriter writeToFile  = new FileWriter(toBeWrite);
                                 for (int i = 0; i< songNames.size(); i++)
                                 {
 
@@ -388,10 +387,10 @@ public class ViewIndividualList extends AppCompatActivity
 
             toBeRead = new File(requiredPath, currentFileName);
 
-            FileReader fileReader = null; // reads the file
+
             try
             {
-                fileReader = new FileReader(toBeRead);
+                FileReader fileReader = new FileReader(toBeRead);
                 BufferedReader bufferedReader = new BufferedReader(fileReader); // creates buffer of chars
                 String line;
 
@@ -509,8 +508,7 @@ public class ViewIndividualList extends AppCompatActivity
 
     private void removeSongFromList() {
 
-        ArrayList<ModalFullSearch> toBeDeleted = new ArrayList<>();
-        toBeDeleted.addAll(adapter.getSelected());
+        ArrayList<ModalFullSearch> toBeDeleted = new ArrayList<>(adapter.getSelected());
 
 
         if(requiredPath != null)
@@ -523,12 +521,10 @@ public class ViewIndividualList extends AppCompatActivity
             {
                 File toBeWrite = new File(requiredPath, sharedPreferences.getString("file_name", null));
 
-                FileWriter writeToFile = null;
-
                     try
                     {
                         boolean flag;
-                        writeToFile = new FileWriter(toBeWrite);
+                        FileWriter  writeToFile = new FileWriter(toBeWrite);
                         for (int i = 0; i< songNames.size(); i++)
                         {
                             flag = true;

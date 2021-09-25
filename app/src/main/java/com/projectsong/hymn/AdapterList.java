@@ -28,12 +28,10 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
 
     final SharedPreferences sharedPreferences;
 
-    final Context context;
     final LayoutInflater inflater;
     Intent intent;
     public  AdapterList(Context context, List<String> listNames)
     {
-        this.context = context;
         this.listNames = listNames;
         this.inflater = LayoutInflater.from(context);
         this.selected = new ArrayList<>();

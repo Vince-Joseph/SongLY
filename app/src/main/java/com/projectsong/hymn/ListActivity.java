@@ -13,7 +13,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.ActionMode;
@@ -131,7 +130,7 @@ public class ListActivity extends AppCompatActivity
         listNames = new ArrayList<>(); // to temp store the list names
         newFileName = null;
 
-        checkPermission(); // check for storage permissions
+//        checkPermission(); // check for storage permissions
         setUpRecycler(); // setup the lists
 
         toggleDefaultText(); // toggle the empty list indicating view if there are no lists present
@@ -324,8 +323,7 @@ public class ListActivity extends AppCompatActivity
 
     // method to remove specified list
     private void removeFile() {
-        ArrayList<String> toBeDeleted = new ArrayList<>();
-        toBeDeleted.addAll(adapter.getSelected()); // get all selected lists for deletion
+        ArrayList<String> toBeDeleted = new ArrayList<>(adapter.getSelected()); // get all selected lists for deletion
 
         if(requiredPath != null)
         {
@@ -358,21 +356,21 @@ public class ListActivity extends AppCompatActivity
     }
 
     private void createFile(String newFileName) {
-        newFileName.trim();
+        newFileName = newFileName.trim();
         File newFile = new File(currentDir, newFileName+".txt");
 
         try
         {
             // check for duplication of list
             File someFile = new File(getExternalFilesDir("lists"), newFileName+".txt");
-            if(someFile.exists())
+            if(!someFile.createNewFile())
             {
                 Toast.makeText(this, "List is already present", Toast.LENGTH_LONG).show();
 
             }
             else // if no duplication then
             {
-                someFile.createNewFile();
+//                boolean result = ;
                 listNames.add(newFileName); // add new list name to existing listnames arraylist
                 toggleDefaultText(); // toggle empty screen if necessary
 
@@ -512,9 +510,13 @@ public class ListActivity extends AppCompatActivity
                     {
                         File from = new File(requiredPath, currentName+".txt"); // old name
                         File to = new File(requiredPath, newFileName+".txt");
-                        from.renameTo(to);
-
-                        adapter.updateNames(currentName, newFileName); // update list name in arraylist
+                        if(!to.exists())
+                            if(from.renameTo(to)) // if rename succeeded then
+                                adapter.updateNames(currentName, newFileName); // update list name in arraylist
+                            else
+                                Toast.makeText(ListActivity.this, "Failed to rename", Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(ListActivity.this, "List already exists", Toast.LENGTH_SHORT).show();
                     }
                     else
                         Toast.makeText(ListActivity.this, "No such directory", Toast.LENGTH_SHORT).show();

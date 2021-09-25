@@ -192,7 +192,7 @@ public class AdapterIndividualList extends RecyclerView.Adapter<AdapterIndividua
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         final TextView listText;
-        TextView malayalamTextView;
+        // --Commented out by Inspection (18-09-2021 05:47 PM):TextView malayalamTextView;
         final ImageView selectionIndicator;
         final ImageView theIcon;
         public ViewHolder(@NonNull @NotNull View itemView) {

@@ -20,11 +20,11 @@ import android.widget.TextView;
  *
  */
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DetailsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+///**
+// * A simple {@link Fragment} subclass.
+// * Use the {@link DetailsFragment#newInstance} factory method to
+// * create an instance of this fragment.
+// */
 public class DetailsFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -50,23 +50,25 @@ public class DetailsFragment extends Fragment {
     }
 
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DetailsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DetailsFragment newInstance(String param1, String param2) {
-        DetailsFragment fragment = new DetailsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+// --Commented out by Inspection START (18-09-2021 05:47 PM):
+//    /**
+//     * Use this factory method to create a new instance of
+//     * this fragment using the provided parameters.
+//     *
+//     * @param param1 Parameter 1.
+//     * @param param2 Parameter 2.
+//     * @return A new instance of fragment DetailsFragment.
+//     */
+//    // TODO: Rename and change types and number of parameters
+//    public static DetailsFragment newInstance(String param1, String param2) {
+//        DetailsFragment fragment = new DetailsFragment();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
+// --Commented out by Inspection STOP (18-09-2021 05:47 PM)
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

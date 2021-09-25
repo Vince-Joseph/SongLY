@@ -6,14 +6,9 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.Layout;
-import android.view.ActionMode;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +19,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.barteksc.pdfviewer.PDFView;
-import com.github.barteksc.pdfviewer.listener.OnTapListener;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -59,29 +53,31 @@ public class FragmentPrayer extends Fragment {
     FloatingActionButton floatingActionButton;
     SharedPreferences sharedPreferences;
     AdapterAppliedList adapterAppliedList; // adapter for the alert box list
-    List<ModalFullSearch> listOfSongs = new ArrayList<>();
+    final List<ModalFullSearch> listOfSongs = new ArrayList<>();
     boolean visible;
     public FragmentPrayer() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment LyricsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FragmentPrayer newInstance(String param1, String param2) {
-        FragmentPrayer fragment = new FragmentPrayer();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+// --Commented out by Inspection START (18-09-2021 05:47 PM):
+//    /**
+//     * Use this factory method to create a new instance of
+//     * this fragment using the provided parameters.
+//     *
+//     * @param param1 Parameter 1.
+//     * @param param2 Parameter 2.
+//     * @return A new instance of fragment LyricsFragment.
+//     */
+//    // TODO: Rename and change types and number of parameters
+//    public static FragmentPrayer newInstance(String param1, String param2) {
+//        FragmentPrayer fragment = new FragmentPrayer();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
+// --Commented out by Inspection STOP (18-09-2021 05:47 PM)
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -219,7 +215,8 @@ public class FragmentPrayer extends Fragment {
 
 
 //                 check whether some songs have been added newly
-        if (sharedPreferences.getString("selected", null).equals("on")) {
+        String result = sharedPreferences.getString("selected", null);
+        if (result != null && result.equals("on")) {
             Gson gson = new Gson();
             String json = sharedPreferences.getString("selected_songs", null);
             Type type = new TypeToken<ArrayList<ModalFullSearch>>() {}.getType();
@@ -230,9 +227,8 @@ public class FragmentPrayer extends Fragment {
                 for (ModalFullSearch md : storedList) {
 //
                     listOfSongs.add(md);
-                    FileWriter writeToFile = null;
                     try {
-                        writeToFile = new FileWriter(toBeRead, true);
+                        FileWriter writeToFile = new FileWriter(toBeRead, true);
                         writeToFile.write(
                                 md.getPageStart() + ",\t\t\t"
                                         + md.getPageEnd() + ",\t\t\t"

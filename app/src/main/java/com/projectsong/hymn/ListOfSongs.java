@@ -163,26 +163,36 @@ public class ListOfSongs extends AppCompatActivity  implements
     private void initData(String fileName) {
         songsList = new ArrayList<>();
 
-        String data = "";
+        String data;
         InputStream is = null;
 
         // find respective filename in res/raw folder
-        if(fileName.equals("entrance"))
-            is = this.getResources().openRawResource(R.raw.entrance);
-        else if(fileName.equals("psalms"))
-            is = this.getResources().openRawResource(R.raw.psalms);
-        else if(fileName.equals("gospel"))
-            is = this.getResources().openRawResource(R.raw.gospel);
-        else if(fileName.equals("offering"))
-            is = this.getResources().openRawResource(R.raw.offering);
-        else if(fileName.equals("osana"))
-            is = this.getResources().openRawResource(R.raw.osana);
-        else if(fileName.equals("adoration"))
-            is = this.getResources().openRawResource(R.raw.adoration);
-        else if(fileName.equals("communion"))
-            is = this.getResources().openRawResource(R.raw.communion);
-        else if(fileName.equals("others"))
-            is = this.getResources().openRawResource(R.raw.others);
+        switch (fileName) {
+            case "entrance":
+                is = this.getResources().openRawResource(R.raw.entrance);
+                break;
+            case "psalms":
+                is = this.getResources().openRawResource(R.raw.psalms);
+                break;
+            case "gospel":
+                is = this.getResources().openRawResource(R.raw.gospel);
+                break;
+            case "offering":
+                is = this.getResources().openRawResource(R.raw.offering);
+                break;
+            case "osana":
+                is = this.getResources().openRawResource(R.raw.osana);
+                break;
+            case "adoration":
+                is = this.getResources().openRawResource(R.raw.adoration);
+                break;
+            case "communion":
+                is = this.getResources().openRawResource(R.raw.communion);
+                break;
+            case "others":
+                is = this.getResources().openRawResource(R.raw.others);
+                break;
+        }
 
 
         if(is != null)

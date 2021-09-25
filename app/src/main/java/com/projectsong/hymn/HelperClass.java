@@ -35,7 +35,7 @@ public class HelperClass {
 
         for(int id: listOfFiles)
         {
-            String data = "";
+            String data;
             // open the text from 'res/raw' folder
             InputStream is = context.getResources().openRawResource(id);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));

@@ -13,7 +13,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -27,7 +26,7 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
 //    List<ModalFullSearch> checkedList;
 
     final SongTitleClicked songTitleClickedInterface;
-    public String mode = ""; // indicates selection mode or view mode
+    public String mode; // indicates selection mode or view mode
     final Context context;
 
     // constructor - initialises the full song's arrayList with passed data
@@ -163,7 +162,7 @@ public class AdapterFullSearch extends RecyclerView.Adapter<AdapterFullSearch.Vi
     static class ViewHolder extends RecyclerView.ViewHolder   {
         final TextView malayalamTextView;
         final CheckBox checkBox;
-        final SongTitleClicked songTitleClicked;
+       final SongTitleClicked songTitleClicked;
 
 
         ViewHolder(View itemView,  AdapterFullSearch.SongTitleClicked songTitleClicked, String mode) {

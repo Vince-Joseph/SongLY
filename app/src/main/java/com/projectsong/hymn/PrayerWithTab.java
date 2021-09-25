@@ -1,16 +1,18 @@
 package com.example.songly;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -18,10 +20,6 @@ import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -35,15 +33,15 @@ public class PrayerWithTab extends AppCompatActivity {
     ViewPager viewPager;
     PageAdapterPrayer pageAdapterPrayer;
     Intent intent;
-    public static File requiredPath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parayer_with_tab);
 
-        checkPermission(); // check for storage permission
 
-        requiredPath = getExternalFilesDir("prayer");;
+
+//        requiredPath = getExternalFilesDir("prayer");
         tabLayout = findViewById(R.id.tabPrayer);
         tabPrayer = findViewById(R.id.tab_prayer);
         tabExtra = findViewById(R.id.tab_extra);
@@ -108,6 +106,14 @@ public class PrayerWithTab extends AppCompatActivity {
         });
 // ------------------------------- Bottom nav ends here ------------------------------------------------
 
+    }
+
+    @Nullable
+    @org.jetbrains.annotations.Nullable
+    @Override
+    public View onCreateView(@NonNull @NotNull String name, @NonNull @NotNull Context context, @NonNull @NotNull AttributeSet attrs) {
+//        checkPermission(); // check for storage permission
+        return super.onCreateView(name, context, attrs);
     }
 
     // check storage permission
